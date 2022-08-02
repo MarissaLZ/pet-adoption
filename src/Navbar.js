@@ -1,9 +1,8 @@
-import { AppBar, Toolbar, Stack, Typography, Button } from "@mui/material"
+import { AppBar, Toolbar, Stack, Typography } from "@mui/material"
 import React from "react"
+import { NavItems } from "./NavItems"
 
 export function Navbar() {
-  const navItems = ["Adopt", "Volunteer", "Donate", "About"]
-
   return (
     <AppBar position="static">
       <Toolbar sx={{ justifyContent: "space-between" }}>
@@ -11,11 +10,7 @@ export function Navbar() {
           APP NAME
         </Typography>
         <Stack direction="row" spacing={3}>
-          {navItems.map((item) => (
-            <Button key={item} color="inherit">
-              {item}
-            </Button>
-          ))}
+          <NavItems />
         </Stack>
       </Toolbar>
     </AppBar>
