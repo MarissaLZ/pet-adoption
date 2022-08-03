@@ -1,3 +1,4 @@
+//fetchPetList is a function that accepts userZipCode to get a list of 20 animals based on the users location
 function fetchPetList (userZipCode) {
   return (
     fetch("https://api.petfinder.com/v2/oauth2/token", {
