@@ -1,9 +1,11 @@
 import "./App.css"
+import { Navbar } from "./Navbar"
 import ZipCodeInput from "./ZipCodeInput"
 
 function App() {
   return (
-    <div>
+    <div className="App">
+      <Navbar />
       <ZipCodeInput />
     </div>
   )
