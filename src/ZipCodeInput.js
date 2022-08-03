@@ -2,7 +2,9 @@ import { useState } from "react"
 import { Button, Stack, TextField } from "@mui/material"
 import SearchIcon from "@mui/icons-material/Search"
 
-const ZipCodeInput = () => {
+
+const ZipCodeInput = ({ handlePetRequest }) => {
+
   const [zipcodeFormValues, setZipcodeFormValues] = useState("")
 
   //Gets value from the input and updates the zipCode state
@@ -16,6 +18,7 @@ const ZipCodeInput = () => {
   //OnSubmit Form consoles the user input
   const handleSubmit = (e) => {
     e.preventDefault()
+    handlePetRequest(zipcodeFormValues);
     setZipcodeFormValues("")
   }
 
