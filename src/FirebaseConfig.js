@@ -14,7 +14,6 @@ const firebaseConfig = {
 
 //initialize firebase with try catch method
 try {
-  console.log("FB", firebaseConfig)
   firebase.initializeApp(firebaseConfig)
 } catch (err) {
   if (!/already exists/.test(err.message)) {
