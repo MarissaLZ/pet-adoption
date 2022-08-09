@@ -4,6 +4,7 @@ import { Navbar } from "./Navbar"
 import ZipCodeInput from "./ZipCodeInput"
 import fetchPetList from "./fetchPetList"
 import PetList from "./PetList"
+import Footer from "./Footer"
 
 function App() {
   //List of pets from Petfinder API used in PetList component, initialized as an empty array
@@ -24,6 +25,7 @@ function App() {
       <Navbar />
       <ZipCodeInput handlePetRequest={handlePetRequest}/>
       <PetList petsList={petList}/>
+      <Footer/>
     </div>
   )
 }
