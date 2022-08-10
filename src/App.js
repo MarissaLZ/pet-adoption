@@ -12,18 +12,16 @@ function App() {
   //handlePetRequest accepts a zip code from the user within the ZipCodeInput component and passes it into the fetchPetList function
   //then method is used to update the petList state with the returned data
   const handlePetRequest = (zipcode) => {
-    fetchPetList(zipcode)
-    .then((response) => {
+    fetchPetList(zipcode).then((response) => {
       setPetList(response.animals)
     })
   }
 
-
   return (
     <div className="App">
       <Navbar />
-      <ZipCodeInput handlePetRequest={handlePetRequest}/>
-      <PetList petsList={petList}/>
+      <ZipCodeInput handlePetRequest={handlePetRequest} />
+      <PetList petsList={petList} />
     </div>
   )
 }
