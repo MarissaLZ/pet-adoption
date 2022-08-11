@@ -8,34 +8,19 @@ import { CardActionArea } from "@mui/material"
 import IconButton from "@mui/material/IconButton"
 import FavoriteIcon from "@mui/icons-material/Favorite"
 import Grid from "@mui/material/Grid"
-import fireConfig from "./Firebase/FirebaseConfig"
-import "firebase/firestore"
 
 //PetCard component takes in pet prop.
 //The card contains the pet's image, name, age, and breed and a heart button/Icon to favorite pet
 // The card (bellow card header) is clickable to redirect if we decide to
 
 const PetCard = ({ pet, isFavorited, toggleFavorite }) => {
-  console.log(isFavorited)
-  //Petcard is receiving pet onbject,
-  //so what we need to do is to check if that pet.id
-  //is in favorites list or not.
-
-  //const [liked, setLiked] = React.useState(checkPetId ? false : true)
-
-  //Todo:
-  //[] Check if a card already exits before adding it
-  //[] check the card id before removing the card
-
   return (
     <>
       <Card elevation={8} sx={{ maxWidth: 345, borderRadius: "18px" }}>
         <CardHeader
           title={pet.name}
           action={
-            // <IconButton onClick={() => setLiked(!liked)}>
             <IconButton onClick={() => toggleFavorite(pet.id)}>
-              {/*Placeholder onClick */}
               <FavoriteIcon
                 sx={isFavorited ? { backgroundColor: "red" } : null}
               />
