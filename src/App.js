@@ -13,17 +13,17 @@ function App() {
   //then method is used to update the petList state with the returned data
   const handlePetRequest = (zipcode) => {
     fetchPetList(zipcode)
-    .then((response) => {
-      setPetList(response.animals)
-    })
+      .then((response) => {
+        setPetList(response.animals)
+      })
   }
 
 
   return (
     <div className="App">
       <Navbar />
-      <ZipCodeInput handlePetRequest={handlePetRequest}/>
-      <PetList petsList={petList}/>
+      <ZipCodeInput handlePetRequest={handlePetRequest} />
+      <PetList petsList={petList} />
     </div>
   )
 }
