@@ -1,11 +1,21 @@
+import React from 'react'
+import Dialog from '@mui/material/Dialog';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import DialogActions from '@mui/material/DialogActions';
-import { Grid, FormControl, FormLabel, FormControlLabel, RadioGroup, Radio, DialogTitle } from '@mui/material';
-import React from 'react'
-import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
+import {
+    Grid,
+    FormControl,
+    FormLabel,
+    FormControlLabel,
+    RadioGroup,
+    Radio,
+    DialogTitle
+} from '@mui/material';
 
+// AdoptionForm has an "Adopt Me" button. When clicked, the Adoption Form displays 
+// as a pop-up using Dialog
 const AdoptionForm = () => {
 
     const [open, setOpen] = React.useState(false);
