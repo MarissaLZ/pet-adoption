@@ -1,9 +1,9 @@
 import "./App.css"
 import React from "react"
-import { Navbar } from "./Navbar"
-import ZipCodeInput from "./ZipCodeInput"
-import fetchPetList from "./fetchPetList"
-import PetList from "./PetList"
+import { Navbar } from "./Components/Navbar"
+import ZipCodeInput from "./Components/ZipCodeInput"
+import fetchPetList from "./Components/fetchPetList"
+import PetList from "./Components/PetList"
 
 function App() {
   //List of pets from Petfinder API used in PetList component, initialized as an empty array
