@@ -1,25 +1,24 @@
 import React from "react"
 import PetCard from "./PetCard"
 import Grid from "@mui/material/Grid"
-import fireConfig from "./Firebase/FirebaseConfig"
+import firebase from "../Firebase/FirebaseConfig"
+import {
+  handleAddLike,
+  handleDelete,
+} from "../Firebase/FirebaseFirestoreServices"
 //Recieves list from parent page or component and maps through it as pet cards
 //I don't know what the pet object recieved back looks like, so I put in a placeholder for the key prop
 const PetList = ({ petsList }) => {
+  //List of favorited pets stored in firestore database. Used to check if a pet is already a favorited.
   const [isFavoritedList, setIsFavoritedList] = React.useState([])
-  console.log(petsList)
-  console.log(isFavoritedList)
 
-  /*
-   determine if it is a favorite in the PetList and pass
-   an isFavorite prop to the PetCard.
-  */
-
+  //Triggers the state color on the PetCard component
   const checkIfIsFavorite = (petFinderId) => {
     return !!isFavoritedList.find(
-      (favorited) => favorited.petCardId === petFinderId
+      (favorited) => favorited.petFirebaseId === petFinderId
     )
   }
-  //const IncludesFavorite = petsList.includes(isFavorited)
+
   const toggleFavorite = (petFinderId) => {
     if (checkIfIsFavorite(petFinderId)) {
       handleDelete(petFinderId)
@@ -28,32 +27,9 @@ const PetList = ({ petsList }) => {
     }
   }
 
-  //Adds a favorite
-  const handleAddLike = async (petFinderId) => {
-    await fireConfig.firestore().collection("likes").add({
-      petCardId: petFinderId,
-    })
-  }
-
-  //Deletes a favorite
-  const handleDelete = async (id) => {
-    console.log(id)
-    const snapshot = await fireConfig
-      .firestore()
-      .collection("likes")
-      .limit(1)
-      .where("petCardId", "==", id)
-      .get()
-
-    const doc = snapshot.docs[0]
-    doc.ref.delete()
-
-    console.log(id)
-    // return doc.id
-  }
-
+  //Retrieves favorite collection from firebase and stores it on isFavorite state
   React.useEffect(() => {
-    fireConfig
+    firebase
       .firestore()
       .collection("likes")
       .onSnapshot((snap) => {
