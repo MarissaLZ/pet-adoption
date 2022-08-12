@@ -20,8 +20,9 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <ZipCodeInput handlePetRequest={handlePetRequest} />
-      <PetList petsList={petList} />
+      <ZipCodeInput handlePetRequest={handlePetRequest}/>
+      <PetList petsList={petList}/>
+      <Footer/>
     </div>
   )
 }
