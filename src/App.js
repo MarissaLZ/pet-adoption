@@ -1,14 +1,14 @@
 import "./App.css"
 import { Routes, Route } from "react-router-dom"
 import React from "react"
-import { Navbar } from "./Components/Navbar"
-import Footer from "./Components/Footer"
+import { Navbar } from "./components/Navbar"
+import Footer from "./components/Footer"
 
-import Home from "./Pages/Home.js"
-import Adopt from "./Pages/Adopt"
-import Volunteer from "./Pages/Volunteer"
-import Donate from "./Pages/Donate"
-import About from "./Pages/About.js"
+import Home from "./pages/Home.js"
+import Adopt from "./pages/Adopt"
+import Volunteer from "./pages/Volunteer"
+import Donate from "./pages/Donate"
+import About from "./pages/About.js"
 
 function App() {
   return (

@@ -1,7 +1,7 @@
 import React from "react"
-import ZipCodeInput from "../Components/ZipCodeInput"
-import PetList from "../Components/PetList"
-import fetchPetList from "../Components/fetchPetList"
+import ZipCodeInput from "../components/ZipCodeInput"
+import PetList from "../components/PetList"
+import fetchPetList from "../components/fetchPetList"
 
 const Adopt = () => {
   //List of pets from Petfinder API used in PetList component, initialized as an empty array
