@@ -2,6 +2,8 @@ import "./App.css"
 import { Routes, Route } from "react-router-dom"
 import React from "react"
 import { Navbar } from "./Components/Navbar"
+import Footer from "./Components/Footer"
+
 import Home from "./Pages/Home.js"
 import Adopt from "./Pages/Adopt"
 import Volunteer from "./Pages/Volunteer"
@@ -19,6 +21,7 @@ function App() {
         <Route path="donate" element={<Donate />} />
         <Route path="about" element={<About />} />
       </Routes>
+      <Footer />
     </div>
   )
 }

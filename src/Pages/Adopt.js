@@ -14,7 +14,6 @@ const Adopt = () => {
       setPetList(response.animals)
     })
   }
-
   return (
     <div>
       <PetList petsList={petList} />
