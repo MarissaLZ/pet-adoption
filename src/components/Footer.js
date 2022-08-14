@@ -18,7 +18,7 @@ export default function Footer () {
         <Box>
             <Container maxWidth="lg">
                 <Grid container direction="row" spacing={5}>
-                    <FooterItems/>
+       <FooterItems/>
                 </Grid>
                 <Box>
                     <IconButton disabled={true}>
