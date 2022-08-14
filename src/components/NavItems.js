@@ -10,6 +10,7 @@ export function NavItems() {
     { navLinks: "Volunteer", menuLinks: [] },
     { navLinks: "Donate", menuLinks: [] },
     { navLinks: "About", menuLinks: [] },
+    { navLinks: "Login", menuLinks: [] }
   ]
   return (
     <>

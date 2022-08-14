@@ -1,5 +1,5 @@
 import * as React from 'react';
-import firebase from "./Firebase/FirebaseConfig"
+import firebase from "../Firebase/FirebaseConfig"
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';

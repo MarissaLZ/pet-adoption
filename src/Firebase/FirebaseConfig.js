@@ -1,6 +1,6 @@
-import firebase from "firebase/app"
-import 'firebase/firestore';
-
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
 // -- Create the data base with test mode so everyone can modify the data,
 // to change this, we just need to change the rules --
 // attached link with info here https://stackoverflow.com/questions/62615171/how-do-i-turn-my-firebase-firestore-project-from-test-mode-into-production-mode
