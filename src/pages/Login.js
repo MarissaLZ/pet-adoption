@@ -23,6 +23,10 @@ function Copyright(props) {
 
 const theme = createTheme();
 
+
+//Login component allows users to login with google account or thier own email and password.
+//Sets isLoggedIn state to true on login
+//sends userProfile to App component to allow user info to be used in other components.
 export default function Login({ handleLogin }) {
 
   const handleSubmit = (event) => {
@@ -67,7 +71,7 @@ const signInWithGoogle = () => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Welcome to Pet-Adoption
+            Welcome to FURRDOPTION
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <Button
