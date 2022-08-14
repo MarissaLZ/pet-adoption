@@ -4,6 +4,7 @@ import { Navbar } from "./Components/Navbar"
 import ZipCodeInput from "./Components/ZipCodeInput"
 import fetchPetList from "./Components/fetchPetList"
 import PetList from "./Components/PetList"
+import Footer from "./Components/Footer"
 
 function App() {
   //List of pets from Petfinder API used in PetList component, initialized as an empty array
