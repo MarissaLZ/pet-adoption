@@ -1,11 +1,12 @@
 import React from "react"
 import { Button } from "@mui/material"
 import { DropDown } from "./DropDown"
+import { Link } from "react-router-dom"
 
 export function NavItems() {
   //contains link names for the navbar items and the dropdown menus
   const navItems = [
-    { navLinks: "Adopt", menuLinks: ["Cats", "Dogs"] },
+    { navLinks: "Adopt", menuLinks: [] },
     { navLinks: "Volunteer", menuLinks: [] },
     { navLinks: "Donate", menuLinks: [] },
     { navLinks: "About", menuLinks: [] },
@@ -22,7 +23,12 @@ export function NavItems() {
           />
         ) : (
           <Button key={item.navLinks} color="inherit">
-            {item.navLinks}
+            <Link
+              to={`/${item.navLinks}`}
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              {item.navLinks}
+            </Link>
           </Button>
         )
       )}
