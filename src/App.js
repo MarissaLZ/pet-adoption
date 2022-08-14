@@ -4,8 +4,18 @@ import { Navbar } from "./Navbar"
 import ZipCodeInput from "./ZipCodeInput"
 import fetchPetList from "./fetchPetList"
 import PetList from "./PetList"
+import Login from "./Login"
 
 function App() {
+
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false)
+  const [user, setUser] = React.useState([])
+
+  const handleLogin = (user) => {
+    setIsLoggedIn(true)
+    setUser(user)
+  }
+
   //List of pets from Petfinder API used in PetList component, initialized as an empty array
   const [petList, setPetList] = React.useState([])
 
@@ -17,10 +27,14 @@ function App() {
     })
   }
 
+  console.log(user)
+  console.log(isLoggedIn)
+
   return (
     <div className="App">
       <Navbar />
-      <ZipCodeInput handlePetRequest={handlePetRequest} />
+      <Login handleLogin={handleLogin}/>
+      <ZipCodeInput handlePetRequest={() => handlePetRequest} />
       <PetList petsList={petList} />
     </div>
   )
