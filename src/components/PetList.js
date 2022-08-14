@@ -1,11 +1,11 @@
 import React from "react"
 import PetCard from "./PetCard"
 import Grid from "@mui/material/Grid"
-import firebase from "./Firebase/FirebaseConfig"
+import firebase from "../Firebase/FirebaseConfig"
 import {
   handleAddLike,
   handleDelete,
-} from "./Firebase/FirebaseFirestoreServices"
+} from "../Firebase/FirebaseFirestoreServices"
 //Recieves list from parent page or component and maps through it as pet cards
 //I don't know what the pet object recieved back looks like, so I put in a placeholder for the key prop
 const PetList = ({ petsList }) => {

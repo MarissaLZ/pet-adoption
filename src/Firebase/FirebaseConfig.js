@@ -1,4 +1,5 @@
-import firebase from "firebase"
+import firebase from "firebase/app"
+import 'firebase/firestore';
 
 // -- Create the data base with test mode so everyone can modify the data,
 // to change this, we just need to change the rules --
