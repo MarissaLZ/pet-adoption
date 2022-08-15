@@ -3,7 +3,6 @@ import { Routes, Route } from "react-router-dom"
 import React from "react"
 import { Navbar } from "./components/Navbar"
 import Footer from "./components/Footer"
-
 import Home from "./pages/Home.js"
 import Adopt from "./pages/Adopt"
 import Volunteer from "./pages/Volunteer"
