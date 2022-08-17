@@ -17,19 +17,19 @@ function App() {
   const [userProfile, setUserProfile] = React.useState([])
   //List of pets from Petfinder API used in PetList component, initialized as an empty array
   const [petList, setPetList] = React.useState([])
+  const [isFavoritedList, setIsFavoritedList] = React.useState([])
 
-  const handleLogin = (user) => {
-    setIsLoggedIn(true)
-    setUserProfile(user)
-  }
-
-  console.log(isLoggedIn)
+  console.log("isLoggedIn", isLoggedIn)
   console.log(userProfile)
 
   return (
     <div className="App">
-      <UserContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
-        <PetsContext.Provider value={{ petList, setPetList }}>
+      <UserContext.Provider
+        value={{ isLoggedIn, setIsLoggedIn, userProfile, setUserProfile }}
+      >
+        <PetsContext.Provider
+          value={{ petList, setPetList, isFavoritedList, setIsFavoritedList }}
+        >
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
@@ -37,7 +37,7 @@ function App() {
             <Route path="volunteer" element={<Volunteer />} />
             <Route path="donate" element={<Donate />} />
             <Route path="about" element={<About />} />
-            <Route path="login" element={<Login handleLogin={handleLogin} />} />
+            <Route path="login" element={<Login />} />
           </Routes>
           <Footer />
         </PetsContext.Provider>
