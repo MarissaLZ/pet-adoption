@@ -3,7 +3,7 @@ import { Button, Stack, TextField } from "@mui/material"
 import SearchIcon from "@mui/icons-material/Search"
 import fetchPetList from "../components/fetchPetList"
 import { useContext } from "react"
-import { PetsContext } from "../Context"
+import { PetsContext } from "../context"
 
 const ZipCodeInput = () => {
   //using PetsContext

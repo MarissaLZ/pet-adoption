@@ -9,7 +9,7 @@ import Volunteer from "./pages/Volunteer"
 import Donate from "./pages/Donate"
 import About from "./pages/About"
 import Login from "./pages/Login"
-import { UserContext, PetsContext } from "./Context"
+import { UserContext, PetsContext } from "./context"
 
 function App() {
   //login state can be used for conditional redering to swap login link for user page link or favorites page link and userProfile info can be used to populate infor with other forms
