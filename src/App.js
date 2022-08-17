@@ -9,16 +9,16 @@ import Volunteer from "./pages/Volunteer"
 import Donate from "./pages/Donate"
 import About from "./pages/About"
 import Login from "./pages/Login"
+import Signup from "./pages/Signup"
 
 function App() {
-
   //login state can be used for conditional redering to swap login link for user page link or favorites page link and userProfile info can be used to populate infor with other forms
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false)
   const [userProfile, setUserProfile] = React.useState([])
 
   const handleLogin = (user) => {
-    setIsLoggedIn(true);
-    setUserProfile(user);
+    setIsLoggedIn(true)
+    setUserProfile(user)
   }
 
   console.log(isLoggedIn)
@@ -33,7 +33,8 @@ function App() {
         <Route path="volunteer" element={<Volunteer />} />
         <Route path="donate" element={<Donate />} />
         <Route path="about" element={<About />} />
-        <Route path="login" element={<Login handleLogin={handleLogin}/>} />
+        <Route path="login" element={<Login handleLogin={handleLogin} />} />
+        <Route path="signup" element={<Signup />} />
       </Routes>
       <Footer />
     </div>
