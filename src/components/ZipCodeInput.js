@@ -1,14 +1,18 @@
 import { useState } from "react"
 import { Button, Stack, TextField } from "@mui/material"
 import SearchIcon from "@mui/icons-material/Search"
+import fetchPetList from "../components/fetchPetList"
+import { useContext } from "react"
+import { PetsContext } from "../Context"
 
-
-const ZipCodeInput = ({ handlePetRequest }) => {
+const ZipCodeInput = () => {
+  //using PetsContext
+  const { setPetList } = useContext(PetsContext)
 
   const [zipcodeFormValues, setZipcodeFormValues] = useState("")
 
   //Gets value from the input and updates the zipCode state
-  const handleZicodeChange = (e) => {
+  const handleZipcodeChange = (e) => {
     const userZipCode = e.target.value
     if (userZipCode.length <= 5) {
       setZipcodeFormValues(userZipCode)
@@ -18,7 +22,9 @@ const ZipCodeInput = ({ handlePetRequest }) => {
   //OnSubmit Form consoles the user input
   const handleSubmit = (e) => {
     e.preventDefault()
-    handlePetRequest(zipcodeFormValues);
+    fetchPetList(zipcodeFormValues).then((response) => {
+      setPetList(response.animals)
+    })
     setZipcodeFormValues("")
   }
 
@@ -31,7 +37,7 @@ const ZipCodeInput = ({ handlePetRequest }) => {
           color="secondary"
           name="zipCode"
           value={zipcodeFormValues}
-          onChange={handleZicodeChange}
+          onChange={handleZipcodeChange}
           required={true}
           inputProps={{ inputMode: "numeric", pattern: "[0-9]{5}" }}
         />
