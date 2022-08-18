@@ -6,11 +6,16 @@ import {
   handleAddLike,
   handleDelete,
 } from "../Firebase/FirebaseFirestoreServices"
+import { useContext } from "react"
+import { PetsContext } from "../context"
+
 //Recieves list from parent page or component and maps through it as pet cards
 //I don't know what the pet object recieved back looks like, so I put in a placeholder for the key prop
-const PetList = ({ petsList }) => {
+const PetList = () => {
+  const { petList, isFavoritedList, setIsFavoritedList } =
+    useContext(PetsContext)
+
   //List of favorited pets stored in firestore database. Used to check if a pet is already a favorited.
-  const [isFavoritedList, setIsFavoritedList] = React.useState([])
 
   //Triggers the state color on the PetCard component
   const checkIfIsFavorite = (petFinderId) => {
@@ -49,7 +54,7 @@ const PetList = ({ petsList }) => {
       justifyContent="flex-start"
       alignItems="center"
     >
-      {petsList.map((pet) => (
+      {petList.map((pet) => (
         <Grid key={pet.id} item xs={4}>
           <PetCard
             pet={pet}

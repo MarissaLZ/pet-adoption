@@ -5,14 +5,16 @@ import Avatar from "@mui/material/Avatar"
 import Button from "@mui/material/Button"
 import CssBaseline from "@mui/material/CssBaseline"
 import TextField from "@mui/material/TextField"
+import Link from "@mui/material/Link"
 import Grid from "@mui/material/Grid"
 import Box from "@mui/material/Box"
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined"
 import Typography from "@mui/material/Typography"
 import Container from "@mui/material/Container"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
-import Link from "@mui/material/Link"
 import { Link as RouterLink } from "react-router-dom"
+import { useContext } from "react"
+import { UserContext } from "../context"
 
 function Copyright(props) {
   return (
@@ -33,7 +35,10 @@ const theme = createTheme()
 //Login component allows users to login with google account or thier own email and password.
 //Sets isLoggedIn state to true on login
 //sends userProfile to App component to allow user info to be used in other components.
-export default function Login({ handleLogin }) {
+export default function Login() {
+  //using UserContext
+  const { setIsLoggedIn, setUserProfile } = useContext(UserContext)
+
   const handleSubmit = (event) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
@@ -43,7 +48,8 @@ export default function Login({ handleLogin }) {
       .then((userCredential) => {
         // Signed in
         var user = userCredential.user
-        handleLogin(user)
+        setIsLoggedIn(true)
+        setUserProfile(user)
       })
       .catch((error) => {
         var errorCode = error.code
@@ -59,7 +65,8 @@ export default function Login({ handleLogin }) {
       .auth()
       .signInWithPopup(googleProvider)
       .then((res) => {
-        handleLogin(res.user)
+        setIsLoggedIn(true)
+        setUserProfile(res.user)
       })
       .catch((error) => {
         console.log(error.message)
