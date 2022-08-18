@@ -8,6 +8,7 @@ import { CardActionArea } from "@mui/material"
 import IconButton from "@mui/material/IconButton"
 import FavoriteIcon from "@mui/icons-material/Favorite"
 import Grid from "@mui/material/Grid"
+import { Link } from "react-router-dom"
 
 //PetCard component takes in pet prop.
 //The card contains the pet's image, name, age, and breed and a heart button/Icon to favorite pet
@@ -27,7 +28,7 @@ const PetCard = ({ pet, isFavorited, toggleFavorite }) => {
             </IconButton>
           }
         />
-        <CardActionArea>
+        <CardActionArea component={Link} to="/Adopt/petbio">
           <CardMedia
             component="img"
             height="250"
