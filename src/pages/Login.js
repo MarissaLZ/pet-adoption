@@ -12,7 +12,6 @@ import Typography from "@mui/material/Typography"
 import Container from "@mui/material/Container"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
 import Link from "@mui/material/Link"
-
 import { Link as RouterLink } from "react-router-dom"
 
 function Copyright(props) {
@@ -139,7 +138,7 @@ export default function Login({ handleLogin }) {
               <PasswordReset />
             </Grid>
             <Grid item>
-              <RouterLink to="signup">
+              <RouterLink to="/Signup">
                 <Link> {"Don't have an account? Sign Up"}</Link>
               </RouterLink>
             </Grid>

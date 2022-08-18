@@ -29,12 +29,12 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="adopt" element={<Adopt />} />
-        <Route path="volunteer" element={<Volunteer />} />
-        <Route path="donate" element={<Donate />} />
-        <Route path="about" element={<About />} />
-        <Route path="login" element={<Login handleLogin={handleLogin} />} />
-        <Route path="signup" element={<Signup />} />
+        <Route path="Adopt" element={<Adopt />} />
+        <Route path="Volunteer" element={<Volunteer />} />
+        <Route path="Donate" element={<Donate />} />
+        <Route path="About" element={<About />} />
+        <Route path="Signup" element={<Signup />} />
+        <Route path="Login" element={<Login handleLogin={handleLogin} />} />
       </Routes>
       <Footer />
     </div>
