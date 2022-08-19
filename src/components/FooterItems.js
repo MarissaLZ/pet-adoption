@@ -19,7 +19,7 @@ export default function FooterItems () {
         <Box borderBottom={1}>Site Links</Box>
         {siteLinks.map((item)=> (
             <Box>
-            <Link href={item.linkURL} underline="hover" color="inherit" rel="noreferrer">
+            <Link href={item.linkURL} underline="hover" color="inherit" rel="noopener noreferrer">
                 {item.linkName}
             </Link>
             </Box>
@@ -31,7 +31,7 @@ export default function FooterItems () {
         <Box borderBottom={1}>About This Project</Box>
         {projectLinks.map((item)=> (
             <Box>
-            <Link href={item.linkURL} underline="hover" color="inherit" rel="noreferrer">
+            <Link href={item.linkURL} underline="hover" color="inherit" target="_blank" rel="noopener noreferrer">
                 {item.linkName}
             </Link>
             </Box>
@@ -43,7 +43,7 @@ export default function FooterItems () {
         <Box borderBottom={1}>Resources Used</Box>
         {resourceLinks.map((item)=> (
             <Box>
-            <Link href={item.linkURL} underline="hover" color="inherit" rel="noreferrer">
+            <Link href={item.linkURL} underline="hover" color="inherit" target="_blank" rel="noopener noreferrer">
                 {item.linkName}
             </Link>
             </Box>
