@@ -42,19 +42,6 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Button
-            // stretch goal onClick={signupWithGoogle}
-            fullWidth
-            variant="contained"
-            sx={{ mt: 1, mb: 2 }}
-          >
-            <img
-              src="https://img.icons8.com/office/344/google-logo.png"
-              style={{ width: 30, margin: 7 }}
-              alt="google icon"
-            />
-            <span> Continue with Google</span>
-          </Button>
           <span>Have a password? Continue with your email address</span>
           <Box
             component="form"
