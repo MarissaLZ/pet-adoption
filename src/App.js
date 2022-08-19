@@ -9,6 +9,7 @@ import Volunteer from "./pages/Volunteer"
 import Donate from "./pages/Donate"
 import About from "./pages/About"
 import Login from "./pages/Login"
+import PetBio from "./pages/PetBio"
 import { UserContext, PetsContext } from "./context"
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
   const [isFavoritedList, setIsFavoritedList] = React.useState([])
 
   console.log("isLoggedIn", isLoggedIn)
+
   console.log(userProfile)
 
   return (
@@ -38,6 +40,7 @@ function App() {
             <Route path="donate" element={<Donate />} />
             <Route path="about" element={<About />} />
             <Route path="login" element={<Login />} />
+            <Route path="/Adopt/petbio" element={<PetBio />} />
           </Routes>
           <Footer />
         </PetsContext.Provider>
