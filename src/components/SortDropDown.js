@@ -4,15 +4,26 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Fade from '@mui/material/Fade';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { useContext } from "react"
+import { PetsContext } from "../context"
+import sortPetList from './sortPetList';
 
 const SortDropDown = () => {
 
+    const { setPetList } = useContext(PetsContext)
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
+
+    const handleClick = (e) => {
+        setAnchorEl(e.currentTarget);
     };
+
+    // This function needs to do the api call
     const handleClose = () => {
+        sortPetList().then((response) => {
+            console.log("SORT", response)
+            setPetList(response.animals)
+        })
         setAnchorEl(null);
     };
 
