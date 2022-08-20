@@ -15,7 +15,10 @@ import ZipCodeInput from "../components/ZipCodeInput"
 import SearchButtons from "./SearchButtons"
 
 const Search = () => {
-  const [search, setSearch] = useState({})
+  const [Search, setSearch] = useState({
+    zipcode: "",
+    animalType: "",
+  })
 
   return (
     <Box sx={{ m: "5rem", background: "yellow" }}>
