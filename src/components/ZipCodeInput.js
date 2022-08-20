@@ -29,7 +29,7 @@ const ZipCodeInput = () => {
   }
 
   return (
-    <form style={{ marginTop: "2rem" }} onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <Stack spacing={2} direction="row">
         <TextField
           label="Zip Code"

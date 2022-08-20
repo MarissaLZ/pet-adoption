@@ -1,12 +1,12 @@
 import React from "react"
-import ZipCodeInput from "../components/ZipCodeInput"
 import PetList from "../components/PetList"
+import Search from "../components/Search"
 
 const Adopt = () => {
   return (
     <div>
+      <Search />
       <PetList />
-      <ZipCodeInput />
     </div>
   )
 }
