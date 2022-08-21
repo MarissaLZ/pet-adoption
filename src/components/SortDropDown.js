@@ -18,10 +18,33 @@ const SortDropDown = () => {
         setAnchorEl(e.currentTarget);
     };
 
-    // This function needs to do the api call
+    // handleClose function closes the drop down menu if user clicks out of menu
     const handleClose = () => {
-        sortPetList().then((response) => {
-            console.log("SORT", response)
+        setAnchorEl(null);
+    }
+
+    // This function makes the api call with distance parameter
+    const handleCloseDistance = () => {
+        sortPetList("sort=distance").then((response) => {
+            console.log("SORT distance", response)
+            setPetList(response.animals)
+        })
+        setAnchorEl(null);
+    };
+
+    // This function makes the api call
+    const handleCloseNew = () => {
+        sortPetList("sort=recent").then((response) => {
+            console.log("SORT newest", response)
+            setPetList(response.animals)
+        })
+        setAnchorEl(null);
+    };
+
+    // This function makes the api call
+    const handleCloseOld = () => {
+        sortPetList("sort=-recent").then((response) => {
+            console.log("SORT oldest", response)
             setPetList(response.animals)
         })
         setAnchorEl(null);
@@ -50,9 +73,9 @@ const SortDropDown = () => {
                 onClose={handleClose}
                 TransitionComponent={Fade}
             >
-                <MenuItem onClick={handleClose}>Distance</MenuItem>
-                <MenuItem onClick={handleClose}>Newest Arrivals</MenuItem>
-                <MenuItem onClick={handleClose}>Oldest Arrivals</MenuItem>
+                <MenuItem onClick={handleCloseDistance}>Distance</MenuItem>
+                <MenuItem onClick={handleCloseNew}>Newest Arrivals</MenuItem>
+                <MenuItem onClick={handleCloseOld}>Oldest Arrivals</MenuItem>
             </Menu>
         </div>
     )
