@@ -9,6 +9,7 @@ import Volunteer from "./pages/Volunteer"
 import Donate from "./pages/Donate"
 import About from "./pages/About"
 import Login from "./pages/Login"
+import Signup from "./pages/Signup"
 import PetBio from "./pages/PetBio"
 import { UserContext, PetsContext } from "./context"
 
@@ -40,7 +41,12 @@ function App() {
             <Route path="donate" element={<Donate />} />
             <Route path="about" element={<About />} />
             <Route path="login" element={<Login />} />
+<<<<<<< HEAD
             <Route path="/petbio/:id" element={<PetBio />} />
+=======
+            <Route path="Signup" element={<Signup />} />
+            <Route path="/Adopt/petbio" element={<PetBio />} />
+>>>>>>> main
           </Routes>
           <Footer />
         </PetsContext.Provider>
