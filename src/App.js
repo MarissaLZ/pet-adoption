@@ -21,14 +21,12 @@ function App() {
   const [search, setSearch] = React.useState({ zipcode: "", animalType: "cat" })
 
   const handleSearch = (e) => {
-    console.log("e.target.value", e.target.value, e.target.name)
     setSearch({
       ...search, //copy the old search properties in a new object
       [e.target.name]: e.target.value, // dynamically replace a key value pair name of the target will bkecoem the jey
     })
   }
 
-  console.log("search", search)
   console.log("isLoggedIn", isLoggedIn)
   console.log("userProfile", userProfile)
 
