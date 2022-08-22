@@ -1,11 +1,13 @@
 import React from "react"
 import styled from "styled-components";
 
-export default const LoadingMessage = () => {
-    const LoadMessageContainer = styled.div`
-    margin: 15px;
-    padding: 20px;
-    `;
+const LoadMessageContainer = styled.div`
+margin: 15px;
+padding: 20px;
+`;
+
+export default function LoadingMessage () {
+
     return (
         <LoadMessageContainer>
             <h3>
