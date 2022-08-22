@@ -4,3 +4,4 @@ import { createContext } from "react"
 //default value is null
 export const UserContext = createContext(null)
 export const PetsContext = createContext(null)
+export const LoadingContext = createContext(null)

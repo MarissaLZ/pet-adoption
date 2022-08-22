@@ -4,11 +4,11 @@ import SearchIcon from "@mui/icons-material/Search"
 import fetchPetList from "../components/fetchPetList"
 import { useContext } from "react"
 import { PetsContext } from "../context"
-
+import { LoadingContext } from "../context"
 const ZipCodeInput = () => {
   //using PetsContext
   const { setPetList } = useContext(PetsContext)
-
+  const { setIsLoading } = useContext(LoadingContext)
   const [zipcodeFormValues, setZipcodeFormValues] = useState("")
 
   //Gets value from the input and updates the zipCode state
@@ -22,8 +22,10 @@ const ZipCodeInput = () => {
   //OnSubmit Form consoles the user input
   const handleSubmit = (e) => {
     e.preventDefault()
+    setIsLoading(true)
     fetchPetList(zipcodeFormValues).then((response) => {
       setPetList(response.animals)
+      setIsLoading(false)
     })
     setZipcodeFormValues("")
   }
