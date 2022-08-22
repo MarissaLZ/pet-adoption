@@ -13,6 +13,8 @@ export default function SearchButtons() {
         row
         aria-labelledby="row-radio-buttons-group-label"
         name="row-radio-buttons-group"
+        value={value}
+        onChange={handleChange}
       >
         <FormControlLabel value="cat" control={<Radio />} label="Cats" />
         <FormControlLabel value="dog" control={<Radio />} label="Dogs" />

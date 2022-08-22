@@ -1,4 +1,4 @@
-import { React, useState } from "react"
+import { React } from "react"
 import {
   Typography,
   Button,
@@ -15,11 +15,6 @@ import ZipCodeInput from "../components/ZipCodeInput"
 import SearchButtons from "./SearchButtons"
 
 const Search = () => {
-  const [Search, setSearch] = useState({
-    zipcode: "",
-    animalType: "",
-  })
-
   return (
     <Box sx={{ m: "5rem", background: "yellow" }}>
       <Grid
