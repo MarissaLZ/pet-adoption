@@ -18,8 +18,8 @@ const ZipCodeInput = () => {
       handleSearch(e)
     }
   }
-
-  //OnSubmit Form consoles the user input
+  //  makes a fetch request with current zip and selected animal type
+  //should handleSubmit be included in the SearchContext and moved to <App/>?
   const handleSubmit = (e) => {
     e.preventDefault()
     fetchPetList(search.zipcode, search.animalType).then((response) => {

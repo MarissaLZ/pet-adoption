@@ -5,17 +5,17 @@ import SearchButtons from "./SearchButtons"
 
 const Search = () => {
   return (
-    <Box sx={{ m: "5rem", background: "blue" }}>
+    <Box sx={{ m: "5rem", background: "#CED0CE", borderRadius: "0.5rem" }}>
       <Grid
         container
         direction="column"
         justifyContent="flex-start"
         alignItems="flex-start"
       >
-        <Grid item sx={{ background: "orange" }}>
+        <Grid item sx={{ background: "" }}>
           <SearchButtons />
         </Grid>
-        <Grid item sx={{ background: "green" }}>
+        <Grid item sx={{ background: "" }}>
           <ZipCodeInput />
         </Grid>
       </Grid>
