@@ -1,22 +1,11 @@
 import { React } from "react"
-import {
-  Typography,
-  Button,
-  Stack,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Radio,
-  RadioGroup,
-  Grid,
-  Box,
-} from "@mui/material"
+import { Grid, Box } from "@mui/material"
 import ZipCodeInput from "../components/ZipCodeInput"
 import SearchButtons from "./SearchButtons"
 
 const Search = () => {
   return (
-    <Box sx={{ m: "5rem", background: "yellow" }}>
+    <Box sx={{ m: "5rem", background: "blue" }}>
       <Grid
         container
         direction="column"

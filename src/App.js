@@ -18,8 +18,17 @@ function App() {
   const [userProfile, setUserProfile] = React.useState([])
   const [petList, setPetList] = React.useState([])
   const [isFavoritedList, setIsFavoritedList] = React.useState([])
-  const [search, setSearch] = React.useState({ zipcode: "", animalType: "" })
+  const [search, setSearch] = React.useState({ zipcode: "", animalType: "cat" })
 
+  const handleSearch = (e) => {
+    console.log("e.target.value", e.target.value, e.target.name)
+    setSearch({
+      ...search, //copy the old search properties in a new object
+      [e.target.name]: e.target.value, // dynamically replace a key value pair name of the target will bkecoem the jey
+    })
+  }
+
+  console.log("search", search)
   console.log("isLoggedIn", isLoggedIn)
   console.log("userProfile", userProfile)
 
@@ -28,7 +37,7 @@ function App() {
       <UserContext.Provider
         value={{ isLoggedIn, setIsLoggedIn, userProfile, setUserProfile }}
       >
-        <SearchContext.Provider value={{ search, setSearch }}>
+        <SearchContext.Provider value={{ search, setSearch, handleSearch }}>
           <PetsContext.Provider
             value={{ petList, setPetList, isFavoritedList, setIsFavoritedList }}
           >
