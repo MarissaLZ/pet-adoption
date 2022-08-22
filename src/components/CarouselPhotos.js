@@ -1,13 +1,13 @@
 import { Paper, Card, CardMedia } from "@mui/material"
 
-const CarouselPhotos = ({ photo }) => {
+const CarouselPhotos = ({ pet }) => {
   return (
     <Paper>
       <Card>
         <CardMedia
           component="img"
           height="400"
-          image={photo.photo}
+          image={pet.large}
           alt="pet photo"
         />
       </Card>
