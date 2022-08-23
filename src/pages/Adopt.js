@@ -1,14 +1,14 @@
 import React from "react"
-import ZipCodeInput from "../components/ZipCodeInput"
 import PetList from "../components/PetList"
 import SortDropDown from "../components/SortDropDown"
+import Search from "../components/Search"
 
 const Adopt = () => {
   return (
     <div>
+      <Search />
       <SortDropDown />
       <PetList />
-      <ZipCodeInput />
     </div>
   )
 }

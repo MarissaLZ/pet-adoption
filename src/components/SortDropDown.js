@@ -5,7 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Fade from '@mui/material/Fade';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useContext } from "react"
-import { PetsContext } from "../context"
+import { PetsContext, SearchContext } from "../context"
 import sortPetList from './sortPetList';
 
 const SortDropDown = () => {
@@ -25,27 +25,27 @@ const SortDropDown = () => {
         setAnchorEl(null);
     }
 
-    // This function makes the api call with distance parameter
+    // This function makes the api call with distance parameter (closest in location to user)
     const handleCloseDistance = () => {
-        sortPetList(search.zipcode, search.animalType, "sort=distance").then((response) => {
+        sortPetList(search.animalType, search.zipcode, "sort=distance").then((response) => {
             console.log("SORT distance", response)
             setPetList(response.animals)
         })
         setAnchorEl(null);
     };
 
-    // This function makes the api call
+    // This function makes the api call with recent parameter (newly added to database) This is the default to regular api call
     const handleCloseNew = () => {
-        sortPetList(search.zipcode, search.animalType, "sort=recent").then((response) => {
+        sortPetList(search.animalType, search.zipcode, "sort=recent").then((response) => {
             console.log("SORT newest", response)
             setPetList(response.animals)
         })
         setAnchorEl(null);
     };
 
-    // This function makes the api call
+    // This function makes the api call with -recent parameter (oldest in database)
     const handleCloseOld = () => {
-        sortPetList(search.zipcode, search.animalType, "sort=-recent").then((response) => {
+        sortPetList(search.animalType, search.zipcode, "sort=-recent").then((response) => {
             console.log("SORT oldest", response)
             setPetList(response.animals)
         })
