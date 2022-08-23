@@ -10,7 +10,9 @@ import sortPetList from './sortPetList';
 
 const SortDropDown = () => {
 
+    //using PetsContext and SearchContext
     const { setPetList } = useContext(PetsContext)
+    const { search } = useContext(SearchContext)
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
 
@@ -25,7 +27,7 @@ const SortDropDown = () => {
 
     // This function makes the api call with distance parameter
     const handleCloseDistance = () => {
-        sortPetList("sort=distance").then((response) => {
+        sortPetList(search.zipcode, search.animalType, "sort=distance").then((response) => {
             console.log("SORT distance", response)
             setPetList(response.animals)
         })
@@ -34,7 +36,7 @@ const SortDropDown = () => {
 
     // This function makes the api call
     const handleCloseNew = () => {
-        sortPetList("sort=recent").then((response) => {
+        sortPetList(search.zipcode, search.animalType, "sort=recent").then((response) => {
             console.log("SORT newest", response)
             setPetList(response.animals)
         })
@@ -43,7 +45,7 @@ const SortDropDown = () => {
 
     // This function makes the api call
     const handleCloseOld = () => {
-        sortPetList("sort=-recent").then((response) => {
+        sortPetList(search.zipcode, search.animalType, "sort=-recent").then((response) => {
             console.log("SORT oldest", response)
             setPetList(response.animals)
         })
