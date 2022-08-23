@@ -9,8 +9,11 @@ function fetchPetList(zipcode, animalType) {
   })
     .then((response) => response.json())
     .then((result) =>
+      //check for animal type with ternary ? :
       fetch(
-        `https://api.petfinder.com/v2/animals?type=${animalType}&location=${zipcode}`,
+        `https://api.petfinder.com/v2/animals?${
+          animalType ? `type=${animalType}` : ""
+        }${zipcode ? `&location=${zipcode}` : ""}`,
         {
           headers: {
             Authorization: `Bearer ${result.access_token}`,
