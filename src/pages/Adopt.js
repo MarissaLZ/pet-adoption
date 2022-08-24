@@ -1,6 +1,5 @@
 import React from "react"
 import { useState } from "react"
-import ZipCodeInput from "../components/ZipCodeInput"
 import PetList from "../components/PetList"
 import { LoadingContext } from "../context"
 import LoadingMessage from "../components/LoadingMessage"
@@ -12,7 +11,7 @@ const Adopt = () => {
   return (
    <LoadingContext.Provider value={{isLoading, setIsLoading}}>
       <div>
-      <ZipCodeInput />
+      <Search />
       {isLoading === true ? <LoadingMessage/> 
         : <PetList/> }
       </div>

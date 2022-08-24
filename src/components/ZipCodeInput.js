@@ -11,7 +11,6 @@ const ZipCodeInput = () => {
   //using PetsContext and SearchContext
   const { setPetList } = useContext(PetsContext)
   const { setIsLoading } = useContext(LoadingContext)
-  const [zipcodeFormValues, setZipcodeFormValues] = useState("")
 
   //Gets value from the input and updates the zipCode state
   const { search, handleSearch } = useContext(SearchContext)
