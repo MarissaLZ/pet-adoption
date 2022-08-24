@@ -4,6 +4,8 @@ import ZipCodeInput from "../components/ZipCodeInput"
 import PetList from "../components/PetList"
 import { LoadingContext } from "../context"
 import LoadingMessage from "../components/LoadingMessage"
+import Search from "../components/Search"
+
 
 const Adopt = () => {
   const [isLoading, setIsLoading] = React.useState(false);
