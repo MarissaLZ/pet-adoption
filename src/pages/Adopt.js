@@ -10,9 +10,9 @@ const Adopt = () => {
   return (
    <LoadingContext.Provider value={{isLoading, setIsLoading}}>
       <div>
+      <ZipCodeInput />
       {isLoading === true ? <LoadingMessage/> 
         : <PetList/> }
-        <ZipCodeInput />
       </div>
    </LoadingContext.Provider>
   )
