@@ -11,17 +11,50 @@ import Typography from "@mui/material/Typography"
 import Container from "@mui/material/Container"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
 import { Link as RouterLink } from "react-router-dom"
+import { UserContext } from "../context"
+import { useContext } from "react"
+
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
+import firebase from "../Firebase/FirebaseConfig"
 
 const theme = createTheme()
 
 export default function SignUp() {
+  const { isLoggedIn, setIsLoggedIn, userProfile, setUserProfile } =
+    useContext(UserContext)
+
+  const [signup, setSignup] = React.useState({
+    firstName: "",
+    email: "",
+    password: "",
+  })
+  console.log("signup", signup)
+
+  const handleChange = (e) => {
+    setSignup({
+      ...signup,
+      [e.target.name]: e.target.value,
+    })
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault()
-    const data = new FormData(event.currentTarget)
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    })
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(signup.email, signup.password)
+      .then((userCredential) => {
+        // Signed in
+        var user = userCredential.user.email
+        console.log("user", user)
+        firebase.firestore().collection("users").add({
+          user: user,
+        })
+      })
+      .catch((error) => {
+        var errorCode = error.code
+        var errorMessage = error.message
+        // ..
+      })
   }
 
   return (
@@ -59,16 +92,8 @@ export default function SignUp() {
                   id="firstName"
                   label="First Name"
                   autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
+                  onChange={handleChange}
+                  value={signup.firstName}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -79,6 +104,8 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={handleChange}
+                  value={signup.email}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -90,6 +117,8 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  onChange={handleChange}
+                  value={signup.password}
                 />
               </Grid>
             </Grid>
