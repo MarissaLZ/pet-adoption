@@ -10,7 +10,7 @@ import { SearchContext } from "../context"
 const ZipCodeInput = () => {
   //using PetsContext and SearchContext
   const { setPetList } = useContext(PetsContext)
-  const { search, handleSearch } = useContext(SearchContext)
+  const { search, handleSearch, setPageCount, pageNumber, setPageNumber } = useContext(SearchContext)
 
   //Validation. Gets value from the input and updates the zipCode state
   const handleZipcodeChange = (e) => {
@@ -23,8 +23,10 @@ const ZipCodeInput = () => {
   //should handleSubmit be included in the SearchContext and moved to <App/>?
   const handleSubmit = (e) => {
     e.preventDefault()
-    fetchPetList(search.zipcode, search.animalType).then((response) => {
+    setPageNumber(1)
+    fetchPetList(search.zipcode, search.animalType, pageNumber).then((response) => {
       setPetList(response.animals)
+      setPageCount(response.pagination.total_pages)
     })
   }
 
@@ -32,6 +34,7 @@ const ZipCodeInput = () => {
     //make fetch request
     fetchPetList(search.zipcode, search.animalType).then((response) => {
       setPetList(response.animals)
+      setPageCount(response.pagination.total_pages)
     })
   }, [])
 
