@@ -35,14 +35,20 @@ export default function SignUp() {
     //authenticates a user signing up
     firebase
       .auth()
-      .createUserWithEmailAndPassword(signup.email, signup.password)
+      .createUserWithEmailAndPassword(
+        signup.email,
+        signup.password,
+        signup.firstName
+      )
       .then((userCredential) => {
         // Signed in
         var user = userCredential.user
         console.log("user", user)
         //adds a user to the firebase users collection
         firebase.firestore().collection("users").doc(user.uid).set({
-          user: user.email,
+          username: user.email,
+          email: user.email,
+          firstName: signup.firstName,
         })
       })
       .catch((error) => {
