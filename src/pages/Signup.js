@@ -11,18 +11,11 @@ import Typography from "@mui/material/Typography"
 import Container from "@mui/material/Container"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
 import { Link as RouterLink } from "react-router-dom"
-import { UserContext } from "../context"
-import { useContext } from "react"
-
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
 import firebase from "../Firebase/FirebaseConfig"
 
 const theme = createTheme()
 
 export default function SignUp() {
-  const { isLoggedIn, setIsLoggedIn, userProfile, setUserProfile } =
-    useContext(UserContext)
-
   const [signup, setSignup] = React.useState({
     firstName: "",
     email: "",
