@@ -28,8 +28,6 @@ function PetBio() {
 
   const findPetObject = petList.find((pet) => pet.id == params.id)
 
-  console.log("petData", findPetObject)
-
   return (
     <>
       <Box
@@ -58,7 +56,7 @@ function PetBio() {
             </Carousel>
             {/* </Box> */}
           </Grid>
-          <Grid item xs={6} sx={{ marginTop: "10px" }}>
+          <Grid item xs={6} sx={{ marginTop: "5rem" }}>
             <Typography variant="h6" component="p">
               The number of euthanized animals could be reduced dramatically if
               more people adopt pets instead of buying them. When you adopt dogs
