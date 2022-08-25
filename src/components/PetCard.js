@@ -9,6 +9,7 @@ import IconButton from "@mui/material/IconButton"
 import FavoriteIcon from "@mui/icons-material/Favorite"
 import Grid from "@mui/material/Grid"
 import { Link, useNavigate } from "react-router-dom"
+import PetImage from "../images/defaultImage.png"
 
 //PetCard component takes in pet prop.
 //The card contains the pet's image, name, age, and breed and a heart button/Icon to favorite pet
@@ -41,7 +42,7 @@ const PetCard = ({ pet, isFavorited, toggleFavorite }) => {
           <CardMedia
             component="img"
             height="250"
-            image={pet.photos.length !== 0 ? pet.photos[0].full : null}
+            image={pet.photos.length !== 0 ? pet.photos[0].full : PetImage}
             alt={`Picture of ${pet.name}`}
           />
           <CardContent>

@@ -36,9 +36,8 @@ function PetBio() {
           <Grid item xs={5}>
             <Box sx={{ marginLeft: "6rem", marginTop: "4rem" }}>
               <Carousel>
-                {findPetObject.photos.map((pet, i) => (
-                  <CarouselPhotos key={i} pet={pet} />
-                ))}
+                {findPetObject.photos.map((pet, i) =>
+                  (<CarouselPhotos key={i} pet={pet} />))}
               </Carousel>
             </Box>
           </Grid>
