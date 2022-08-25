@@ -39,14 +39,15 @@ export default function SignUp() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
+    //authenticates a user signing up
     firebase
       .auth()
       .createUserWithEmailAndPassword(signup.email, signup.password)
       .then((userCredential) => {
         // Signed in
         var user = userCredential.user
-        console.log("credential", userCredential.user)
         console.log("user", user)
+        //adds a user to the firebase users collection
         firebase.firestore().collection("users").doc(user.uid).set({
           user: user.email,
         })
@@ -54,7 +55,6 @@ export default function SignUp() {
       .catch((error) => {
         var errorCode = error.code
         var errorMessage = error.message
-        // ..
       })
   }
 
