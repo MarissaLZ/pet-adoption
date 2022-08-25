@@ -8,13 +8,16 @@ import AdoptPagination from "../components/AdoptPagination"
 
 
 const Adopt = () => {
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   return (
    <LoadingContext.Provider value={{isLoading, setIsLoading}}>
       <div>
       <Search />
       {isLoading === true ? <LoadingMessage/>
-        : <PetList/><AdoptPagination/> }
+        : <>
+            <PetList/>
+            <AdoptPagination/>
+          </> }
       </div>
    </LoadingContext.Provider>
   )
