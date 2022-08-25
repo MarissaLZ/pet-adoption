@@ -1,15 +1,16 @@
-import { useEffect } from "react"
-
+import { useEffect, useState } from "react"
 import { Button, Stack, TextField } from "@mui/material"
 import SearchIcon from "@mui/icons-material/Search"
 import fetchPetList from "../components/fetchPetList"
 import { useContext } from "react"
 import { PetsContext } from "../context"
+import { LoadingContext } from "../context"
 import { SearchContext } from "../context"
 
 const ZipCodeInput = () => {
-  //using PetsContext and SearchContext
+  //using PetsContext, LoadingContext and SearchContext
   const { setPetList } = useContext(PetsContext)
+  const { setIsLoading } = useContext(LoadingContext)
   const { search, handleSearch, setPageCount, pageNumber, setPageNumber } = useContext(SearchContext)
 
   //Validation. Gets value from the input and updates the zipCode state
@@ -23,10 +24,12 @@ const ZipCodeInput = () => {
   //should handleSubmit be included in the SearchContext and moved to <App/>?
   const handleSubmit = (e) => {
     e.preventDefault()
+    setIsLoading(true)
     setPageNumber(1)
     fetchPetList(search.zipcode, search.animalType, pageNumber).then((response) => {
       setPetList(response.animals)
       setPageCount(response.pagination.total_pages)
+      setIsLoading(false)
     })
   }
 
