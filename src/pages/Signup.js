@@ -44,10 +44,11 @@ export default function SignUp() {
       .createUserWithEmailAndPassword(signup.email, signup.password)
       .then((userCredential) => {
         // Signed in
-        var user = userCredential.user.email
+        var user = userCredential.user
+        console.log("credential", userCredential.user)
         console.log("user", user)
-        firebase.firestore().collection("users").add({
-          user: user,
+        firebase.firestore().collection("users").doc(user.uid).set({
+          user: user.email,
         })
       })
       .catch((error) => {
