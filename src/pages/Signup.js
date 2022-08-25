@@ -126,9 +126,9 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="center">
               <Grid item sx={{ mb: 8 }}>
-                <RouterLink to="/Login">
-                  <Link>Already have an account? Sign in</Link>
-                </RouterLink>
+                <Link component={RouterLink} to="/login">
+                  Already have an account? Sign in
+                </Link>
               </Grid>
             </Grid>
           </Box>
