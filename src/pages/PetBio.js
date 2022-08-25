@@ -12,6 +12,7 @@ import {
   ListItemText,
   ListItemIcon,
   Divider,
+  Stack,
 } from "@mui/material"
 import LocationOnIcon from "@mui/icons-material/LocationOn"
 import EmailIcon from "@mui/icons-material/Email"
@@ -31,193 +32,268 @@ function PetBio() {
 
   return (
     <>
-      <Box sx={{ marginTop: "4rem" }}>
-        <Grid container spacing={4}>
-          <Grid item xs={5}>
-            <Box sx={{ marginLeft: "6rem", marginTop: "4rem" }}>
-              <Carousel>
-                {findPetObject.photos.map((pet, i) => (
-                  <CarouselPhotos key={i} pet={pet} />
-                ))}
-              </Carousel>
+      <Box
+        sx={{
+          width: {
+            xs: "400px",
+            sm: "600px",
+            md: "800px",
+            lg: "850px",
+            xl: "1000px",
+          },
+          margin: "0 auto",
+          marginTop: "50px",
+        }}
+      >
+        <Typography variant="h3" component="div">
+          My namae is {findPetObject.name}!
+        </Typography>
+        <Grid container spacing={4} sx={{ marginTop: "15px" }}>
+          <Grid item xs={6}>
+            {/* <Box sx={{ marginLeft: "6rem", marginTop: "4rem" }}> */}
+            <Carousel>
+              {findPetObject.photos.map((pet, i) => (
+                <CarouselPhotos key={i} pet={pet} />
+              ))}
+            </Carousel>
+            {/* </Box> */}
+          </Grid>
+          <Grid item xs={6} sx={{ marginTop: "10px" }}>
+            <Typography variant="h6" component="p">
+              The number of euthanized animals could be reduced dramatically if
+              more people adopt pets instead of buying them. When you adopt dogs
+              and cats, you save a loving animal by making them part of your
+              family and open up a shelter space for another animal who might
+              desperately need it. Adopt {findPetObject.name} and save a life.
+            </Typography>
+            <Box sx={{ marginTop: "25px" }}>
+              <AdoptionForm />
             </Box>
           </Grid>
-          <Grid item xs={6}>
-            <Grid container direction="column">
-              <Box sx={{ paddingRight: "4rem" }}>
-                <Grid item xs={12}>
-                  <Typography variant="h3" component="div">
-                    {findPetObject.name}
-                  </Typography>
-                </Grid>
-              </Box>
-              <Grid container>
-                <Grid item xs={6} sx={{ paddingLeft: "8rem" }}>
-                  <Box>
-                    <List>
-                      <ListItem>
-                        <ListItemText
-                          primary="Breed:"
-                          secondary={findPetObject.breeds.primary}
-                        />
-                      </ListItem>
-                      <ListItem>
-                        <ListItemText
-                          primary="Gender:"
-                          secondary={findPetObject.gender}
-                        />
-                      </ListItem>
-                      <ListItem>
-                        <ListItemText
-                          primary="Age:"
-                          secondary={findPetObject.age}
-                        />
-                      </ListItem>
-                      <ListItem>
-                        <ListItemText
-                          primary="Size:"
-                          secondary={findPetObject.size}
-                        />
-                      </ListItem>
-                      <ListItem>
-                        <ListItemText
-                          primary="Color:"
-                          secondary={findPetObject.colors.primary}
-                        />
-                      </ListItem>
-                      <ListItem>
-                        <ListItemText
-                          primary="Status:"
-                          secondary={findPetObject.status}
-                        />
-                      </ListItem>
-                    </List>
-                  </Box>
-                </Grid>
-                <Grid item xs={6} sx={{ paddingLeft: "6rem" }}>
-                  <Box>
-                    <List>
-                      <ListItem>
-                        <ListItemText
-                          primary="Distance:"
-                          secondary={`${findPetObject.distance} mi`}
-                        />
-                      </ListItem>
-                      <ListItem>
-                        <ListItemText primary="Contact Info:" />
-                      </ListItem>
-                      <ListItem>
-                        <ListItemIcon>
-                          <LocationOnIcon />
-                        </ListItemIcon>
-                        <ListItemText
-                          primary="Address:"
-                          secondary={`${findPetObject.contact.address.address1}
+        </Grid>
+        <Divider variant="middle" sx={{ marginTop: "3rem" }} />
+        <Box>
+          <Typography
+            variant="h5"
+            sx={{
+              marginTop: "2rem",
+              marginBottom: "2rem",
+              fontWeight: "bold",
+              width: {
+                xs: "300px",
+              },
+            }}
+          >
+            Facts about me:
+          </Typography>
+          <Stack direction="row" spacing={15}>
+            <Box sx={{ fontSize: "1.25rem", fontWeight: "500", width: "4rem" }}>
+              Breed:
+            </Box>
+            <Box
+              sx={{
+                fontSize: "1.25rem",
+              }}
+            >
+              {findPetObject.breeds.primary}
+            </Box>
+          </Stack>
+          <Stack direction="row" spacing={15}>
+            <Box sx={{ fontSize: "1.25rem", fontWeight: "500", width: "4rem" }}>
+              Gender:
+            </Box>
+            <Box sx={{ paddingTop: "0.4rem", fontSize: "1.25rem" }}>
+              {findPetObject.gender}
+            </Box>
+          </Stack>
+          <Stack direction="row" spacing={15} sx={{ textAlign: "start" }}>
+            <Box
+              sx={{
+                fontSize: "1.25rem",
+                fontWeight: "500",
+                width: "4rem",
+              }}
+            >
+              Size:
+            </Box>
+            <Box sx={{ paddingTop: "0.4rem", fontSize: "1.25rem" }}>
+              {findPetObject.size}
+            </Box>
+          </Stack>
+          <Stack direction="row" spacing={15} sx={{ textAlign: "start" }}>
+            <Box sx={{ fontSize: "1.25rem", fontWeight: "500", width: "4rem" }}>
+              Color:
+            </Box>
+            <Box sx={{ paddingTop: "0.4rem", fontSize: "1.25rem" }}>
+              {findPetObject.colors.primary}
+            </Box>
+          </Stack>
+          <Stack direction="row" spacing={15} sx={{ textAlign: "start" }}>
+            <Box
+              sx={{
+                fontSize: "1.25rem",
+                fontWeight: "500",
+                textAlign: "start",
+                width: "4rem",
+              }}
+            >
+              Age:
+            </Box>
+            <Box sx={{ paddingTop: "0.4rem", fontSize: "1.25rem" }}>
+              {findPetObject.age}
+            </Box>
+          </Stack>
+          <Stack direction="row" spacing={15}>
+            <Box sx={{ fontSize: "1.25rem", fontWeight: "500", width: "4rem" }}>
+              Trained:
+            </Box>
+            <Box sx={{ paddingTop: "0.4rem", fontSize: "1.25rem" }}>
+              {findPetObject.attributes.house_trained ? "Yes" : "No"}
+            </Box>
+          </Stack>
+          <Stack direction="row" spacing={15}>
+            <Box sx={{ fontSize: "1.25rem", fontWeight: "500", width: "4rem" }}>
+              Vaccinated:
+            </Box>
+            <Box sx={{ paddingTop: "0.4rem", fontSize: "1.25rem" }}>
+              {findPetObject.attributes.shot_current ? "Yes" : "No"}
+            </Box>
+          </Stack>
+          <Stack direction="row" spacing={15}>
+            <Box sx={{ fontSize: "1.25rem", fontWeight: "500", width: "4rem" }}>
+              Neutered:
+            </Box>
+            <Box sx={{ paddingTop: "0.4rem", fontSize: "1.25rem" }}>
+              {findPetObject.attributes.spayed_neutered ? "Yes" : "No"}
+            </Box>
+          </Stack>
+          <Stack
+            sx={{
+              fontSize: "1.25rem",
+              fontWeight: "500",
+              textAlign: "start",
+              width: "10rem",
+            }}
+          >
+            I'm good with:
+          </Stack>
+          <Stack direction="row" spacing={15} sx={{ textAlign: "start" }}>
+            <Box
+              sx={{
+                fontSize: "1.25rem",
+                fontWeight: "500",
+                width: "4rem",
+              }}
+            >
+              kids:
+            </Box>
+            <Box sx={{ paddingTop: "0.4rem", fontSize: "1.25rem" }}>
+              {findPetObject.environment.children ? "Yes" : "No"}
+            </Box>
+          </Stack>
+          <Stack direction="row" spacing={15} sx={{ textAlign: "start" }}>
+            <Box sx={{ fontSize: "1.25rem", fontWeight: "500", width: "4rem" }}>
+              Dogs:
+            </Box>
+            <Box sx={{ paddingTop: "0.4rem", fontSize: "1.25rem" }}>
+              {findPetObject.environment.dogs ? "Yes" : "No"}
+            </Box>
+          </Stack>
+          <Stack direction="row" spacing={15} sx={{ textAlign: "start" }}>
+            <Box sx={{ fontSize: "1.25rem", fontWeight: "500", width: "4rem" }}>
+              Cats:
+            </Box>
+            <Box sx={{ paddingTop: "0.4rem", fontSize: "1.25rem" }}>
+              {findPetObject.environment.cats ? "Yes" : "No"}
+            </Box>
+          </Stack>
+          <Stack direction="row" spacing={15}>
+            <Box sx={{ fontSize: "1.25rem", fontWeight: "500", width: "4rem" }}>
+              Distance:
+            </Box>
+            <Box sx={{ paddingTop: "0.4rem", fontSize: "1.25rem" }}>
+              {findPetObject.distance} mi
+            </Box>
+          </Stack>
+          <Stack direction="row" spacing={15}>
+            <Box sx={{ fontSize: "1.25rem", fontWeight: "500", width: "4rem" }}>
+              Status:
+            </Box>
+            <Box sx={{ paddingTop: "0.4rem", fontSize: "1.25rem" }}>
+              {findPetObject.status}
+            </Box>
+          </Stack>
+        </Box>
+
+        <Divider variant="middle" sx={{ marginTop: "3rem" }} />
+        <Box sx={{ marginTop: "3rem" }}>
+          <Typography
+            variant="h5"
+            sx={{
+              marginTop: "2rem",
+
+              marginBottom: "2rem",
+              fontWeight: "bold",
+              width: {
+                xs: "300px",
+              },
+              marginRight: "45rem",
+            }}
+          >
+            My Story
+          </Typography>
+          <Box>{findPetObject.description}</Box>
+        </Box>
+        <Divider variant="middle" sx={{ marginTop: "3rem" }} />
+        <Box sx={{ marginTop: "3rem", marginBottom: "3rem" }}>
+          <Typography
+            variant="h5"
+            sx={{
+              marginTop: "2rem",
+              marginBottom: "2rem",
+              fontWeight: "bold",
+              width: {
+                xs: "300px",
+              },
+              marginRight: "35rem",
+            }}
+          >
+            Contact Information:
+          </Typography>
+          <List>
+            <ListItem>
+              <ListItemIcon>
+                <LocationOnIcon />
+              </ListItemIcon>
+              <ListItemText
+                primary="Address:"
+                secondary={`${findPetObject.contact.address.address1}
                           ${findPetObject.contact.address.city} 
                           ${findPetObject.contact.address.state},
                           ${findPetObject.contact.address.postcode}
                           `}
-                        />
-                      </ListItem>
-                      <ListItem>
-                        <ListItemIcon>
-                          <EmailIcon />
-                        </ListItemIcon>
-                        <ListItemText
-                          primary="Email:"
-                          secondary={findPetObject.contact.email}
-                        />
-                      </ListItem>
-                      <ListItem>
-                        <ListItemIcon>
-                          <PhoneIcon />
-                        </ListItemIcon>
-                        <ListItemText
-                          primary="Phone number:"
-                          secondary={findPetObject.contact.phone}
-                        />
-                      </ListItem>
-                    </List>
-                  </Box>
-                </Grid>
-              </Grid>
-              <Divider variant="middle" sx={{ marginLeft: "3rem" }} />
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid container spacing={5}>
-          <Grid item xs={5}>
-            <Box sx={{ marginTop: "2rem" }}>
-              <Typography
-                variant="h5"
-                component="div"
-                sx={{ paddingRight: "22rem" }}
-              >
-                Story:
-              </Typography>
-              <Typography
-                variant="h8"
-                component="div"
-                sx={{
-                  paddingLeft: "5rem",
-                  paddingRight: "8rem",
-                  paddingTop: "1rem",
-                }}
-              >
-                {findPetObject.description}
-              </Typography>
-            </Box>
-          </Grid>
-          <Grid item xs={5}>
-            <Typography
-              variant="h5"
-              component="div"
-              sx={{
-                marginTop: "2rem",
-                paddingRight: "16rem",
-              }}
-            >
-              {`About ${findPetObject.name}:`}
-            </Typography>
-            <Box sx={{ paddingRight: "30rem", paddingTop: "1rem" }}>
-              <Typography
-                variant="body1"
-                color="text.secondary"
-                component="div"
-              >
-                <b>House Trained:</b>{" "}
-                {findPetObject.attributes.house_trained ? "Yes" : "No"}{" "}
-              </Typography>
-              <Typography
-                variant="body1"
-                color="text.secondary"
-                component="div"
-              >
-                <b>Vaccinated:</b> <br />
-                {findPetObject.attributes.shot_current ? "Yes" : "No"}
-              </Typography>
-              <Typography
-                variant="body1"
-                color="text.secondary"
-                component="div"
-              >
-                <b>Spayed/Neutered:</b>{" "}
-                {findPetObject.attributes.spayed_neutered ? "Yes" : "No"}
-              </Typography>
-            </Box>
-          </Grid>
-        </Grid>
-        <Grid container>
-          <Box
-            sx={{
-              marginLeft: "45%",
-              marginTop: "2rem",
-              marginBottom: "2rem",
-            }}
-          >
-            <AdoptionForm />
-          </Box>
-        </Grid>
+              />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <EmailIcon />
+              </ListItemIcon>
+              <ListItemText
+                primary="Email:"
+                secondary={findPetObject.contact.email}
+              />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <PhoneIcon />
+              </ListItemIcon>
+              <ListItemText
+                primary="Phone number:"
+                secondary={findPetObject.contact.phone}
+              />
+            </ListItem>
+          </List>
+        </Box>
       </Box>
     </>
   )
