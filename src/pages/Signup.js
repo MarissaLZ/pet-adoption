@@ -10,12 +10,22 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined"
 import Typography from "@mui/material/Typography"
 import Container from "@mui/material/Container"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
-import { Link as RouterLink } from "react-router-dom"
+import { Link as RouterLink, Navigate } from "react-router-dom"
 import firebase from "../Firebase/FirebaseConfig"
+import { useContext } from "react"
+import { UserContext } from "../context"
 
 const theme = createTheme()
 
 export default function SignUp() {
+  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext)
+
+  const [inputErrors, setInputError] = React.useState({
+    isError: false,
+    message: "",
+  })
+
+  console.log("inputErrors", inputErrors)
   const [signup, setSignup] = React.useState({
     firstName: "",
     email: "",
@@ -50,11 +60,36 @@ export default function SignUp() {
           email: user.email,
           firstName: signup.firstName,
         })
+        setIsLoggedIn(!isLoggedIn)
+        //resets error
+        // setInputError({
+        //   ...inputErrors,
+        //   isError: false,
+        //   message: "",
+        // })
       })
       .catch((error) => {
-        var errorCode = error.code
-        var errorMessage = error.message
+        handleError(error)
       })
+  }
+  const handleError = (error) => {
+    console.log("handle error runs")
+    console.log(error.message)
+    //Error is an object that firebase returns, contains message, code and name
+    const message = error.message
+      .replace("Firebase: ", "")
+      .replace(" ( auth/weak-password)", "")
+      .replace(". (auth/invalid-email)", "")
+    //sets the error message to display on the sign up page if authentification invalid
+    setInputError({
+      ...inputErrors,
+      isError: true,
+      message: message,
+    })
+  }
+  //redirects user to home page is signup is successful
+  if (isLoggedIn) {
+    return <Navigate to="/" />
   }
 
   return (
@@ -69,6 +104,9 @@ export default function SignUp() {
             alignItems: "center",
           }}
         >
+          {inputErrors.isError && (
+            <div style={{ color: "red" }}>{inputErrors.message}</div>
+          )}
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
