@@ -35,6 +35,7 @@ function App() {
 
   console.log("isLoggedIn", isLoggedIn)
   console.log("userProfile", userProfile)
+  console.log("favorite", isFavoritedList)
 
   return (
     <div className="App">
