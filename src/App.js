@@ -57,7 +57,6 @@ function App() {
               <Route path="login" element={<Login />} />
               <Route path="/petbio/:id" element={<PetBio />} />
               <Route path="Signup" element={<Signup />} />
-              <Route path="/Adopt/petbio" element={<PetBio />} />
             </Routes>
             <Footer />
           </PetsContext.Provider>
