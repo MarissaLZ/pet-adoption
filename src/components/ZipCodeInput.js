@@ -1,13 +1,18 @@
+import { useEffect, useState } from "react"
 import { Button, Stack, TextField } from "@mui/material"
 import SearchIcon from "@mui/icons-material/Search"
 import fetchPetList from "../components/fetchPetList"
 import { useContext } from "react"
 import { PetsContext } from "../context"
+import { LoadingContext } from "../context"
 import { SearchContext } from "../context"
 
 const ZipCodeInput = () => {
   //using PetsContext and SearchContext
   const { setPetList } = useContext(PetsContext)
+  const { setIsLoading } = useContext(LoadingContext)
+
+  //Gets value from the input and updates the zipCode state
   const { search, handleSearch } = useContext(SearchContext)
 
   //Validation. Gets value from the input and updates the zipCode state
@@ -21,10 +26,19 @@ const ZipCodeInput = () => {
   //should handleSubmit be included in the SearchContext and moved to <App/>?
   const handleSubmit = (e) => {
     e.preventDefault()
+    setIsLoading(true)
+    fetchPetList(search.zipcode, search.animalType).then((response) => {
+      setPetList(response.animals)
+      setIsLoading(false)
+    })
+  }
+
+  useEffect(() => {
+    //make fetch request
     fetchPetList(search.zipcode, search.animalType).then((response) => {
       setPetList(response.animals)
     })
-  }
+  }, [])
 
   return (
     <form onSubmit={handleSubmit}>

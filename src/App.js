@@ -19,7 +19,10 @@ function App() {
   const [userProfile, setUserProfile] = React.useState([])
   const [petList, setPetList] = React.useState([])
   const [isFavoritedList, setIsFavoritedList] = React.useState([])
-  const [search, setSearch] = React.useState({ zipcode: "", animalType: "cat" })
+  const [search, setSearch] = React.useState({
+    zipcode: "",
+    animalType: "",
+  })
 
   const handleSearch = (e) => {
     setSearch({
@@ -48,6 +51,7 @@ function App() {
               <Route path="donate" element={<Donate />} />
               <Route path="about" element={<About />} />
               <Route path="login" element={<Login />} />
+              <Route path="/petbio/:id" element={<PetBio />} />
               <Route path="Signup" element={<Signup />} />
               <Route path="/Adopt/petbio" element={<PetBio />} />
             </Routes>
