@@ -25,7 +25,7 @@ const ZipCodeInput = () => {
     e.preventDefault()
     setIsLoading(true)
     setPageNumber(1)
-    fetchPetList(search.zipcode, search.animalType, pageNumber).then((response) => {
+    fetchPetList(search.zipcode, search.animalType, search.sortOption, pageNumber).then((response) => {
       setPetList(response.animals)
       setPageCount(response.pagination.total_pages)
       setIsLoading(false)

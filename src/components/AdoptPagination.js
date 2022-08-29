@@ -17,11 +17,11 @@ function AdoptPagination () {
 
   //will call fetchPetList any time pageNumber is changed
   React.useEffect(()=>{
-    fetchPetList(search.zipcode, search.animalType, pageNumber).then((response) => {
+    fetchPetList(search.zipcode, search.animalType, search.sortOption, pageNumber).then((response) => {
       setPetList(response.animals)
       setPageCount(response.pagination.total_pages)
     })
-  }, [pageNumber])
+  }, [pageNumber, search.sortOption])
 
   return(
     <Pagination default={1} page={pageNumber} count={pageCount} color="primary" onChange={handlePageChange}/>

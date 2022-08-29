@@ -24,6 +24,7 @@ function App() {
   const [search, setSearch] = React.useState({
     zipcode: "",
     animalType: "",
+    sortOption:"",
   })
 
   const handleSearch = (e) => {
