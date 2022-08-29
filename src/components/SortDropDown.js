@@ -10,7 +10,7 @@ import { SearchContext } from "../context"
 const SortDropDown = () => {
 
     //using SearchContext
-    const { handleSearch } = useContext(SearchContext)
+    const { handleSearch, setPageNumber } = useContext(SearchContext)
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
 
@@ -35,7 +35,6 @@ const SortDropDown = () => {
 
     // handleSortChange makes the api call to fetch pet list with desired sort parameter
     const handleSortChange = (value) => {
-      console.log(value)
       let changeSortParams = {
         target: {
           name: "sortOption",
@@ -43,6 +42,7 @@ const SortDropDown = () => {
         }
       }
       handleSearch(changeSortParams)
+      setPageNumber(1)
       setAnchorEl(null);
     }
 
