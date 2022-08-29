@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import { Button, Stack, TextField } from "@mui/material"
 import SearchIcon from "@mui/icons-material/Search"
 import fetchPetList from "../components/fetchPetList"
@@ -32,14 +31,6 @@ const ZipCodeInput = () => {
       setIsLoading(false)
     })
   }
-
-  useEffect(() => {
-    //make fetch request
-    fetchPetList(search.zipcode, search.animalType).then((response) => {
-      setPetList(response.animals)
-      setPageCount(response.pagination.total_pages)
-    })
-  }, [])
 
   return (
     <form onSubmit={handleSubmit}>
