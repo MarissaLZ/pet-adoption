@@ -5,17 +5,21 @@ import SortDropDown from "../components/SortDropDown"
 import { LoadingContext } from "../context"
 import LoadingMessage from "../components/LoadingMessage"
 import Search from "../components/Search"
+import AdoptPagination from "../components/AdoptPagination"
 
 
 const Adopt = () => {
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   return (
     <LoadingContext.Provider value={{ isLoading, setIsLoading }}>
       <div>
-        <Search />
-        <SortDropDown />
-        {isLoading === true ? <LoadingMessage />
-          : <PetList />}
+      <Search/>
+      <SortDropDown/>
+      {isLoading === true ? <LoadingMessage/>
+        : <>
+            <PetList/>
+            <AdoptPagination/>
+          </> }
       </div>
     </LoadingContext.Provider>
   )

@@ -5,14 +5,12 @@ import MenuItem from '@mui/material/MenuItem';
 import Fade from '@mui/material/Fade';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useContext } from "react"
-import { PetsContext, SearchContext } from "../context"
-import fetchPetList from './fetchPetList';
+import { SearchContext } from "../context"
 
 const SortDropDown = () => {
 
-    //using PetsContext and SearchContext
-    const { setPetList } = useContext(PetsContext)
-    const { search } = useContext(SearchContext)
+    //using SearchContext
+    const { handleSearch } = useContext(SearchContext)
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
 
@@ -37,10 +35,15 @@ const SortDropDown = () => {
 
     // handleSortChange makes the api call to fetch pet list with desired sort parameter
     const handleSortChange = (value) => {
-        fetchPetList(search.zipcode, search.animalType, `sort=${value}`).then((response) => {
-            setPetList(response.animals)
-        })
-        setAnchorEl(null);
+      console.log(value)
+      let changeSortParams = {
+        target: {
+          name: "sortOption",
+          value: value
+        }
+      }
+      handleSearch(changeSortParams)
+      setAnchorEl(null);
     }
 
     // handleClose function closes the drop down menu if user clicks out of menu
@@ -72,7 +75,7 @@ const SortDropDown = () => {
                 TransitionComponent={Fade}
             >
                 {/* map through sortOptions as MenuItem */}
-                {sortOptions.map(so => <MenuItem onClick={() => handleSortChange(so.key)}>{so.label}</MenuItem>)}
+                {sortOptions.map(so => <MenuItem key={so.key} onClick={() => handleSortChange(so.key)}>{so.label}</MenuItem>)}
             </Menu>
         </div>
     )
