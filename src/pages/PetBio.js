@@ -44,7 +44,7 @@ function PetBio() {
         }}
       >
         <Typography variant="h3" component="div">
-          My namae is {findPetObject.name}!
+          My name is {findPetObject.name}!
         </Typography>
         <Grid container spacing={4} sx={{ marginTop: "15px" }}>
           <Grid item xs={6}>
@@ -84,8 +84,10 @@ function PetBio() {
           >
             Facts about me:
           </Typography>
-          <Stack direction="row" spacing={15}>
-            <Box sx={{ fontSize: "1.25rem", fontWeight: "500", width: "4rem" }}>
+          <Stack direction="row" spacing={15} sx={{ textAlign: "start" }}>
+            <Box
+              sx={{ fontSize: "1.25rem", fontWeight: "500", width: "10rem" }}
+            >
               Breed:
             </Box>
             <Box
@@ -96,8 +98,10 @@ function PetBio() {
               {findPetObject.breeds.primary}
             </Box>
           </Stack>
-          <Stack direction="row" spacing={15}>
-            <Box sx={{ fontSize: "1.25rem", fontWeight: "500", width: "4rem" }}>
+          <Stack direction="row" spacing={15} sx={{ textAlign: "start" }}>
+            <Box
+              sx={{ fontSize: "1.25rem", fontWeight: "500", width: "10rem" }}
+            >
               Gender:
             </Box>
             <Box sx={{ paddingTop: "0.4rem", fontSize: "1.25rem" }}>
@@ -109,7 +113,7 @@ function PetBio() {
               sx={{
                 fontSize: "1.25rem",
                 fontWeight: "500",
-                width: "4rem",
+                width: "10rem",
               }}
             >
               Size:
@@ -119,7 +123,9 @@ function PetBio() {
             </Box>
           </Stack>
           <Stack direction="row" spacing={15} sx={{ textAlign: "start" }}>
-            <Box sx={{ fontSize: "1.25rem", fontWeight: "500", width: "4rem" }}>
+            <Box
+              sx={{ fontSize: "1.25rem", fontWeight: "500", width: "10rem" }}
+            >
               Color:
             </Box>
             <Box sx={{ paddingTop: "0.4rem", fontSize: "1.25rem" }}>
@@ -132,7 +138,7 @@ function PetBio() {
                 fontSize: "1.25rem",
                 fontWeight: "500",
                 textAlign: "start",
-                width: "4rem",
+                width: "10rem",
               }}
             >
               Age:
@@ -141,72 +147,79 @@ function PetBio() {
               {findPetObject.age}
             </Box>
           </Stack>
-          <Stack direction="row" spacing={15}>
-            <Box sx={{ fontSize: "1.25rem", fontWeight: "500", width: "4rem" }}>
+          <Stack direction="row" spacing={15} sx={{ textAlign: "start" }}>
+            <Box
+              sx={{ fontSize: "1.25rem", fontWeight: "500", width: "10rem" }}
+            >
               Trained:
             </Box>
             <Box sx={{ paddingTop: "0.4rem", fontSize: "1.25rem" }}>
               {findPetObject.attributes.house_trained ? "Yes" : "No"}
             </Box>
           </Stack>
-          <Stack direction="row" spacing={15}>
-            <Box sx={{ fontSize: "1.25rem", fontWeight: "500", width: "4rem" }}>
+          <Stack direction="row" spacing={15} sx={{ textAlign: "start" }}>
+            <Box
+              sx={{ fontSize: "1.25rem", fontWeight: "500", width: "10rem" }}
+            >
               Vaccinated:
             </Box>
             <Box sx={{ paddingTop: "0.4rem", fontSize: "1.25rem" }}>
               {findPetObject.attributes.shot_current ? "Yes" : "No"}
             </Box>
           </Stack>
-          <Stack direction="row" spacing={15}>
-            <Box sx={{ fontSize: "1.25rem", fontWeight: "500", width: "4rem" }}>
+          <Stack direction="row" spacing={15} sx={{ textAlign: "start" }}>
+            <Box
+              sx={{ fontSize: "1.25rem", fontWeight: "500", width: "10rem" }}
+            >
               Neutered:
             </Box>
             <Box sx={{ paddingTop: "0.4rem", fontSize: "1.25rem" }}>
               {findPetObject.attributes.spayed_neutered ? "Yes" : "No"}
             </Box>
           </Stack>
-          <Stack
-            sx={{
-              fontSize: "1.25rem",
-              fontWeight: "500",
-              textAlign: "start",
-              width: "10rem",
-            }}
-          >
-            I'm good with:
-          </Stack>
           <Stack direction="row" spacing={15} sx={{ textAlign: "start" }}>
             <Box
               sx={{
                 fontSize: "1.25rem",
                 fontWeight: "500",
-                width: "4rem",
+                width: "10rem",
               }}
             >
-              kids:
+              Good with kids:
             </Box>
             <Box sx={{ paddingTop: "0.4rem", fontSize: "1.25rem" }}>
               {findPetObject.environment.children ? "Yes" : "No"}
             </Box>
           </Stack>
           <Stack direction="row" spacing={15} sx={{ textAlign: "start" }}>
-            <Box sx={{ fontSize: "1.25rem", fontWeight: "500", width: "4rem" }}>
-              Dogs:
+            <Box
+              sx={{ fontSize: "1.25rem", fontWeight: "500", width: "10rem" }}
+            >
+              Good with dogs:
             </Box>
             <Box sx={{ paddingTop: "0.4rem", fontSize: "1.25rem" }}>
               {findPetObject.environment.dogs ? "Yes" : "No"}
             </Box>
           </Stack>
           <Stack direction="row" spacing={15} sx={{ textAlign: "start" }}>
-            <Box sx={{ fontSize: "1.25rem", fontWeight: "500", width: "4rem" }}>
-              Cats:
+            <Box
+              sx={{ fontSize: "1.25rem", fontWeight: "500", width: "10rem" }}
+            >
+              Good with cats:
             </Box>
             <Box sx={{ paddingTop: "0.4rem", fontSize: "1.25rem" }}>
               {findPetObject.environment.cats ? "Yes" : "No"}
             </Box>
           </Stack>
           <Stack direction="row" spacing={15}>
-            <Box sx={{ fontSize: "1.25rem", fontWeight: "500", width: "4rem" }}>
+            <Box
+              sx={{
+                fontSize: "1.25rem",
+                fontWeight: "500",
+                width: "10rem",
+                textAlign: "start",
+              }}
+            >
               Distance:
             </Box>
             <Box sx={{ paddingTop: "0.4rem", fontSize: "1.25rem" }}>
@@ -214,7 +227,14 @@ function PetBio() {
             </Box>
           </Stack>
           <Stack direction="row" spacing={15}>
-            <Box sx={{ fontSize: "1.25rem", fontWeight: "500", width: "4rem" }}>
+            <Box
+              sx={{
+                fontSize: "1.25rem",
+                fontWeight: "500",
+                width: "10rem",
+                textAlign: "start",
+              }}
+            >
               Status:
             </Box>
             <Box sx={{ paddingTop: "0.4rem", fontSize: "1.25rem" }}>
