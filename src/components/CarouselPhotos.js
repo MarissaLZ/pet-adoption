@@ -6,8 +6,8 @@ const CarouselPhotos = ({ pet }) => {
       <Card>
         <CardMedia
           component="img"
-          height="400"
-          image={pet.large}
+          height="500"
+          image={pet.full}
           alt="pet photo"
         />
       </Card>
