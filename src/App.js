@@ -18,10 +18,13 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false)
   const [userProfile, setUserProfile] = React.useState([])
   const [petList, setPetList] = React.useState([])
+  const [pageNumber, setPageNumber] = React.useState(1)
+  const [pageCount, setPageCount] = React.useState(10)
   const [isFavoritedList, setIsFavoritedList] = React.useState([])
   const [search, setSearch] = React.useState({
     zipcode: "",
     animalType: "",
+    sortOption:"",
   })
 
   const handleSearch = (e) => {
@@ -40,7 +43,7 @@ function App() {
       <UserContext.Provider
         value={{ isLoggedIn, setIsLoggedIn, userProfile, setUserProfile }}
       >
-        <SearchContext.Provider value={{ search, setSearch, handleSearch }}>
+        <SearchContext.Provider value={{ search, setSearch, handleSearch, pageNumber, setPageNumber, pageCount, setPageCount, }}>
           <PetsContext.Provider
             value={{ petList, setPetList, isFavoritedList, setIsFavoritedList }}
           >
