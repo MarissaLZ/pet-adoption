@@ -18,6 +18,8 @@ import LocationOnIcon from "@mui/icons-material/LocationOn"
 import EmailIcon from "@mui/icons-material/Email"
 import PhoneIcon from "@mui/icons-material/Phone"
 import AdoptionForm from "../components/AdoptionForm"
+import DefaultPetImage from "../images/defaultImage.png"
+import { CardMedia } from "@mui/material"
 
 function PetBio() {
   //Context provider
@@ -44,17 +46,25 @@ function PetBio() {
         }}
       >
         <Typography variant="h3" component="div">
-          My namae is {findPetObject.name}!
+          My name is {findPetObject.name}!
         </Typography>
         <Grid container spacing={4} sx={{ marginTop: "15px" }}>
           <Grid item xs={6}>
-            {/* <Box sx={{ marginLeft: "6rem", marginTop: "4rem" }}> */}
             <Carousel>
-              {findPetObject.photos.map((pet, i) => (
-                <CarouselPhotos key={i} pet={pet} />
-              ))}
+              {/* check to see if pet has an image with ternary. If not, display default DefaultPetImage */}
+              {findPetObject.photos.length !== 0 ? (
+                findPetObject.photos.map((pet, i) => (
+                  <CarouselPhotos key={i} pet={pet} />
+                ))
+              ) : (
+                <CardMedia
+                  component="img"
+                  height="400"
+                  image={DefaultPetImage}
+                  alt="pet photo"
+                />
+              )}
             </Carousel>
-            {/* </Box> */}
           </Grid>
           <Grid item xs={6} sx={{ marginTop: "5rem" }}>
             <Typography variant="h6" component="p">
