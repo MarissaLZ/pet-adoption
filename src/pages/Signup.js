@@ -102,6 +102,7 @@ export default function SignUp() {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            minHeight: "100vh",
           }}
         >
           {inputErrors.isError && (
@@ -169,7 +170,7 @@ export default function SignUp() {
               Sign Up
             </Button>
             <Grid container justifyContent="center">
-              <Grid item sx={{ mb: 8 }}>
+              <Grid item sx={{ mb: 1 }}>
                 <Link component={RouterLink} to="/login">
                   Already have an account? Sign in
                 </Link>

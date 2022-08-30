@@ -12,7 +12,7 @@ export default function SearchButtons() {
 
   return (
     <FormControl>
-      <FormLabel id="row-radio-buttons-group-label">Pet Type:</FormLabel>
+      <FormLabel id="row-radio-buttons-group-label"></FormLabel>
       <RadioGroup
         row
         aria-labelledby="row-radio-buttons-group-label"

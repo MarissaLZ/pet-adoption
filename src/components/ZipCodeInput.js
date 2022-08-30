@@ -10,7 +10,8 @@ const ZipCodeInput = () => {
   //using PetsContext, LoadingContext and SearchContext
   const { setPetList } = useContext(PetsContext)
   const { setIsLoading } = useContext(LoadingContext)
-  const { search, handleSearch, setPageCount, pageNumber, setPageNumber } = useContext(SearchContext)
+  const { search, handleSearch, setPageCount, pageNumber, setPageNumber } =
+    useContext(SearchContext)
 
   //Validation. Gets value from the input and updates the zipCode state
   const handleZipcodeChange = (e) => {
@@ -25,7 +26,12 @@ const ZipCodeInput = () => {
     e.preventDefault()
     setIsLoading(true)
     setPageNumber(1)
-    fetchPetList(search.zipcode, search.animalType, search.sortOption, pageNumber).then((response) => {
+    fetchPetList(
+      search.zipcode,
+      search.animalType,
+      search.sortOption,
+      pageNumber
+    ).then((response) => {
       setPetList(response.animals)
       setPageCount(response.pagination.total_pages)
       setIsLoading(false)
@@ -38,7 +44,7 @@ const ZipCodeInput = () => {
         <TextField
           label="Zip Code"
           size="small"
-          color="secondary"
+          color="primary"
           name="zipcode"
           value={search.zipcode}
           onChange={handleZipcodeChange}
@@ -49,7 +55,7 @@ const ZipCodeInput = () => {
           type="submit"
           size="small"
           variant="outlined"
-          color="secondary"
+          color="primary"
           endIcon={<SearchIcon />}
         >
           Search

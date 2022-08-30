@@ -24,7 +24,7 @@ function App() {
   const [search, setSearch] = React.useState({
     zipcode: "",
     animalType: "",
-    sortOption:"",
+    sortOption: "",
   })
 
   const handleSearch = (e) => {
@@ -43,7 +43,17 @@ function App() {
       <UserContext.Provider
         value={{ isLoggedIn, setIsLoggedIn, userProfile, setUserProfile }}
       >
-        <SearchContext.Provider value={{ search, setSearch, handleSearch, pageNumber, setPageNumber, pageCount, setPageCount, }}>
+        <SearchContext.Provider
+          value={{
+            search,
+            setSearch,
+            handleSearch,
+            pageNumber,
+            setPageNumber,
+            pageCount,
+            setPageCount,
+          }}
+        >
           <PetsContext.Provider
             value={{ petList, setPetList, isFavoritedList, setIsFavoritedList }}
           >
