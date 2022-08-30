@@ -1,6 +1,7 @@
 import React from "react"
 import { Link, Box, Grid } from "@mui/material"
 import styled from "styled-components"
+
 export default function FooterItems() {
   //lists of all the links, there isnt' an about us page yet so that link is # for now
   const siteLinks = [
@@ -18,11 +19,6 @@ export default function FooterItems() {
     { linkName: "Firebase", linkURL: "https://firebase.google.com/" },
     { linkName: "Figma", linkURL: "https://figma.com" },
   ]
-  //Styling for the columns
-  const ColumnContainer = styled.div`
-    margin: 5px;
-    padding: 5px;
-  `
 
   return (
     <>
@@ -82,3 +78,9 @@ export default function FooterItems() {
     </>
   )
 }
+
+//Styling for the columns
+const ColumnContainer = styled.div`
+  margin: 5px;
+  padding: 5px;
+`
