@@ -17,6 +17,7 @@ function AdoptPagination () {
 
   //will call fetchPetList any time pageNumber is changed
   React.useEffect(()=>{
+    window.scrollTo(0,0)
     fetchPetList(search.zipcode, search.animalType, search.sortOption, pageNumber).then((response) => {
       setPetList(response.animals)
       setPageCount(response.pagination.total_pages)
