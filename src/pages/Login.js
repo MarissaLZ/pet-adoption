@@ -17,20 +17,6 @@ import { useContext } from "react"
 import { UserContext } from "../context"
 import { useNavigate } from "react-router-dom"
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © House Sparrow Practicum "}
-      {new Date().getFullYear()}
-    </Typography>
-  )
-}
-
 const theme = createTheme()
 
 //Login component allows users to login with google account or thier own email and password.
@@ -88,6 +74,7 @@ export default function Login() {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            minHeight: "100vh",
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
@@ -156,7 +143,6 @@ export default function Login() {
             </Grid>
           </Grid>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
   )
