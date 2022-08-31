@@ -8,7 +8,7 @@ import { UserContext } from "../context"
 
 const Logout = () => {
   const { isLoggedIn, setIsLoggedIn } = useContext(UserContext)
-  //hook
+  //navigate hook redirects from logout to home page
   const navigate = useNavigate()
 
   const handleLogout = () => {

@@ -40,7 +40,8 @@ export function NavItems() {
           </Button>
         )
       )}
-      {isLoggedIn && <Logout />}
+      {/* uncomment this line to test <Logout/>. Button is temporary */}
+      {/* {isLoggedIn && <Logout />} */}
     </>
   )
 }
