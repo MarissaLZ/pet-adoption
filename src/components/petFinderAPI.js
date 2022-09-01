@@ -9,7 +9,6 @@ export function fetchPetList(zipcode, animalType, sortParam, pageNumber) {
   })
     .then((response) => response.json())
     .then((result) =>
-      //check for animal type with ternary ? :
       fetch(
         `https://api.petfinder.com/v2/animals?${
           animalType ? `type=${animalType}` : ""
@@ -26,7 +25,7 @@ export function fetchPetList(zipcode, animalType, sortParam, pageNumber) {
 }
 
 export function fetchPet(id) {
-  fetch("https://api.petfinder.com/v2/oauth2/token", {
+  return fetch("https://api.petfinder.com/v2/oauth2/token", {
     body: `grant_type=client_credentials&client_id=${process.env.REACT_APP_PETFINDER_API_KEY}&client_secret=${process.env.REACT_APP_PETFINDER_CLIENT_SECRET}`,
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",

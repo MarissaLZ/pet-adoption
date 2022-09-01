@@ -20,6 +20,7 @@ import PhoneIcon from "@mui/icons-material/Phone"
 import AdoptionForm from "../components/AdoptionForm"
 import DefaultPetImage from "../images/defaultImage.png"
 import { CardMedia } from "@mui/material"
+import { fetchPet } from "../components/petFinderAPI"
 
 function PetBio() {
   //Context provider
@@ -30,39 +31,23 @@ function PetBio() {
 
   //Finds the pet object
   const petObject = petList.find((pet) => pet.id == params.id)
+  console.log("PET OBJECT", petObject)
 
   //Uses petObject as initial state
   const [petBio, setPetBio] = useState(petObject)
+  console.log("PETBIO STATE", petBio)
 
   //make a fetch request when user refreshes
   useEffect(() => {
-    //this line will return the object or undefined
-
     //if there is a petObject set the petBio state
     if (petObject) {
       setPetBio({ ...petObject })
+      console.log("first render")
     }
     //make a fetch request if petObject is undefined
     else {
-      console.log("fetch request for petbio running")
       try {
-        fetch("https://api.petfinder.com/v2/oauth2/token", {
-          body: `grant_type=client_credentials&client_id=${process.env.REACT_APP_PETFINDER_API_KEY}&client_secret=${process.env.REACT_APP_PETFINDER_CLIENT_SECRET}`,
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-          method: "POST",
-        })
-          .then((response) => response.json())
-          .then((result) =>
-            fetch(`https://api.petfinder.com/v2/animals/${params.id}`, {
-              headers: {
-                Authorization: `Bearer ${result.access_token}`,
-              },
-            })
-              .then((response) => response.json())
-              .then((response) => setPetBio(response.animal))
-          )
+        fetchPet(params.id).then((response) => setPetBio(response.animal))
       } catch {
         console.log("ERROR ON FAVORITE", Error)
       }
