@@ -2,12 +2,12 @@ import React from "react"
 import { Button } from "@mui/material"
 import firebase from "../Firebase/FirebaseConfig"
 import { useNavigate } from "react-router-dom"
-
 import { useContext } from "react"
-import { UserContext } from "../context"
+import { FurrdoptionContext } from "../FurrdoptionProvider"
 
 const Logout = () => {
-  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext)
+  const { isLoggedIn, setIsLoggedIn } = useContext(FurrdoptionContext)
+
   //navigate hook redirects from logout to home page
   const navigate = useNavigate()
 
