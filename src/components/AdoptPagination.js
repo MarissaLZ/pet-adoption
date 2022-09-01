@@ -16,7 +16,9 @@ function AdoptPagination() {
   }
 
   //will call fetchPetList any time pageNumber is changed
+
   React.useEffect(() => {
+    window.scrollTo(0, 0)
     fetchPetList(
       search.zipcode,
       search.animalType,
