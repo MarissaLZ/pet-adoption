@@ -19,9 +19,9 @@ export function NavItems() {
   ]
 
   //adds favorite to nav if user is logged in
-  // if (isLoggedIn) {
-  //   navItems.push({ navLinks: "Favorites", menuLinks: [] })
-  // }
+  if (isLoggedIn) {
+    navItems.push({ navLinks: "Favorites", menuLinks: [] })
+  }
 
   return (
     <>
@@ -39,13 +39,13 @@ export function NavItems() {
               to={`/${item.navLinks}`}
               style={{ textDecoration: "none", color: "inherit" }}
             >
-              {/* {item.navLinks === "Favorites" ? (
+              {item.navLinks === "Favorites" ? (
                 <FavoriteOutlinedIcon />
               ) : (
                 item.navLinks
-              )} */}
+              )}
 
-              {item.navLinks}
+              {/* {item.navLinks} */}
             </Link>
           </Button>
         )
