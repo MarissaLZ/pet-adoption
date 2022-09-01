@@ -11,11 +11,12 @@ import About from "./pages/About"
 import Login from "./pages/Login"
 import Signup from "./pages/Signup"
 import PetBio from "./pages/PetBio"
+import Favorites from "./pages/Favorites"
 import { UserContext, PetsContext, SearchContext } from "./context"
 
 function App() {
   //login state can be used for conditional redering to swap login link for user page link or favorites page link and userProfile info can be used to populate infor with other forms
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false)
+  const [isLoggedIn, setIsLoggedIn] = React.useState(true)
   const [userProfile, setUserProfile] = React.useState([])
   const [petList, setPetList] = React.useState([])
   const [pageNumber, setPageNumber] = React.useState(1)
@@ -36,7 +37,6 @@ function App() {
 
   console.log("isLoggedIn", isLoggedIn)
   console.log("userProfile", userProfile)
-  console.log("favorite", isFavoritedList)
 
   return (
     <div className="App">
@@ -67,6 +67,7 @@ function App() {
               <Route path="login" element={<Login />} />
               <Route path="/petbio/:id" element={<PetBio />} />
               <Route path="Signup" element={<Signup />} />
+              <Route path="favorites" element={<Favorites />} />
             </Routes>
             <Footer />
           </PetsContext.Provider>

@@ -7,8 +7,11 @@ import LoadingMessage from "../components/LoadingMessage"
 import Search from "../components/Search"
 import AdoptPagination from "../components/AdoptPagination"
 import { Box } from "@mui/material"
+import { useContext } from "react"
+import { PetsContext } from "../context"
 
 const Adopt = () => {
+  const { petList } = useContext(PetsContext)
   const [isLoading, setIsLoading] = useState(false)
   return (
     <Box
@@ -26,7 +29,7 @@ const Adopt = () => {
             <LoadingMessage />
           ) : (
             <>
-              <PetList />
+              <PetList animalList={petList} />
               <AdoptPagination />
             </>
           )}
