@@ -6,6 +6,8 @@ import { useContext } from "react"
 import { UserContext } from "../context"
 import Logout from "./Logout"
 import { Link as RouterLink, Navigate } from "react-router-dom"
+import Avatar from '@mui/material/Avatar';
+import PetsIcon from '@mui/icons-material/Pets';
 
 export function NavItems() {
   //import context
@@ -17,7 +19,14 @@ export function NavItems() {
     { navLinks: "Volunteer", menuLinks: [] },
     { navLinks: "Donate", menuLinks: [] },
     { navLinks: "About", menuLinks: [] },
-    { navLinks: "Login", menuLinks: [] },
+  ]
+
+  const loggedInItems = [
+    {
+      navLinks: "Name",
+      icon: <Avatar src="/broken-image.jpg" alt="" > <PetsIcon /></Avatar>,
+      menuLinks: ["Profile", "Favorites", <Logout />]
+    },
   ]
   return (
     <>
@@ -40,8 +49,25 @@ export function NavItems() {
           </Button>
         )
       )}
-      {/* uncomment this line to test <Logout/>. Button is temporary */}
-      {/* {isLoggedIn && <Logout />} */}
+      {/* Toggels between "Login" or user drop down*/}
+      {!isLoggedIn ?
+        <Button key="login" color="inherit">
+          <Link
+            to={`/Login`}
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            Login
+          </Link>
+        </Button> :
+        loggedInItems.map((item) => (
+          <DropDown
+            key={item.navLinks}
+            navLink={item.navLinks}
+            menuLinks={item.menuLinks}
+            icon={item.icon}
+          />
+        ))
+      }
     </>
   )
 }
