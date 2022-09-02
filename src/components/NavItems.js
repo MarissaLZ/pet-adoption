@@ -7,6 +7,7 @@ import { useContext } from "react"
 import { UserContext } from "../context"
 
 export function NavItems() {
+  //import context
   const { isLoggedIn, setIsLoggedIn } = useContext(UserContext)
 
   //contains link names for the navbar items and the dropdown menus
@@ -50,6 +51,8 @@ export function NavItems() {
           </Button>
         )
       )}
+      {/* uncomment this line to test <Logout/>. Button is temporary */}
+      {/* {isLoggedIn && <Logout />} */}
     </>
   )
 }

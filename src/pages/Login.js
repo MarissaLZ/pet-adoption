@@ -15,6 +15,7 @@ import Link from "@mui/material/Link"
 import { Link as RouterLink } from "react-router-dom"
 import { useContext } from "react"
 import { UserContext } from "../context"
+import { useNavigate } from "react-router-dom"
 
 const theme = createTheme()
 
@@ -24,6 +25,9 @@ const theme = createTheme()
 export default function Login() {
   //using UserContext
   const { setIsLoggedIn, setUserProfile } = useContext(UserContext)
+
+  //navigate hook redirects the login page to home page
+  const navigate = useNavigate()
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -36,6 +40,7 @@ export default function Login() {
         var user = userCredential.user
         setIsLoggedIn(true)
         setUserProfile(user)
+        navigate("/")
       })
       .catch((error) => {
         var errorCode = error.code
