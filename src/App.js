@@ -16,7 +16,7 @@ import { UserContext, PetsContext, SearchContext } from "./context"
 
 function App() {
   //login state can be used for conditional redering to swap login link for user page link or favorites page link and userProfile info can be used to populate infor with other forms
-  const [isLoggedIn, setIsLoggedIn] = React.useState(true)
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false)
   const [userProfile, setUserProfile] = React.useState([])
   const [petList, setPetList] = React.useState([])
   const [pageNumber, setPageNumber] = React.useState(1)

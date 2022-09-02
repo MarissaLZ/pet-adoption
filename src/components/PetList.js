@@ -7,12 +7,12 @@ import {
   handleDelete,
 } from "../Firebase/FirebaseFirestoreServices"
 import { useContext } from "react"
-import { PetsContext } from "../context"
+import { PetsContext, UserContext } from "../context"
 
 //Recieves list from parent page or component and maps through it as pet cards
 const PetList = ({ animalList }) => {
   const { isFavoritedList, setIsFavoritedList } = useContext(PetsContext)
-
+  const { isLoggedIn } = useContext(UserContext)
   //List of favorited pets stored in firestore database. Used to check if a pet is already a favorited.
 
   //Triggers the state color on the PetCard component
@@ -26,9 +26,9 @@ const PetList = ({ animalList }) => {
   // console.log("checkIfIsFavorite", checkIfIsFavorite())
 
   const toggleFavorite = (pet) => {
-    if (checkIfIsFavorite(pet.id)) {
+    if (checkIfIsFavorite(pet.id) && isLoggedIn) {
       handleDelete(pet)
-    } else {
+    } else if (isLoggedIn) {
       handleAddLike(pet)
     }
   }

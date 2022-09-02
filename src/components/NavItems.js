@@ -20,9 +20,9 @@ export function NavItems() {
   ]
 
   //adds favorite to nav if user is logged in
-  if (isLoggedIn) {
-    navItems.push({ navLinks: "Favorites", menuLinks: [] })
-  }
+  // if (isLoggedIn) {
+  //   navItems.push({ navLinks: "Favorites", menuLinks: [] })
+  // }
 
   return (
     <>
