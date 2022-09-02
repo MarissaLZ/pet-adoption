@@ -13,7 +13,8 @@ import Signup from "./pages/Signup"
 import PetBio from "./pages/PetBio"
 import Favorites from "./pages/Favorites"
 import { UserContext, PetsContext, SearchContext } from "./context"
-
+import { themeOptions } from "./themeOptions"
+import { ThemeProvider } from "@mui/material/styles"
 function App() {
   //login state can be used for conditional redering to swap login link for user page link or favorites page link and userProfile info can be used to populate infor with other forms
   const [isLoggedIn, setIsLoggedIn] = React.useState(true)
@@ -40,6 +41,7 @@ function App() {
 
   return (
     <div className="App">
+      <ThemeProvider theme= {themeOptions}>
       <UserContext.Provider
         value={{ isLoggedIn, setIsLoggedIn, userProfile, setUserProfile }}
       >
@@ -73,6 +75,7 @@ function App() {
           </PetsContext.Provider>
         </SearchContext.Provider>
       </UserContext.Provider>
+      </ThemeProvider>
     </div>
   )
 }

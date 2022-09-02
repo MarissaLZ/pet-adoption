@@ -6,10 +6,12 @@ import TwitterIcon from "@mui/icons-material/Twitter"
 import InstagramIcon from "@mui/icons-material/Instagram"
 import FacebookIcon from "@mui/icons-material/Facebook"
 import GitHubIcon from "@mui/icons-material/GitHub"
-
+import { themeOptions } from "../themeOptions"
+import { ThemeProvider } from "@mui/material/styles"
 export default function Footer() {
   //Icons are wrapped in IconButton to allow link redirects
   return (
+    <ThemeProvider theme={themeOptions}>
     <FooterContainer>
       <Box>
         <Container maxWidth="lg">
@@ -39,11 +41,13 @@ export default function Footer() {
         </Container>
       </Box>
     </FooterContainer>
+    </ThemeProvider>
   )
 }
 
 const FooterContainer = styled.footer`
   padding: 20px;
-  background: #5297dd;
+  background: #ff8a65;
 `
-//background: #ced0ce;
+//grey color background: #ced0ce;
+// blue background: #5297dd;

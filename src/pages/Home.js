@@ -1,8 +1,8 @@
 import React from "react"
-import { Button, Stack, Grid, Box } from "@mui/material"
+import { Stack, Grid, Box } from "@mui/material"
 import { useNavigate } from "react-router-dom"
 import home from "../images/home.jpg"
-
+import { StyledButton } from "../Styles/StyledButton"
 const Home = () => {
   // the useNavigate hook navigates to the other routes
   const navigate = useNavigate()
@@ -96,24 +96,24 @@ const Home = () => {
                 alignItems="center"
                 spacing={8}
               >
-                <Button
-                  variant="contained"
-                  color="primary"
+                <StyledButton
+                  variant="contained" pill
+                  color="secondary"
                   // size="medium"
                   //sx={{ xs: "small", sm: "small", md: "medium" }}
                   size="medium"
                   onClick={() => navigate("/adopt")}
                 >
                   Adopt Now
-                </Button>
-                <Button
-                  variant="contained"
-                  color="primary"
+                </StyledButton>
+                <StyledButton
+                  variant="contained" pill
+                  color="secondary"
                   size="medium"
                   onClick={() => navigate("/volunteer")}
                 >
                   Volunteer
-                </Button>
+                </StyledButton>
               </Stack>
             </Grid>
           </Grid>
