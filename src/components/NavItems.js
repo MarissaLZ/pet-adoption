@@ -2,6 +2,7 @@ import React from "react"
 import { Button } from "@mui/material"
 import { DropDown } from "./DropDown"
 import { Link } from "react-router-dom"
+import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined"
 import { useContext } from "react"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
 import Logout from "./Logout"
@@ -19,6 +20,12 @@ export function NavItems() {
     { navLinks: "About", menuLinks: [] },
     { navLinks: "Login", menuLinks: [] },
   ]
+
+  //adds favorite to nav if user is logged in
+  if (isLoggedIn) {
+    navItems.push({ navLinks: "Favorites", menuLinks: [] })
+  }
+
   return (
     <>
       {/* generates a link with a dropdown menu or a link with no dropdown */}
@@ -35,7 +42,13 @@ export function NavItems() {
               to={`/${item.navLinks}`}
               style={{ textDecoration: "none", color: "inherit" }}
             >
-              {item.navLinks}
+              {item.navLinks === "Favorites" ? (
+                <FavoriteOutlinedIcon />
+              ) : (
+                item.navLinks
+              )}
+
+              {/* {item.navLinks} */}
             </Link>
           </Button>
         )

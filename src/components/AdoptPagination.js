@@ -1,6 +1,6 @@
 import * as React from "react"
 import Pagination from "@mui/material/Pagination"
-import fetchPetList from "../components/fetchPetList"
+import { fetchPetList } from "./petFinderAPI"
 import { useContext } from "react"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
 

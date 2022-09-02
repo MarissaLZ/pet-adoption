@@ -9,6 +9,7 @@ import { FurrdoptionContext } from "../FurrdoptionProvider"
 
 const Adopt = () => {
   const { isLoading } = useContext(FurrdoptionContext)
+
   return (
     <Box
       sx={{

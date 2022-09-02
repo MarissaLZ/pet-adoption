@@ -11,6 +11,7 @@ import About from "./pages/About"
 import Login from "./pages/Login"
 import Signup from "./pages/Signup"
 import PetBio from "./pages/PetBio"
+import Favorites from "./pages/Favorites"
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="/petbio/:id" element={<PetBio />} />
         <Route path="Signup" element={<Signup />} />
+        <Route path="favorites" element={<Favorites />} />
       </Routes>
       <Footer />
     </div>

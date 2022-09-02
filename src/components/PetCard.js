@@ -27,10 +27,8 @@ const PetCard = ({ pet, isFavorited, toggleFavorite }) => {
         <CardHeader
           title={pet.name}
           action={
-            <IconButton onClick={() => toggleFavorite(pet.id)}>
-              <FavoriteIcon
-                sx={isFavorited ? { backgroundColor: "red" } : null}
-              />
+            <IconButton onClick={() => toggleFavorite(pet)}>
+              <FavoriteIcon sx={isFavorited ? { color: "red" } : null} />
             </IconButton>
           }
         />
@@ -42,7 +40,9 @@ const PetCard = ({ pet, isFavorited, toggleFavorite }) => {
           <CardMedia
             component="img"
             height="250"
-            image={pet.photos.length !== 0 ? pet.photos[0].full : DefaultPetImage}
+            image={
+              pet.photos.length !== 0 ? pet.photos[0].full : DefaultPetImage
+            }
             alt={`Picture of ${pet.name}`}
           />
           <CardContent>

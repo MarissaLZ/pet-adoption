@@ -1,6 +1,6 @@
 import { Button, Stack, TextField } from "@mui/material"
 import SearchIcon from "@mui/icons-material/Search"
-import fetchPetList from "../components/fetchPetList"
+import { fetchPetList } from "./petFinderAPI"
 import { useContext } from "react"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
 
