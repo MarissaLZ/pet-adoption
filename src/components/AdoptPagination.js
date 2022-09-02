@@ -13,11 +13,6 @@ function AdoptPagination() {
   //changes pageNumber to the user clicked value
   const handlePageChange = (e, value) => {
     setPageNumber(value)
-  }
-
-  //will call fetchPetList any time pageNumber is changed
-
-  React.useEffect(() => {
     window.scrollTo(0, 0)
     fetchPetList(
       search.zipcode,
@@ -28,7 +23,22 @@ function AdoptPagination() {
       setPetList(response.animals)
       setPageCount(response.pagination.total_pages)
     })
-  }, [pageNumber, search.sortOption])
+  }
+
+  //will call fetchPetList any time pageNumber is changed
+
+  // React.useEffect(() => {
+  //   window.scrollTo(0, 0)
+  //   fetchPetList(
+  //     search.zipcode,
+  //     search.animalType,
+  //     search.sortOption,
+  //     pageNumber
+  //   ).then((response) => {
+  //     setPetList(response.animals)
+  //     setPageCount(response.pagination.total_pages)
+  //   })
+  // }, [pageNumber, search.sortOption])
 
   return (
     <Pagination

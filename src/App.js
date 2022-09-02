@@ -26,6 +26,7 @@ function App() {
     zipcode: "",
     animalType: "",
     sortOption: "",
+    validSearch: false,
   })
 
   const handleSearch = (e) => {

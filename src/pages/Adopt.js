@@ -8,10 +8,13 @@ import Search from "../components/Search"
 import AdoptPagination from "../components/AdoptPagination"
 import { Box } from "@mui/material"
 import { useContext } from "react"
-import { PetsContext } from "../context"
+import { PetsContext, SearchContext } from "../context"
+import AdoptInfo from "../components/AdoptInfo"
 
 const Adopt = () => {
   const { petList } = useContext(PetsContext)
+  const { search } = useContext(SearchContext)
+
   const [isLoading, setIsLoading] = useState(false)
   return (
     <Box
@@ -24,15 +27,25 @@ const Adopt = () => {
       <LoadingContext.Provider value={{ isLoading, setIsLoading }}>
         <div>
           <Search />
-          <SortDropDown />
-          {isLoading === true ? (
-            <LoadingMessage />
+
+          {search.validSearch ? (
+            <PetList animalList={petList} />
           ) : (
-            <>
-              <PetList animalList={petList} />
-              <AdoptPagination />
-            </>
+            <AdoptInfo />
           )}
+
+          {/* {petList ? (
+            <>
+              <SortDropDown />
+              {isLoading === true ? (
+                <LoadingMessage />
+              ) : (
+                <>
+                  <PetList animalList={petList} />
+                </>
+              )}
+            </>
+          ) : null} */}
         </div>
       </LoadingContext.Provider>
     </Box>
