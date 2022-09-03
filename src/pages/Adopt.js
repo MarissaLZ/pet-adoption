@@ -8,7 +8,7 @@ import { Box } from "@mui/material"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
 
 const Adopt = () => {
-  const { isLoading } = useContext(FurrdoptionContext)
+  const { isLoading, petList } = useContext(FurrdoptionContext)
 
   return (
     <Box
@@ -25,7 +25,7 @@ const Adopt = () => {
           <LoadingMessage />
         ) : (
           <>
-            <PetList />
+            <PetList animalList={petList} />
             <AdoptPagination />
           </>
         )}
