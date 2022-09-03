@@ -1,18 +1,15 @@
-import React from "react"
-import { useState } from "react"
+import React, { useContext } from "react"
 import PetList from "../components/PetList"
 import SortDropDown from "../components/SortDropDown"
-import { LoadingContext } from "../context"
 import LoadingMessage from "../components/LoadingMessage"
 import Search from "../components/Search"
 import AdoptPagination from "../components/AdoptPagination"
 import { Box } from "@mui/material"
-import { useContext } from "react"
-import { PetsContext } from "../context"
+import { FurrdoptionContext } from "../FurrdoptionProvider"
 
 const Adopt = () => {
-  const { petList } = useContext(PetsContext)
-  const [isLoading, setIsLoading] = useState(false)
+  const { isLoading, petList } = useContext(FurrdoptionContext)
+
   return (
     <Box
       sx={{
@@ -21,20 +18,18 @@ const Adopt = () => {
         minHeight: "100vh",
       }}
     >
-      <LoadingContext.Provider value={{ isLoading, setIsLoading }}>
-        <div>
-          <Search />
-          <SortDropDown />
-          {isLoading === true ? (
-            <LoadingMessage />
-          ) : (
-            <>
-              <PetList animalList={petList} />
-              <AdoptPagination />
-            </>
-          )}
-        </div>
-      </LoadingContext.Provider>
+      <div>
+        <Search />
+        <SortDropDown />
+        {isLoading === true ? (
+          <LoadingMessage />
+        ) : (
+          <>
+            <PetList animalList={petList} />
+            <AdoptPagination />
+          </>
+        )}
+      </div>
     </Box>
   )
 }
