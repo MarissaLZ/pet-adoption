@@ -5,13 +5,18 @@ import { Link } from "react-router-dom"
 import { useContext } from "react"
 import { UserContext } from "../context"
 import Logout from "./Logout"
-import { Link as RouterLink, Navigate } from "react-router-dom"
+//import { Link as RouterLink, Navigate } from "react-router-dom"
 import Avatar from '@mui/material/Avatar';
 import PetsIcon from '@mui/icons-material/Pets';
+import firebase from "../Firebase/FirebaseConfig"
 
 export function NavItems() {
   //import context
-  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext)
+  const { isLoggedIn, setIsLoggedIn, userProfile, name, setName } = useContext(UserContext)
+
+  console.log("name:", name)
+  const userEmail = userProfile.email;
+  console.log(userEmail)
 
   //contains link names for the navbar items and the dropdown menus
   const navItems = [
@@ -23,11 +28,32 @@ export function NavItems() {
 
   const loggedInItems = [
     {
-      navLinks: "Name",
+      navLinks: `${name}`,
       icon: <Avatar src="/broken-image.jpg" alt="" > <PetsIcon /></Avatar>,
       menuLinks: ["Profile", "Favorites", <Logout />]
     },
   ]
+
+  //Retrieves user collection from firebase and stores it in name state
+  const getName = () => {
+    firebase
+      .firestore()
+      .collection("users")
+      .onSnapshot((snap) => {
+        const userInfo = snap.docs.map((doc) =>
+        ({
+          email: doc.email,
+          ...doc.data(),
+        }))
+        const userName = userInfo.map((user) => {
+          if (user.email === userEmail) {
+            const userFirstName = user.firstName
+            setName(userFirstName)
+          }
+        })
+      })
+  }
+  getName(); // ***** useEffect?? ******
   return (
     <>
       {/* generates a link with a dropdown menu or a link with no dropdown */}

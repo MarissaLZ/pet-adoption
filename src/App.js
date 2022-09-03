@@ -17,6 +17,7 @@ function App() {
   //login state can be used for conditional redering to swap login link for user page link or favorites page link and userProfile info can be used to populate infor with other forms
   const [isLoggedIn, setIsLoggedIn] = React.useState(false)
   const [userProfile, setUserProfile] = React.useState([])
+  const [name, setName] = React.useState("")
   const [petList, setPetList] = React.useState([])
   const [pageNumber, setPageNumber] = React.useState(1)
   const [pageCount, setPageCount] = React.useState(10)
@@ -41,7 +42,7 @@ function App() {
   return (
     <div className="App">
       <UserContext.Provider
-        value={{ isLoggedIn, setIsLoggedIn, userProfile, setUserProfile }}
+        value={{ isLoggedIn, setIsLoggedIn, userProfile, setUserProfile, name, setName }}
       >
         <SearchContext.Provider
           value={{
