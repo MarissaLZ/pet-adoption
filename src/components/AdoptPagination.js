@@ -12,7 +12,7 @@ function AdoptPagination() {
 
   //changes pageNumber to the user clicked value
   //vale is the current page nubmer
-  const handlePageChange = (e, value) => {
+  const handlePageChange = (value) => {
     setPageNumber(value)
     window.scrollTo(0, 0)
     //make a fetch request any time a page number is clicked
