@@ -8,16 +8,19 @@ import { useContext } from "react"
 import FeaturedPets from "../components/FeaturedPets"
 import { fetchFeatured } from "../components/petFinderAPI"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
+import LoadingMessage from "../components/LoadingMessage"
 
 const Adopt = () => {
-  const { petList, search, setFeaturedPets, isLoading } =
+  const { petList, search, setFeaturedPets, isLoading, setIsLoading } =
     useContext(FurrdoptionContext)
 
   //fetch featured pets only on the first render of the adopt page
   useEffect(() => {
     //set state of featured pets
+    setIsLoading(true)
     fetchFeatured("3").then((response) => {
       setFeaturedPets([...response.animals])
+      setIsLoading(false)
     })
   }, [])
 
@@ -33,14 +36,32 @@ const Adopt = () => {
         <Search />
 
         {search.validSearch ? (
+          isLoading ? (
+            <LoadingMessage />
+          ) : (
+            <>
+              <SortDropDown />
+              <PetList animalList={petList} />
+              <AdoptPagination />
+            </>
+          )
+        ) : isLoading ? (
+          <LoadingMessage />
+        ) : (
+          <FeaturedPets />
+        )}
+
+        {/* {search.validSearch ? (
           <>
             <SortDropDown />
             <PetList animalList={petList} />
             <AdoptPagination />
           </>
+        ) : isLoading ? (
+          <LoadingMessage />
         ) : (
           <FeaturedPets />
-        )}
+        )} */}
 
         {/* {petList ? (
             <>
@@ -60,3 +81,21 @@ const Adopt = () => {
 }
 
 export default Adopt
+
+//  {
+//    search.validSearch ? (
+//      isLoading ? (
+//        <LoadingMessage />
+//      ) : (
+//        <>
+//          <SortDropDown />
+//          <PetList animalList={petList} />
+//          <AdoptPagination />
+//        </>
+//      )
+//    ) : isLoading ? (
+//      <LoadingMessage />
+//    ) : (
+//      <FeaturedPets />
+//    )
+//  }
