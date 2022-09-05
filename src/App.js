@@ -1,6 +1,6 @@
 import "./App.css"
 import { Routes, Route } from "react-router-dom"
-import React from "react"
+import React, { useEffect } from "react"
 import { Navbar } from "./components/Navbar"
 import Footer from "./components/Footer"
 import Home from "./pages/Home.js"
@@ -22,6 +22,7 @@ function App() {
   const [pageNumber, setPageNumber] = React.useState(1)
   const [pageCount, setPageCount] = React.useState(10)
   const [isFavoritedList, setIsFavoritedList] = React.useState([])
+  const [featuredPets, setFeaturedPets] = React.useState([])
   const [search, setSearch] = React.useState({
     zipcode: "",
     animalType: "",
@@ -56,7 +57,14 @@ function App() {
           }}
         >
           <PetsContext.Provider
-            value={{ petList, setPetList, isFavoritedList, setIsFavoritedList }}
+            value={{
+              petList,
+              setPetList,
+              isFavoritedList,
+              setIsFavoritedList,
+              featuredPets,
+              setFeaturedPets,
+            }}
           >
             <Navbar />
             <Routes>
