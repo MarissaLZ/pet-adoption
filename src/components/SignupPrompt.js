@@ -8,14 +8,14 @@ import IconButton from "@mui/material/IconButton"
 import FavoriteIcon from "@mui/icons-material/Favorite"
 import CloseIcon from "@mui/icons-material/Close"
 import { useNavigate } from "react-router-dom"
-import { UserContext } from "../context"
+import { FurrdoptionContext } from "../FurrdoptionProvider"
 
 //SignupPrompt pops up when the user tries to favorite a pet without being loggedIn
 const SignupPrompt = ({ pet, isFavorited, toggleFavorite }) => {
   //navigate hook redirects the login page to home page
   const navigate = useNavigate()
   const [open, setOpen] = React.useState(false)
-  const { isLoggedIn } = React.useContext(UserContext)
+  const { isLoggedIn } = React.useContext(FurrdoptionContext)
   const handleClickOpen = () => {
     if (isLoggedIn) {
       toggleFavorite(pet)

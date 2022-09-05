@@ -4,11 +4,13 @@ import { DropDown } from "./DropDown"
 import { Link } from "react-router-dom"
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined"
 import { useContext } from "react"
-import { UserContext } from "../context"
+import { FurrdoptionContext } from "../FurrdoptionProvider"
+import Logout from "./Logout"
+import { Link as RouterLink, Navigate } from "react-router-dom"
 
 export function NavItems() {
   //import context
-  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext)
+  const { isLoggedIn, setIsLoggedIn } = useContext(FurrdoptionContext)
 
   //contains link names for the navbar items and the dropdown menus
   const navItems = [
