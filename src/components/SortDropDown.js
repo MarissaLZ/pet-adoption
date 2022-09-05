@@ -1,84 +1,105 @@
-import React from 'react'
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import Fade from '@mui/material/Fade';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import React from "react"
+import Button from "@mui/material/Button"
+import Menu from "@mui/material/Menu"
+import MenuItem from "@mui/material/MenuItem"
+import Fade from "@mui/material/Fade"
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
 import { useContext } from "react"
-import { SearchContext } from "../context"
+import { SearchContext, PetsContext } from "../context"
+import { fetchPetList } from "./petFinderAPI"
 
 const SortDropDown = () => {
+  //using SearchContext
+  const { pageNumber, setPageCount, handleSearch, search } =
+    useContext(SearchContext)
 
-    //using SearchContext
-    const { handleSearch, setPageNumber } = useContext(SearchContext)
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const open = Boolean(anchorEl);
+  const { setPetList } = useContext(PetsContext)
 
-    const sortOptions = [
-        {
-            key: 'distance',
-            label: 'Distance'
-        },
-        {
-            key: 'recent',
-            label: 'Newest Arrivals'
-        },
-        {
-            key: '-recent',
-            label: 'Oldest Arrivals'
-        }
-    ]
+  const [anchorEl, setAnchorEl] = React.useState(null)
+  const open = Boolean(anchorEl)
 
-    const handleClick = (e) => {
-        setAnchorEl(e.currentTarget);
-    };
+  const sortOptions = [
+    {
+      key: "distance",
+      label: "Distance",
+    },
+    {
+      key: "recent",
+      label: "Newest Arrivals",
+    },
+    {
+      key: "-recent",
+      label: "Oldest Arrivals",
+    },
+  ]
 
-    // handleSortChange makes the api call to fetch pet list with desired sort parameter
-    const handleSortChange = (value) => {
-      let changeSortParams = {
-        target: {
-          name: "sortOption",
-          value: value
-        }
-      }
-      handleSearch(changeSortParams)
-      setPageNumber(1)
-      setAnchorEl(null);
+  const handleClick = (e) => {
+    setAnchorEl(e.currentTarget)
+  }
+
+  // handleSortChange makes the api call to fetch pet list with desired sort parameter
+  const handleSortChange = (option) => {
+    let changeSortParams = {
+      target: {
+        name: "sortOption",
+        value: option,
+      },
     }
+    //seting search.sortOption
+    handleSearch(changeSortParams)
+    setAnchorEl(null)
 
-    // handleClose function closes the drop down menu if user clicks out of menu
-    const handleClose = () => {
-        setAnchorEl(null);
-    }
+    fetchPetList(
+      search.zipcode,
+      search.animalType,
+      option, // sort option
+      pageNumber //pageNumber
+    ).then((response) => {
+      setPetList(response.animals)
+      setPageCount(response.pagination.total_pages)
+    })
+  }
 
-    return (
-        <div>
-            <Button
-                variant="outlined"
-                id="fade-button"
-                aria-controls={open ? 'fade-menu' : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
-                onClick={handleClick}
-                endIcon={<KeyboardArrowDownIcon />}
-            >
-                Sort
-            </Button>
-            <Menu
-                id="fade-menu"
-                MenuListProps={{
-                    'aria-labelledby': 'fade-button',
-                }}
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                TransitionComponent={Fade}
-            >
-                {/* map through sortOptions as MenuItem */}
-                {sortOptions.map(so => <MenuItem key={so.key} onClick={() => handleSortChange(so.key)}>{so.label}</MenuItem>)}
-            </Menu>
-        </div>
-    )
+  // handleClose function closes the drop down menu if user clicks out of menu
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+
+  return (
+    <div>
+      <Button
+        variant="outlined"
+        id="fade-button"
+        aria-controls={open ? "fade-menu" : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? "true" : undefined}
+        onClick={handleClick}
+        endIcon={<KeyboardArrowDownIcon />}
+      >
+        Sort
+      </Button>
+      <Menu
+        id="fade-menu"
+        MenuListProps={{
+          "aria-labelledby": "fade-button",
+        }}
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        TransitionComponent={Fade}
+      >
+        {/* map through sortOptions as MenuItem */}
+        {sortOptions.map((option) => (
+          <MenuItem
+            key={option.key}
+            onClick={() => handleSortChange(option.key)}
+          >
+            {option.label}
+          </MenuItem>
+        ))}
+      </Menu>
+    </div>
+  )
 }
 
 export default SortDropDown

@@ -11,34 +11,21 @@ function AdoptPagination() {
     useContext(SearchContext)
 
   //changes pageNumber to the user clicked value
+  //vale is the current page nubmer
   const handlePageChange = (e, value) => {
     setPageNumber(value)
     window.scrollTo(0, 0)
+    //make a fetch request any time a page number is clicked
     fetchPetList(
       search.zipcode,
       search.animalType,
       search.sortOption,
-      pageNumber
+      value
     ).then((response) => {
       setPetList(response.animals)
       setPageCount(response.pagination.total_pages)
     })
   }
-
-  //will call fetchPetList any time pageNumber is changed
-
-  // React.useEffect(() => {
-  //   window.scrollTo(0, 0)
-  //   fetchPetList(
-  //     search.zipcode,
-  //     search.animalType,
-  //     search.sortOption,
-  //     pageNumber
-  //   ).then((response) => {
-  //     setPetList(response.animals)
-  //     setPageCount(response.pagination.total_pages)
-  //   })
-  // }, [pageNumber, search.sortOption])
 
   return (
     <Pagination

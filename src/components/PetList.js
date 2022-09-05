@@ -8,7 +8,6 @@ import {
 } from "../Firebase/FirebaseFirestoreServices"
 import { useContext } from "react"
 import { PetsContext } from "../context"
-import AdoptPagination from "./AdoptPagination"
 
 //Recieves list from parent page or component and maps through it as pet cards
 const PetList = ({ animalList }) => {
@@ -23,8 +22,6 @@ const PetList = ({ animalList }) => {
       (firestoreFavorited) => firestoreFavorited.id === petFinderId
     )
   }
-
-  // console.log("checkIfIsFavorite", checkIfIsFavorite())
 
   const toggleFavorite = (pet) => {
     if (checkIfIsFavorite(pet.id)) {
@@ -67,7 +64,6 @@ const PetList = ({ animalList }) => {
           </Grid>
         ))}
       </Grid>
-      <AdoptPagination />
     </>
   )
 }
