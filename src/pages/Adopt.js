@@ -50,52 +50,9 @@ const Adopt = () => {
         ) : (
           <FeaturedPets />
         )}
-
-        {/* {search.validSearch ? (
-          <>
-            <SortDropDown />
-            <PetList animalList={petList} />
-            <AdoptPagination />
-          </>
-        ) : isLoading ? (
-          <LoadingMessage />
-        ) : (
-          <FeaturedPets />
-        )} */}
-
-        {/* {petList ? (
-            <>
-              <SortDropDown />
-              {isLoading === true ? (
-                <LoadingMessage />
-              ) : (
-                <>
-                  <PetList animalList={petList} />
-                </>
-              )}
-            </>
-          ) : null} */}
       </div>
     </Box>
   )
 }
 
 export default Adopt
-
-//  {
-//    search.validSearch ? (
-//      isLoading ? (
-//        <LoadingMessage />
-//      ) : (
-//        <>
-//          <SortDropDown />
-//          <PetList animalList={petList} />
-//          <AdoptPagination />
-//        </>
-//      )
-//    ) : isLoading ? (
-//      <LoadingMessage />
-//    ) : (
-//      <FeaturedPets />
-//    )
-//  }
