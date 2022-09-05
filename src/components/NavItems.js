@@ -5,7 +5,6 @@ import { Link } from "react-router-dom"
 import { useContext } from "react"
 import { UserContext } from "../context"
 import Logout from "./Logout"
-//import { Link as RouterLink, Navigate } from "react-router-dom"
 import Avatar from '@mui/material/Avatar';
 import PetsIcon from '@mui/icons-material/Pets';
 import firebase from "../Firebase/FirebaseConfig"
@@ -13,10 +12,7 @@ import firebase from "../Firebase/FirebaseConfig"
 export function NavItems() {
   //import context
   const { isLoggedIn, setIsLoggedIn, userProfile, name, setName } = useContext(UserContext)
-
-  console.log("name:", name)
   const userEmail = userProfile.email;
-  console.log(userEmail)
 
   //contains link names for the navbar items and the dropdown menus
   const navItems = [
@@ -34,7 +30,7 @@ export function NavItems() {
     },
   ]
 
-  //Retrieves user collection from firebase and stores it in name state
+  //Retrieves user collection from firebase and maps through to find matching user's email
   const getName = () => {
     firebase
       .firestore()
@@ -45,7 +41,7 @@ export function NavItems() {
           email: doc.email,
           ...doc.data(),
         }))
-        const userName = userInfo.map((user) => {
+        userInfo.map((user) => {
           if (user.email === userEmail) {
             const userFirstName = user.firstName
             setName(userFirstName)
@@ -53,7 +49,7 @@ export function NavItems() {
         })
       })
   }
-  getName(); // ***** useEffect?? ******
+  getName();
   return (
     <>
       {/* generates a link with a dropdown menu or a link with no dropdown */}
