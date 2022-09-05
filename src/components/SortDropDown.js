@@ -9,8 +9,14 @@ import { FurrdoptionContext } from "../FurrdoptionProvider"
 import { fetchPetList } from "./petFinderAPI"
 
 const SortDropDown = () => {
-  const { handleSearch, search, pageNumber, setPageCount, setPetList } =
-    useContext(FurrdoptionContext)
+  const {
+    handleSearch,
+    search,
+    pageNumber,
+    setPageCount,
+    setPetList,
+    setIsLoading,
+  } = useContext(FurrdoptionContext)
 
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
@@ -36,6 +42,7 @@ const SortDropDown = () => {
 
   // handleSortChange makes the api call to fetch pet list with desired sort parameter
   const handleSortChange = (option) => {
+    setIsLoading(true)
     let changeSortParams = {
       target: {
         name: "sortOption",
@@ -54,6 +61,7 @@ const SortDropDown = () => {
     ).then((response) => {
       setPetList(response.animals)
       setPageCount(response.pagination.total_pages)
+      setIsLoading(false)
     })
   }
 
