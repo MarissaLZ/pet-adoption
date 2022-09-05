@@ -18,7 +18,7 @@ import { FurrdoptionContext } from "../FurrdoptionProvider"
 const theme = createTheme()
 
 export default function SignUp() {
-  const { isLoggedIn, setIsLoggedIn } = useContext(FurrdoptionContext)
+  const { isLoggedIn, setIsLoggedIn, setName } = useContext(FurrdoptionContext)
 
   const [inputErrors, setInputError] = React.useState({
     isError: false,
@@ -61,6 +61,7 @@ export default function SignUp() {
           firstName: signup.firstName,
         })
         setIsLoggedIn(!isLoggedIn)
+        setName(signup.firstName)
         //resets error
         // setInputError({
         //   ...inputErrors,

@@ -1,7 +1,6 @@
 import { Button, Menu, MenuItem } from "@mui/material"
 import React from "react"
 import { Link } from "react-router-dom";
-// import { useNavigate } from "react-router-dom"
 
 export function DropDown({ navLink, menuLinks, icon }) {
   //state for the menu dropdown
@@ -13,7 +12,7 @@ export function DropDown({ navLink, menuLinks, icon }) {
   const handleClose = () => {
     setAnchorEl(null)
   }
-  // const navigate = useNavigate()
+
   return (
     <div>
       <Button
