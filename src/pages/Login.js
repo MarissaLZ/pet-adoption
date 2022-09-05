@@ -14,8 +14,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles"
 import Link from "@mui/material/Link"
 import { Link as RouterLink } from "react-router-dom"
 import { useContext } from "react"
-import { UserContext } from "../context"
 import { useNavigate } from "react-router-dom"
+import { FurrdoptionContext } from "../FurrdoptionProvider"
 
 const theme = createTheme()
 
@@ -24,8 +24,9 @@ const theme = createTheme()
 //sends userProfile to App component to allow user info to be used in other components.
 export default function Login() {
   //using UserContext
-  const { setIsLoggedIn, setUserProfile } = useContext(UserContext)
-
+  const { setIsLoggedIn, setUserProfile, isLoggedIn } =
+    useContext(FurrdoptionContext)
+  console.log(isLoggedIn)
   //navigate hook redirects the login page to home page
   const navigate = useNavigate()
 

@@ -1,21 +1,17 @@
-import React from "react"
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import PetList from "../components/PetList"
 import SortDropDown from "../components/SortDropDown"
-import { LoadingContext } from "../context"
-import LoadingMessage from "../components/LoadingMessage"
 import Search from "../components/Search"
 import AdoptPagination from "../components/AdoptPagination"
 import { Box } from "@mui/material"
 import { useContext } from "react"
-import { PetsContext, SearchContext } from "../context"
 import FeaturedPets from "../components/FeaturedPets"
 import { fetchFeatured } from "../components/petFinderAPI"
+import { FurrdoptionContext } from "../FurrdoptionProvider"
 
 const Adopt = () => {
-  const { petList } = useContext(PetsContext)
-  const { search } = useContext(SearchContext)
-  const { setFeaturedPets } = useContext(PetsContext)
+  const { petList, search, setFeaturedPets, isLoading } =
+    useContext(FurrdoptionContext)
 
   //fetch featured pets only on the first render of the adopt page
   useEffect(() => {
@@ -25,7 +21,6 @@ const Adopt = () => {
     })
   }, [])
 
-  const [isLoading, setIsLoading] = useState(false)
   return (
     <Box
       sx={{
@@ -34,21 +29,20 @@ const Adopt = () => {
         minHeight: "100vh",
       }}
     >
-      <LoadingContext.Provider value={{ isLoading, setIsLoading }}>
-        <div>
-          <Search />
+      <div>
+        <Search />
 
-          {search.validSearch ? (
-            <>
-              <SortDropDown />
-              <PetList animalList={petList} />
-              <AdoptPagination />
-            </>
-          ) : (
-            <FeaturedPets />
-          )}
+        {search.validSearch ? (
+          <>
+            <SortDropDown />
+            <PetList animalList={petList} />
+            <AdoptPagination />
+          </>
+        ) : (
+          <FeaturedPets />
+        )}
 
-          {/* {petList ? (
+        {/* {petList ? (
             <>
               <SortDropDown />
               {isLoading === true ? (
@@ -60,8 +54,7 @@ const Adopt = () => {
               )}
             </>
           ) : null} */}
-        </div>
-      </LoadingContext.Provider>
+      </div>
     </Box>
   )
 }

@@ -5,15 +5,12 @@ import MenuItem from "@mui/material/MenuItem"
 import Fade from "@mui/material/Fade"
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
 import { useContext } from "react"
-import { SearchContext, PetsContext } from "../context"
+import { FurrdoptionContext } from "../FurrdoptionProvider"
 import { fetchPetList } from "./petFinderAPI"
 
 const SortDropDown = () => {
-  //using SearchContext
-  const { pageNumber, setPageCount, handleSearch, search } =
-    useContext(SearchContext)
-
-  const { setPetList } = useContext(PetsContext)
+  const { handleSearch, search, pageNumber, setPageCount, setPetList } =
+    useContext(FurrdoptionContext)
 
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)

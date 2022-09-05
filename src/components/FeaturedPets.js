@@ -1,9 +1,9 @@
 import { useContext } from "react"
-import { PetsContext } from "../context"
+import { FurrdoptionContext } from "../FurrdoptionProvider"
 import PetList from "./PetList"
 
 const FeaturedPets = () => {
-  const { featuredPets } = useContext(PetsContext)
+  const { featuredPets } = useContext(FurrdoptionContext)
 
   return (
     <>

@@ -2,17 +2,21 @@ import * as React from "react"
 import Pagination from "@mui/material/Pagination"
 import { fetchPetList } from "./petFinderAPI"
 import { useContext } from "react"
-import { PetsContext } from "../context"
-import { SearchContext } from "../context"
+import { FurrdoptionContext } from "../FurrdoptionProvider"
 
 function AdoptPagination() {
-  const { setPetList } = useContext(PetsContext)
-  const { search, pageNumber, setPageNumber, pageCount, setPageCount } =
-    useContext(SearchContext)
+  const {
+    search,
+    pageNumber,
+    setPageNumber,
+    pageCount,
+    setPageCount,
+    setPetList,
+  } = useContext(FurrdoptionContext)
 
   //changes pageNumber to the user clicked value
   //vale is the current page nubmer
-  const handlePageChange = (value) => {
+  const handlePageChange = (e, value) => {
     setPageNumber(value)
     window.scrollTo(0, 0)
     //make a fetch request any time a page number is clicked

@@ -2,22 +2,19 @@ import { Button, Stack, TextField } from "@mui/material"
 import SearchIcon from "@mui/icons-material/Search"
 import { fetchPetList } from "./petFinderAPI"
 import { useContext } from "react"
-import { PetsContext } from "../context"
-import { LoadingContext } from "../context"
-import { SearchContext } from "../context"
+import { FurrdoptionContext } from "../FurrdoptionProvider"
 
 const ZipCodeInput = () => {
-  //using PetsContext, LoadingContext and SearchContext
-  const { setPetList } = useContext(PetsContext)
-  const { setIsLoading } = useContext(LoadingContext)
   const {
-    search,
     setSearch,
+    setPetList,
+    setIsLoading,
+    search,
     handleSearch,
     setPageCount,
     pageNumber,
     setPageNumber,
-  } = useContext(SearchContext)
+  } = useContext(FurrdoptionContext)
 
   //Validation. Gets value from the input and updates the zipCode state
   const handleZipcodeChange = (e) => {
