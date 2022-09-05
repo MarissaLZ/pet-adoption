@@ -2,8 +2,9 @@ import React from "react"
 import { Button } from "@mui/material"
 import { DropDown } from "./DropDown"
 import { Link } from "react-router-dom"
+import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined"
 import { useContext } from "react"
-import { UserContext } from "../context"
+import { FurrdoptionContext } from "../FurrdoptionProvider"
 import Logout from "./Logout"
 import Avatar from '@mui/material/Avatar';
 import PetsIcon from '@mui/icons-material/Pets';
@@ -11,7 +12,7 @@ import firebase from "../Firebase/FirebaseConfig"
 
 export function NavItems() {
   //import context
-  const { isLoggedIn, setIsLoggedIn, userProfile, name, setName } = useContext(UserContext)
+  const { isLoggedIn, setIsLoggedIn, userProfile, name, setName } = useContext(FurrdoptionContext)
   const userEmail = userProfile.email;
 
   //contains link names for the navbar items and the dropdown menus
@@ -50,6 +51,11 @@ export function NavItems() {
       })
   }
   getName();
+  //adds favorite to nav if user is logged in
+  // if (isLoggedIn) {
+  //   navItems.push({ navLinks: "Favorites", menuLinks: [] })
+  // }
+
   return (
     <>
       {/* generates a link with a dropdown menu or a link with no dropdown */}
@@ -66,6 +72,12 @@ export function NavItems() {
               to={`/${item.navLinks}`}
               style={{ textDecoration: "none", color: "inherit" }}
             >
+              {/* {item.navLinks === "Favorites" ? (
+                <FavoriteOutlinedIcon />
+              ) : (
+                item.navLinks
+              )} */}
+
               {item.navLinks}
             </Link>
           </Button>
