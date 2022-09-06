@@ -55,7 +55,7 @@ const Home = () => {
           <Grid
             container
             spacing={2}
-            // sx={{ marginTop: "8rem", marginRight: "25rem" }}
+          // sx={{ marginTop: "8rem", marginRight: "25rem" }}
           >
             <Grid item xs={8}>
               <Box
@@ -97,7 +97,8 @@ const Home = () => {
                 spacing={8}
               >
                 <StyledButton
-                  variant="contained" pill
+                  variant="contained"
+                  pill='true'
                   color="secondary"
                   // size="medium"
                   //sx={{ xs: "small", sm: "small", md: "medium" }}
@@ -107,7 +108,8 @@ const Home = () => {
                   Adopt Now
                 </StyledButton>
                 <StyledButton
-                  variant="contained" pill
+                  variant="contained"
+                  pill='true'
                   color="secondary"
                   size="medium"
                   onClick={() => navigate("/volunteer")}

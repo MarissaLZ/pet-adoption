@@ -13,12 +13,12 @@ import { createTheme, ThemeProvider } from "@mui/material/styles"
 import { Link as RouterLink, Navigate } from "react-router-dom"
 import firebase from "../Firebase/FirebaseConfig"
 import { useContext } from "react"
-import { UserContext } from "../context"
+import { FurrdoptionContext } from "../FurrdoptionProvider"
 
 const theme = createTheme()
 
 export default function SignUp() {
-  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext)
+  const { isLoggedIn, setIsLoggedIn, setName } = useContext(FurrdoptionContext)
 
   const [inputErrors, setInputError] = React.useState({
     isError: false,
@@ -61,6 +61,7 @@ export default function SignUp() {
           firstName: signup.firstName,
         })
         setIsLoggedIn(!isLoggedIn)
+        setName(signup.firstName)
         //resets error
         // setInputError({
         //   ...inputErrors,

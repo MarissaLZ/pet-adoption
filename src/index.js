@@ -4,14 +4,21 @@ import { BrowserRouter } from "react-router-dom"
 import "./index.css"
 import App from "./App"
 import reportWebVitals from "./reportWebVitals"
+import { FurrdoptionProvider } from "./FurrdoptionProvider"
+import { themeOptions } from "./Styles/themeOptions"
+import { ThemeProvider } from "@mui/material/styles"
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
-  <BrowserRouter>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </BrowserRouter>
+  <ThemeProvider theme={themeOptions}>
+    <FurrdoptionProvider>
+      <BrowserRouter>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      </BrowserRouter>
+    </FurrdoptionProvider>
+  </ThemeProvider>
 )
 
 // If you want to start measuring performance in your app, pass a function

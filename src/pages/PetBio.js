@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from "react"
 import Carousel from "react-material-ui-carousel"
 import CarouselPhotos from "../components/CarouselPhotos"
 import { useParams } from "react-router-dom"
-import { PetsContext } from "../context"
+import { FurrdoptionContext } from "../FurrdoptionProvider"
 import {
   Typography,
   Grid,
@@ -24,7 +24,7 @@ import { fetchPet } from "../components/petFinderAPI"
 
 function PetBio() {
   //Context provider
-  const { petList } = useContext(PetsContext)
+  const { petList } = useContext(FurrdoptionContext)
 
   // get the id from the pet card using React Router URL params
   let params = useParams()
