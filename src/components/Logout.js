@@ -1,5 +1,5 @@
 import React from "react"
-import { Button } from "@mui/material"
+import { Typography } from "@mui/material"
 import firebase from "../Firebase/FirebaseConfig"
 import { useNavigate } from "react-router-dom"
 import { useContext } from "react"
@@ -24,9 +24,9 @@ const Logout = () => {
       })
   }
   return (
-    <Button color="inherit" onClick={handleLogout}>
+    <Typography onClick={handleLogout}>
       Logout
-    </Button>
+    </Typography>
   )
 }
 
