@@ -20,6 +20,7 @@ const FurrdoptionContext = createContext({})
 function FurrdoptionProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false)
   const [userProfile, setUserProfile] = React.useState([])
+  const [name, setName] = React.useState('')
   const [petList, setPetList] = React.useState([])
   const [isFavoritedList, setIsFavoritedList] = React.useState([])
   const [pageNumber, setPageNumber] = React.useState(1)
@@ -46,6 +47,8 @@ function FurrdoptionProvider({ children }) {
         setIsLoggedIn,
         userProfile,
         setUserProfile,
+        name,
+        setName,
         petList,
         setPetList,
         isFavoritedList,

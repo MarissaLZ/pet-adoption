@@ -6,11 +6,15 @@ import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined"
 import { useContext } from "react"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
 import Logout from "./Logout"
-import { Link as RouterLink, Navigate } from "react-router-dom"
+import Avatar from "@mui/material/Avatar"
+import PetsIcon from "@mui/icons-material/Pets"
+import firebase from "../Firebase/FirebaseConfig"
 
 export function NavItems() {
   //import context
-  const { isLoggedIn, setIsLoggedIn } = useContext(FurrdoptionContext)
+  const { isLoggedIn, setIsLoggedIn, userProfile, name, setName } =
+    useContext(FurrdoptionContext)
+  const userEmail = userProfile.email
 
   //contains link names for the navbar items and the dropdown menus
   const navItems = [
@@ -18,9 +22,40 @@ export function NavItems() {
     { navLinks: "Volunteer", menuLinks: [] },
     { navLinks: "Donate", menuLinks: [] },
     { navLinks: "About", menuLinks: [] },
-    { navLinks: "Login", menuLinks: [] },
   ]
 
+  const loggedInItems = [
+    {
+      navLinks: `${name}`,
+      icon: (
+        <Avatar src="/broken-image.jpg" alt="">
+          {" "}
+          <PetsIcon />
+        </Avatar>
+      ),
+      menuLinks: ["Profile", "Favorites", <Logout />],
+    },
+  ]
+
+  //Retrieves user collection from firebase and maps through to find matching user's email
+  const getName = () => {
+    firebase
+      .firestore()
+      .collection("users")
+      .onSnapshot((snap) => {
+        const userInfo = snap.docs.map((doc) => ({
+          email: doc.email,
+          ...doc.data(),
+        }))
+        userInfo.map((user) => {
+          if (user.email === userEmail) {
+            const userFirstName = user.firstName
+            setName(userFirstName)
+          }
+        })
+      })
+  }
+  getName()
   //adds favorite to nav if user is logged in
   // if (isLoggedIn) {
   //   navItems.push({ navLinks: "Favorites", menuLinks: [] })
@@ -42,19 +77,37 @@ export function NavItems() {
               to={`/${item.navLinks}`}
               style={{ textDecoration: "none", color: "inherit" }}
             >
-              {item.navLinks === "Favorites" ? (
+              {/* {item.navLinks === "Favorites" ? (
                 <FavoriteOutlinedIcon />
               ) : (
                 item.navLinks
-              )}
+              )} */}
 
-              {/* {item.navLinks} */}
+              {item.navLinks}
             </Link>
           </Button>
         )
       )}
-      {/* uncomment this line to test <Logout/>. Button is temporary */}
-      {/* {isLoggedIn && <Logout />} */}
+      {/* Toggels between "Login" or user drop down*/}
+      {!isLoggedIn ? (
+        <Button key="login" color="inherit">
+          <Link
+            to={`/Login`}
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            Login
+          </Link>
+        </Button>
+      ) : (
+        loggedInItems.map((item) => (
+          <DropDown
+            key={item.navLinks}
+            navLink={item.navLinks}
+            menuLinks={item.menuLinks}
+            icon={item.icon}
+          />
+        ))
+      )}
     </>
   )
 }
