@@ -6,14 +6,15 @@ import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined"
 import { useContext } from "react"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
 import Logout from "./Logout"
-import Avatar from '@mui/material/Avatar';
-import PetsIcon from '@mui/icons-material/Pets';
+import Avatar from "@mui/material/Avatar"
+import PetsIcon from "@mui/icons-material/Pets"
 import firebase from "../Firebase/FirebaseConfig"
 
 export function NavItems() {
   //import context
-  const { isLoggedIn, setIsLoggedIn, userProfile, name, setName } = useContext(FurrdoptionContext)
-  const userEmail = userProfile.email;
+  const { isLoggedIn, setIsLoggedIn, userProfile, name, setName } =
+    useContext(FurrdoptionContext)
+  const userEmail = userProfile.email
 
   //contains link names for the navbar items and the dropdown menus
   const navItems = [
@@ -26,8 +27,13 @@ export function NavItems() {
   const loggedInItems = [
     {
       navLinks: `${name}`,
-      icon: <Avatar src="/broken-image.jpg" alt="" > <PetsIcon /></Avatar>,
-      menuLinks: ["Profile", "Favorites", <Logout />]
+      icon: (
+        <Avatar src="/broken-image.jpg" alt="">
+          {" "}
+          <PetsIcon />
+        </Avatar>
+      ),
+      menuLinks: ["Profile", "Favorites", <Logout />],
     },
   ]
 
@@ -37,8 +43,7 @@ export function NavItems() {
       .firestore()
       .collection("users")
       .onSnapshot((snap) => {
-        const userInfo = snap.docs.map((doc) =>
-        ({
+        const userInfo = snap.docs.map((doc) => ({
           email: doc.email,
           ...doc.data(),
         }))
@@ -50,7 +55,7 @@ export function NavItems() {
         })
       })
   }
-  getName();
+  getName()
   //adds favorite to nav if user is logged in
   // if (isLoggedIn) {
   //   navItems.push({ navLinks: "Favorites", menuLinks: [] })
@@ -84,7 +89,7 @@ export function NavItems() {
         )
       )}
       {/* Toggels between "Login" or user drop down*/}
-      {!isLoggedIn ?
+      {!isLoggedIn ? (
         <Button key="login" color="inherit">
           <Link
             to={`/Login`}
@@ -92,7 +97,8 @@ export function NavItems() {
           >
             Login
           </Link>
-        </Button> :
+        </Button>
+      ) : (
         loggedInItems.map((item) => (
           <DropDown
             key={item.navLinks}
@@ -101,7 +107,7 @@ export function NavItems() {
             icon={item.icon}
           />
         ))
-      }
+      )}
     </>
   )
 }
