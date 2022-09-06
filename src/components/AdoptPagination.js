@@ -35,7 +35,7 @@ function AdoptPagination() {
       default={1}
       page={pageNumber}
       count={pageCount}
-      color="primary"
+      color='primary'
       onChange={handlePageChange}
     />
   )
