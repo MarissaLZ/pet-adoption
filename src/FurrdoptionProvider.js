@@ -25,6 +25,10 @@ function FurrdoptionProvider({ children }) {
   const [pageNumber, setPageNumber] = React.useState(1)
   const [pageCount, setPageCount] = React.useState(10)
   const [isLoading, setIsLoading] = useState(false)
+  //Filter box states
+  const [filterGenderOption, setFilterGenderOption] = React.useState('')
+  const [filterSizeOption, setFilterSizeOption] = React.useState('')
+  const [filterKidsOption, setFilterKidsOption] = React.useState('')
 
   const [search, setSearch] = React.useState({
     zipcode: "",
@@ -59,6 +63,12 @@ function FurrdoptionProvider({ children }) {
         handleSearch,
         isLoading,
         setIsLoading,
+        filterGenderOption,
+        setFilterGenderOption,
+        filterSizeOption,
+        setFilterSizeOption,
+        filterKidsOption,
+        setFilterKidsOption
       }}
     >
       {children}

@@ -6,6 +6,7 @@ import Search from "../components/Search"
 import AdoptPagination from "../components/AdoptPagination"
 import { Box } from "@mui/material"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
+import FilterContainer from "../components/FilterContainer"
 
 const Adopt = () => {
   const { isLoading, petList } = useContext(FurrdoptionContext)
@@ -25,6 +26,7 @@ const Adopt = () => {
           <LoadingMessage />
         ) : (
           <>
+            <FilterContainer/>
             <PetList animalList={petList} />
             <AdoptPagination />
           </>
