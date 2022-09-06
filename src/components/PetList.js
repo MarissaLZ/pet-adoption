@@ -10,16 +10,9 @@ import { useContext } from "react"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
 
 //Recieves list from parent page or component and maps through it as pet cards
-//I don't know what the pet object recieved back looks like, so I put in a placeholder for the key prop
 const PetList = ({ animalList }) => {
-  const { petList, isFavoritedList, setIsFavoritedList, userProfile } =
+  const { isFavoritedList, setIsFavoritedList, userProfile, isLoggedIn } =
     useContext(FurrdoptionContext)
-
-  const { isLoggedIn } = useContext(FurrdoptionContext)
-
-  console.log("isFavoritedList", isFavoritedList)
-  console.log("userProfile.uid", userProfile.uid)
-  //List of favorited pets stored in firestore database. Used to check if a pet is already a favorited.
 
   //Triggers the state color on the PetCard component
   //returns true or false
