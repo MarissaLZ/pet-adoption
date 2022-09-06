@@ -6,10 +6,18 @@ import Fade from "@mui/material/Fade"
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
 import { useContext } from "react"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
+import { fetchPetList } from "./petFinderAPI"
 
 const SortDropDown = () => {
-  //using SearchContext
-  const { handleSearch, setPageNumber } = useContext(FurrdoptionContext)
+  const {
+    handleSearch,
+    search,
+    pageNumber,
+    setPageCount,
+    setPetList,
+    setIsLoading,
+  } = useContext(FurrdoptionContext)
+
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
 
@@ -33,16 +41,28 @@ const SortDropDown = () => {
   }
 
   // handleSortChange makes the api call to fetch pet list with desired sort parameter
-  const handleSortChange = (value) => {
+  const handleSortChange = (option) => {
+    setIsLoading(true)
     let changeSortParams = {
       target: {
         name: "sortOption",
-        value: value,
+        value: option,
       },
     }
+    //seting search.sortOption
     handleSearch(changeSortParams)
-    setPageNumber(1)
     setAnchorEl(null)
+
+    fetchPetList(
+      search.zipcode,
+      search.animalType,
+      option, // sort option
+      pageNumber //pageNumber
+    ).then((response) => {
+      setPetList(response.animals)
+      setPageCount(response.pagination.total_pages)
+      setIsLoading(false)
+    })
   }
 
   // handleClose function closes the drop down menu if user clicks out of menu
@@ -74,9 +94,12 @@ const SortDropDown = () => {
         TransitionComponent={Fade}
       >
         {/* map through sortOptions as MenuItem */}
-        {sortOptions.map((so) => (
-          <MenuItem key={so.key} onClick={() => handleSortChange(so.key)}>
-            {so.label}
+        {sortOptions.map((option) => (
+          <MenuItem
+            key={option.key}
+            onClick={() => handleSortChange(option.key)}
+          >
+            {option.label}
           </MenuItem>
         ))}
       </Menu>

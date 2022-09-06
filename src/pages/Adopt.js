@@ -1,14 +1,28 @@
-import React, { useContext } from "react"
+import { useEffect } from "react"
 import PetList from "../components/PetList"
 import SortDropDown from "../components/SortDropDown"
-import LoadingMessage from "../components/LoadingMessage"
 import Search from "../components/Search"
 import AdoptPagination from "../components/AdoptPagination"
 import { Box } from "@mui/material"
+import { useContext } from "react"
+import FeaturedPets from "../components/FeaturedPets"
+import { fetchFeatured } from "../components/petFinderAPI"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
+import LoadingMessage from "../components/LoadingMessage"
 
 const Adopt = () => {
-  const { isLoading, petList } = useContext(FurrdoptionContext)
+  const { petList, search, setFeaturedPets, isLoading, setIsLoading } =
+    useContext(FurrdoptionContext)
+
+  //fetch featured pets only on the first render of the adopt page
+  useEffect(() => {
+    //set state of featured pets
+    setIsLoading(true)
+    fetchFeatured("3").then((response) => {
+      setFeaturedPets([...response.animals])
+      setIsLoading(false)
+    })
+  }, [])
 
   return (
     <Box
@@ -20,14 +34,21 @@ const Adopt = () => {
     >
       <div>
         <Search />
-        <SortDropDown />
-        {isLoading === true ? (
+
+        {search.validSearch ? (
+          isLoading ? (
+            <LoadingMessage />
+          ) : (
+            <>
+              <SortDropDown />
+              <PetList animalList={petList} />
+              <AdoptPagination />
+            </>
+          )
+        ) : isLoading ? (
           <LoadingMessage />
         ) : (
-          <>
-            <PetList animalList={petList} />
-            <AdoptPagination />
-          </>
+          <FeaturedPets />
         )}
       </div>
     </Box>
