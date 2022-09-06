@@ -7,33 +7,33 @@ import { FurrdoptionContext } from '../FurrdoptionProvider';
 
 //I need to have the selection set the petList from the filter. Import the context, figure
 //out the labels
-const FilterDropdown = ({}) => {
-   const {filterGenderOption, setFilterGenderOption} = useContext(FurrdoptionContext)
-   const filterType = "Filter by gender"
-   //const genderSelectionValues= ["Female","Male"]
-   const selectionValue= "test"
+const FilterDropdown = ({selectionValue, filterType, filterState, filterSetter}) => {
+   const {
+    filterGenderOption, setFilterGenderOption, 
+    filterSizeOption, setFilterSizeOption,
+    filterKidsOption, setFilterKidsOption} = useContext(FurrdoptionContext)
+  
   const handleChange = (e: SelectChangeEvent) => {
-    setFilterGenderOption(e.target.value)
-    console.log(filterGenderOption)
+    filterSetter(e.target.value)
+    console.log("event", e.target.value)
   };
-  //const genderFilterItems= [filterType/filter-pets-gender, filterGenderOption /*this is the state*/ 
-  //, menuLabel, selectionValue array]
+
   return (
     <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-      <InputLabel id={filterType}>{filterGenderOption}</InputLabel>
+      <InputLabel id={filterType}>{filterType}</InputLabel>
       <Select
         labelId={filterType}
         id="select"
-        value={filterGenderOption}
-        label="Gender"
+        value={filterState}
+        label={filterType}
         autoWidth
         onChange={handleChange}
       >
         <MenuItem value={filterType}>
             <em>{filterType}</em>
         </MenuItem>
-        <MenuItem value={selectionValue}>{selectionValue}</MenuItem>
-        <MenuItem value={selectionValue}>{selectionValue}</MenuItem>
+        <MenuItem value={selectionValue[0]}>{selectionValue[0]}</MenuItem>
+        <MenuItem value={selectionValue[1]}>{selectionValue[1]}</MenuItem>
       </Select>
     </FormControl>
   );
