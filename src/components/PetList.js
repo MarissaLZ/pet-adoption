@@ -10,12 +10,9 @@ import { useContext } from "react"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
 
 //Recieves list from parent page or component and maps through it as pet cards
-//I don't know what the pet object recieved back looks like, so I put in a placeholder for the key prop
 const PetList = ({ animalList }) => {
-  const { petList, isLoggedIn, isFavoritedList, setIsFavoritedList } =
+  const { isFavoritedList, setIsFavoritedList, userProfile, isLoggedIn } =
     useContext(FurrdoptionContext)
-
-  //List of favorited pets stored in firestore database. Used to check if a pet is already a favorited.
 
   //Triggers the state color on the PetCard component
   //returns true or false
@@ -27,9 +24,9 @@ const PetList = ({ animalList }) => {
 
   const toggleFavorite = (pet) => {
     if (checkIfIsFavorite(pet.id) && isLoggedIn) {
-      handleDelete(pet)
+      handleDelete(pet, userProfile.uid)
     } else if (isLoggedIn) {
-      handleAddLike(pet)
+      handleAddLike(pet, userProfile.uid)
     }
   }
 
@@ -37,7 +34,9 @@ const PetList = ({ animalList }) => {
   React.useEffect(() => {
     firebase
       .firestore()
-      .collection("likes")
+      .collection("users")
+      .doc(userProfile.uid)
+      .collection("favorites")
       .onSnapshot((snap) => {
         const likes = snap.docs.map((doc) => ({
           id: doc.id,

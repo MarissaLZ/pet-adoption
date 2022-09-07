@@ -18,7 +18,8 @@ import { FurrdoptionContext } from "../FurrdoptionProvider"
 const theme = createTheme()
 
 export default function SignUp() {
-  const { isLoggedIn, setIsLoggedIn, setName } = useContext(FurrdoptionContext)
+  const { isLoggedIn, setIsLoggedIn, setUserProfile, setName } =
+    useContext(FurrdoptionContext)
 
   const [inputErrors, setInputError] = React.useState({
     isError: false,
@@ -53,7 +54,9 @@ export default function SignUp() {
       .then((userCredential) => {
         // Signed in
         var user = userCredential.user
-        console.log("user", user)
+        //sets userProfile with signup page user's info
+        setUserProfile(user)
+        setIsLoggedIn(!isLoggedIn)
         //adds a user to the firebase users collection
         firebase.firestore().collection("users").doc(user.uid).set({
           username: user.email,
@@ -62,12 +65,6 @@ export default function SignUp() {
         })
         setIsLoggedIn(!isLoggedIn)
         setName(signup.firstName)
-        //resets error
-        // setInputError({
-        //   ...inputErrors,
-        //   isError: false,
-        //   message: "",
-        // })
       })
       .catch((error) => {
         handleError(error)
