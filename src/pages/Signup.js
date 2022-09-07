@@ -18,7 +18,7 @@ import { FurrdoptionContext } from "../FurrdoptionProvider"
 const theme = createTheme()
 
 export default function SignUp() {
-  const { isLoggedIn, setIsLoggedIn, setUserProfile } =
+  const { isLoggedIn, setIsLoggedIn, setUserProfile, setName } =
     useContext(FurrdoptionContext)
 
   const [inputErrors, setInputError] = React.useState({
@@ -63,6 +63,8 @@ export default function SignUp() {
           email: user.email,
           firstName: signup.firstName,
         })
+        setIsLoggedIn(!isLoggedIn)
+        setName(signup.firstName)
       })
       .catch((error) => {
         handleError(error)
@@ -118,7 +120,7 @@ export default function SignUp() {
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 <TextField
                   autoComplete="given-name"
                   name="firstName"

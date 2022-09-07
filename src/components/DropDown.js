@@ -1,7 +1,8 @@
 import { Button, Menu, MenuItem } from "@mui/material"
 import React from "react"
+import { Link } from "react-router-dom";
 
-export function DropDown({ navLink, menuLinks }) {
+export function DropDown({ navLink, menuLinks, icon }) {
   //state for the menu dropdown
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
@@ -11,6 +12,7 @@ export function DropDown({ navLink, menuLinks }) {
   const handleClose = () => {
     setAnchorEl(null)
   }
+
   return (
     <div>
       <Button
@@ -20,6 +22,7 @@ export function DropDown({ navLink, menuLinks }) {
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
+        startIcon={icon ? icon : ""}
       >
         {navLink}
       </Button>
@@ -34,9 +37,11 @@ export function DropDown({ navLink, menuLinks }) {
       >
         {/* generates the dropdown menu links */}
         {menuLinks.map((link) => (
-          <MenuItem key={link} onClick={handleClose}>
-            {link}
-          </MenuItem>
+          <Link to={link} key={link} style={{ textDecoration: 'none' }}>
+            <MenuItem onClick={handleClose}>
+              {link}
+            </MenuItem>
+          </Link>
         ))}
       </Menu>
     </div>

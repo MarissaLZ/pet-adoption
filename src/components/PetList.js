@@ -47,23 +47,25 @@ const PetList = ({ animalList }) => {
   }, [])
 
   return (
-    <Grid
-      container
-      spacing={3}
-      direction="row"
-      justifyContent="flex-start"
-      alignItems="center"
-    >
-      {animalList.map((pet) => (
-        <Grid key={pet.id} item xs={4}>
-          <PetCard
-            pet={pet}
-            isFavorited={checkIfIsFavorite(pet.id)}
-            toggleFavorite={toggleFavorite}
-          />
-        </Grid>
-      ))}
-    </Grid>
+    <>
+      <Grid
+        container
+        spacing={3}
+        direction="row"
+        justifyContent="flex-start"
+        alignItems="center"
+      >
+        {animalList.map((pet) => (
+          <Grid key={pet.id} item xs={4}>
+            <PetCard
+              pet={pet}
+              isFavorited={checkIfIsFavorite(pet.id)}
+              toggleFavorite={toggleFavorite}
+            />
+          </Grid>
+        ))}
+      </Grid>
+    </>
   )
 }
 
