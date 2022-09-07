@@ -57,7 +57,16 @@ function PetBio() {
   return (
     <>
       {petBio === undefined ? (
-        <p> Pet's bio page loading... </p>
+        <Box
+          sx={{
+            marginTop: "5rem",
+            display: "flex",
+            flexDirection: "column",
+            minHeight: "100vh",
+          }}
+        >
+          <h3> Loading pet information... </h3>
+        </Box>
       ) : (
         <Box
           sx={{
