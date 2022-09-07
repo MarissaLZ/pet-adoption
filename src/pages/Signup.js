@@ -62,12 +62,6 @@ export default function SignUp() {
         })
         setIsLoggedIn(!isLoggedIn)
         setName(signup.firstName)
-        //resets error
-        // setInputError({
-        //   ...inputErrors,
-        //   isError: false,
-        //   message: "",
-        // })
       })
       .catch((error) => {
         handleError(error)

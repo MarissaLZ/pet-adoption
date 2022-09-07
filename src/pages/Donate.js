@@ -23,8 +23,8 @@ const Donate = () => {
           xl: "1000px",
         },
         margin: "0 auto",
-        marginTop: "60px",
-        marginBottom: "50px",
+        marginTop: "5rem",
+        marginBottom: "5rem",
       }}
     >
       <h1>How Furrdoption Works</h1>
