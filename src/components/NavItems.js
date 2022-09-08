@@ -9,12 +9,12 @@ import Logout from "./Logout"
 import Avatar from "@mui/material/Avatar"
 import PetsIcon from "@mui/icons-material/Pets"
 import firebase from "../Firebase/FirebaseConfig"
+import { teal } from "@mui/material/colors"
 
 export function NavItems() {
   //import context
-  const { isLoggedIn, setIsLoggedIn, userProfile, name, setName } =
-    useContext(FurrdoptionContext)
-  const userEmail = userProfile.email
+  const { isLoggedIn, userProfile, name, setName } = useContext(FurrdoptionContext)
+  const userEmail = userProfile.email;
 
   //contains link names for the navbar items and the dropdown menus
   const navItems = [
@@ -28,7 +28,7 @@ export function NavItems() {
     {
       navLinks: `${name}`,
       icon: (
-        <Avatar src="/broken-image.jpg" alt="">
+        <Avatar sx={{ bgcolor: teal[500] }} alt="avatar">
           {" "}
           <PetsIcon />
         </Avatar>
@@ -55,11 +55,7 @@ export function NavItems() {
         })
       })
   }
-  getName()
-  //adds favorite to nav if user is logged in
-  // if (isLoggedIn) {
-  //   navItems.push({ navLinks: "Favorites", menuLinks: [] })
-  // }
+  getName();
 
   return (
     <>
@@ -77,12 +73,6 @@ export function NavItems() {
               to={`/${item.navLinks}`}
               style={{ textDecoration: "none", color: "inherit" }}
             >
-              {/* {item.navLinks === "Favorites" ? (
-                <FavoriteOutlinedIcon />
-              ) : (
-                item.navLinks
-              )} */}
-
               {item.navLinks}
             </Link>
           </Button>

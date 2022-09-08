@@ -60,8 +60,8 @@ const ZipCodeInput = () => {
         <Button
           type="submit"
           size="small"
-          variant="outlined"
-          color="primary"
+          variant="contained"
+          color="secondary"
           endIcon={<SearchIcon />}
         >
           Search
