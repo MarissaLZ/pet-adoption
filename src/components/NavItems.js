@@ -2,7 +2,6 @@ import React from "react"
 import { Button } from "@mui/material"
 import { DropDown } from "./DropDown"
 import { Link } from "react-router-dom"
-import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined"
 import { useContext } from "react"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
 import Logout from "./Logout"
@@ -13,8 +12,9 @@ import { teal } from "@mui/material/colors"
 
 export function NavItems() {
   //import context
-  const { isLoggedIn, userProfile, name, setName } = useContext(FurrdoptionContext)
-  const userEmail = userProfile.email;
+  const { isLoggedIn, userProfile, name, setName } =
+    useContext(FurrdoptionContext)
+  const userEmail = userProfile.email
 
   //contains link names for the navbar items and the dropdown menus
   const navItems = [
@@ -55,7 +55,7 @@ export function NavItems() {
         })
       })
   }
-  getName();
+  getName()
 
   return (
     <>
