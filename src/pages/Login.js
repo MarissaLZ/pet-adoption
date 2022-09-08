@@ -59,7 +59,15 @@ export default function Login() {
       .then((res) => {
         setIsLoggedIn(true)
         setUserProfile(res.user)
+
+        //adds a user to the firebase users collection
+        firebase.firestore().collection("users").doc(res.user.uid).set({
+          username: res.user.email,
+          email: res.user.email,
+          firstName: res.user.displayName,
+        })
       })
+
       .catch((error) => {
         console.log(error.message)
       })

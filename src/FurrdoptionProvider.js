@@ -1,20 +1,6 @@
 import React from "react"
 import { useState, createContext } from "react"
 
-//create a context
-//default value is null
-// const furrdoptionContext = [
-//     UserContext,
-//     PetsContext,
-//     LoadingContext,
-//     SearchContext
-// ]
-
-// const UserContext = createContext(null)
-// const PetsContext = createContext(null)
-// const LoadingContext = createContext(false)
-// const SearchContext = createContext(null)
-
 const FurrdoptionContext = createContext({})
 
 function FurrdoptionProvider({ children }) {
@@ -26,6 +12,7 @@ function FurrdoptionProvider({ children }) {
   const [pageNumber, setPageNumber] = React.useState(1)
   const [pageCount, setPageCount] = React.useState(10)
   const [isLoading, setIsLoading] = useState(false)
+  const [featuredPets, setFeaturedPets] = React.useState([])
 
   const [search, setSearch] = React.useState({
     zipcode: "",
@@ -62,14 +49,11 @@ function FurrdoptionProvider({ children }) {
         handleSearch,
         isLoading,
         setIsLoading,
+        featuredPets,
+        setFeaturedPets,
       }}
     >
       {children}
-      {/* <UserContext.Provider value={{}}>
-        <PetsContext.Provider>
-          <LoadingContext> {children}</LoadingContext>
-        </PetsContext.Provider>
-      </UserContext.Provider> */}
     </FurrdoptionContext.Provider>
   )
 }

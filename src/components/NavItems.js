@@ -6,8 +6,8 @@ import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined"
 import { useContext } from "react"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
 import Logout from "./Logout"
-import Avatar from '@mui/material/Avatar';
-import PetsIcon from '@mui/icons-material/Pets';
+import Avatar from "@mui/material/Avatar"
+import PetsIcon from "@mui/icons-material/Pets"
 import firebase from "../Firebase/FirebaseConfig"
 import { teal } from "@mui/material/colors"
 
@@ -43,8 +43,7 @@ export function NavItems() {
       .firestore()
       .collection("users")
       .onSnapshot((snap) => {
-        const userInfo = snap.docs.map((doc) =>
-        ({
+        const userInfo = snap.docs.map((doc) => ({
           email: doc.email,
           ...doc.data(),
         }))
@@ -80,7 +79,7 @@ export function NavItems() {
         )
       )}
       {/* Toggels between "Login" or user drop down*/}
-      {!isLoggedIn ?
+      {!isLoggedIn ? (
         <Button key="login" color="inherit">
           <Link
             to={`/Login`}
@@ -88,7 +87,8 @@ export function NavItems() {
           >
             Login
           </Link>
-        </Button> :
+        </Button>
+      ) : (
         loggedInItems.map((item) => (
           <DropDown
             key={item.navLinks}
@@ -97,7 +97,7 @@ export function NavItems() {
             icon={item.icon}
           />
         ))
-      }
+      )}
     </>
   )
 }

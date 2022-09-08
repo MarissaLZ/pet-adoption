@@ -6,6 +6,7 @@ import { FurrdoptionContext } from "../FurrdoptionProvider"
 
 const ZipCodeInput = () => {
   const {
+    setSearch,
     setPetList,
     setIsLoading,
     search,
@@ -24,10 +25,13 @@ const ZipCodeInput = () => {
   }
   //  makes a fetch request with current zip and selected animal type
   //should handleSubmit be included in the SearchContext and moved to <App/>?
+
+  //if search is valid then we change to valid search. If search state is valid then we render petList?
   const handleSubmit = (e) => {
     e.preventDefault()
     setIsLoading(true)
     setPageNumber(1)
+    setSearch({ ...search, validSearch: true })
     fetchPetList(
       search.zipcode,
       search.animalType,

@@ -5,11 +5,10 @@ import CardContent from "@mui/material/CardContent"
 import CardMedia from "@mui/material/CardMedia"
 import Typography from "@mui/material/Typography"
 import { CardActionArea } from "@mui/material"
-import IconButton from "@mui/material/IconButton"
-import FavoriteIcon from "@mui/icons-material/Favorite"
 import Grid from "@mui/material/Grid"
 import { Link, useNavigate } from "react-router-dom"
 import DefaultPetImage from "../images/defaultImage.png"
+import SignupPrompt from "./SignupPrompt"
 
 //PetCard component takes in pet prop.
 //The card contains the pet's image, name, age, and breed and a heart button/Icon to favorite pet
@@ -27,9 +26,11 @@ const PetCard = ({ pet, isFavorited, toggleFavorite }) => {
         <CardHeader
           title={pet.name}
           action={
-            <IconButton onClick={() => toggleFavorite(pet)}>
-              <FavoriteIcon sx={isFavorited ? { color: "red" } : null} />
-            </IconButton>
+            <SignupPrompt
+              isFavorited={isFavorited}
+              toggleFavorite={toggleFavorite}
+              pet={pet}
+            />
           }
         />
         <CardActionArea
