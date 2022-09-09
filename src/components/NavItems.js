@@ -50,7 +50,9 @@ export function NavItems() {
         userInfo.map((user) => {
           if (user.email === userEmail) {
             const userFirstName = user.firstName
-            setName(userFirstName)
+            return setName(userFirstName)
+          } else {
+            return null
           }
         })
       })
