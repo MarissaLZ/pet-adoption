@@ -2,10 +2,11 @@ import { React } from "react"
 import { Grid, Box } from "@mui/material"
 import ZipCodeInput from "../components/ZipCodeInput"
 import SearchButtons from "./SearchButtons"
+import { StyledBox } from "../Styles/StyledBox"
 
 const Search = () => {
   return (
-    <Box sx={{ m: "5rem", background: "#CED0CE", borderRadius: "0.5rem" }}>
+    <StyledBox>
       <Grid
         container
         direction="column"
@@ -19,7 +20,7 @@ const Search = () => {
           <ZipCodeInput />
         </Grid>
       </Grid>
-    </Box>
+    </StyledBox>
   )
 }
 export default Search

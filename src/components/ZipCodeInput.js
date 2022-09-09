@@ -61,7 +61,7 @@ const ZipCodeInput = () => {
           type="submit"
           size="small"
           variant="contained"
-          color="secondary"
+          color="primary"
           endIcon={<SearchIcon />}
         >
           Search
