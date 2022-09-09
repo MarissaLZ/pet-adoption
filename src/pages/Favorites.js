@@ -23,6 +23,7 @@ const Favorites = () => {
           margin: "0 auto",
           marginTop: "3.5rem",
           marginBottom: "5rem",
+          color: "#606060",
         }}
       >
         <h1 style={{ marginBottom: "3rem" }}>My favorites</h1>
