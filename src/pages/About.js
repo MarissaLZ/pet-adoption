@@ -11,6 +11,7 @@ const About = () => {
         display: "flex",
         flexDirection: "column",
         minHeight: "100vh",
+        color: "#606060",
       }}
     >
       <AboutMissionBox />
