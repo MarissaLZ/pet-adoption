@@ -1,9 +1,9 @@
 import * as React from "react"
-import Pagination from "@mui/material/Pagination"
 import { fetchPetList } from "./petFinderAPI"
 import { useContext } from "react"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
 import LoadingMessage from "../components/LoadingMessage"
+import { StyledPagination } from "../Styles/StyledPagination"
 
 function AdoptPagination() {
   const {
@@ -39,7 +39,7 @@ function AdoptPagination() {
   return isLoading ? (
     <LoadingMessage />
   ) : (
-    <Pagination
+    <StyledPagination
       default={1}
       page={pageNumber}
       count={pageCount}
