@@ -30,6 +30,7 @@ function PetBio() {
   let params = useParams()
 
   //Finds the pet object
+  // eslint-disable-next-line eqeqeq
   const petObject = petList.find((pet) => pet.id == params.id)
   console.log("PET OBJECT", petObject)
 
@@ -52,6 +53,7 @@ function PetBio() {
         console.log("ERROR ON FAVORITE", Error)
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
