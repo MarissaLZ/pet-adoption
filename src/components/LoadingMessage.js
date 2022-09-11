@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import CircularProgress from "@mui/material/CircularProgress"
 
 const LoadMessageContainer = styled.div`
   margin: 15px;
@@ -9,7 +10,8 @@ const LoadMessageContainer = styled.div`
 export default function LoadingMessage() {
   return (
     <LoadMessageContainer>
-      <h3>Loading pets....</h3>
+      <CircularProgress color="secondary" />
+      <h3>Loading pets...</h3>
     </LoadMessageContainer>
   )
 }

@@ -1,6 +1,6 @@
 import { Button, Menu, MenuItem } from "@mui/material"
 import React from "react"
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
 
 export function DropDown({ navLink, menuLinks, icon }) {
   //state for the menu dropdown
@@ -37,10 +37,12 @@ export function DropDown({ navLink, menuLinks, icon }) {
       >
         {/* generates the dropdown menu links */}
         {menuLinks.map((link) => (
-          <Link to={link} key={link} style={{ textDecoration: 'none' }}>
-            <MenuItem onClick={handleClose}>
-              {link}
-            </MenuItem>
+          <Link
+            to={link}
+            key={link}
+            style={{ textDecoration: "none", color: "#26A69A" }}
+          >
+            <MenuItem onClick={handleClose}>{link}</MenuItem>
           </Link>
         ))}
       </Menu>
