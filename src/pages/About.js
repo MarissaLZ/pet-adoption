@@ -1,5 +1,8 @@
 import React from "react"
 import { Box } from "@mui/material"
+import AboutMissionBox from "../components/AboutMissionBox"
+import AboutAssistanceBox from "../components/AboutAssistanceBox"
+import AboutImageTextLayout from "../components/AboutImageTexLayout"
 
 const About = () => {
   return (
@@ -8,9 +11,12 @@ const About = () => {
         display: "flex",
         flexDirection: "column",
         minHeight: "100vh",
+        color: "#606060",
       }}
     >
-      <div>About</div>
+      <AboutMissionBox />
+      <AboutImageTextLayout />
+      <AboutAssistanceBox />
     </Box>
   )
 }

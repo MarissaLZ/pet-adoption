@@ -36,27 +36,16 @@ const Home = () => {
             alignContent: "center",
             width: "35rem",
             height: "20rem",
-            // ml: "20rem",
-            // mt: "4rem",
-            // marginLeft
-            // marginTop: {
             margin: {
-              //  t  r  b  l
               xs: "11rem 0 0 0.2rem", //0
               sm: "6rem 0 0 1.5rem", //600
               md: "4.5rem 0 0 7.25rem", //900
               lg: "4.8rem 0 0 10rem", //1200
               xl: "4rem 0 0 18rem", //1536
             },
-
-            // backgroundColor: "orange",
           }}
         >
-          <Grid
-            container
-            spacing={2}
-          // sx={{ marginTop: "8rem", marginRight: "25rem" }}
-          >
+          <Grid container spacing={2}>
             <Grid item xs={8}>
               <Box
                 sx={{
@@ -70,12 +59,9 @@ const Home = () => {
                 <p>Every Pet Deserves A Home</p>
               </Box>
               <Box
-                // m={1}
                 sx={{
-                  // marginLeft: "10rem",
                   p: 3,
                   fontSize: {
-                    //  t  r  b  l
                     xs: "0.65rem", //0
                     sm: "0.75rem", //600
                     md: ".85rem", //900
@@ -85,8 +71,9 @@ const Home = () => {
                 }}
               >
                 <p>
-                  Join our mission to rehome the most vulnerable animals and
-                  enhance the lives of pets and people.
+                  Furdoption aims to rehome the most vulnerable animals, and
+                  protect them from cruelty, neglect and illness that often
+                  results from ignorance their needs.
                 </p>
                 <p>Every animal is important to us - help us save lives.</p>
               </Box>
@@ -98,10 +85,8 @@ const Home = () => {
               >
                 <StyledButton
                   variant="contained"
-                  pill='true'
+                  pill="true"
                   color="secondary"
-                  // size="medium"
-                  //sx={{ xs: "small", sm: "small", md: "medium" }}
                   size="medium"
                   onClick={() => navigate("/adopt")}
                 >
@@ -109,7 +94,7 @@ const Home = () => {
                 </StyledButton>
                 <StyledButton
                   variant="contained"
-                  pill='true'
+                  pill="true"
                   color="secondary"
                   size="medium"
                   onClick={() => navigate("/volunteer")}
