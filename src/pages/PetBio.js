@@ -13,6 +13,7 @@ import {
   ListItemIcon,
   Divider,
   Stack,
+  LinearProgress,
 } from "@mui/material"
 import LocationOnIcon from "@mui/icons-material/LocationOn"
 import EmailIcon from "@mui/icons-material/Email"
@@ -30,6 +31,7 @@ function PetBio() {
   let params = useParams()
 
   //Finds the pet object
+  // eslint-disable-next-line eqeqeq
   const petObject = petList.find((pet) => pet.id == params.id)
   console.log("PET OBJECT", petObject)
 
@@ -52,12 +54,25 @@ function PetBio() {
         console.log("ERROR ON FAVORITE", Error)
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
     <>
       {petBio === undefined ? (
-        <p> Pet's bio page loading... </p>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            minHeight: "100vh",
+          }}
+        >
+          <LinearProgress color="secondary" />
+          <h3 style={{ marginTop: "3rem", color: "#606060" }}>
+            {" "}
+            Loading pet information...{" "}
+          </h3>
+        </Box>
       ) : (
         <Box
           sx={{
@@ -70,9 +85,10 @@ function PetBio() {
             },
             margin: "0 auto",
             marginTop: "50px",
+            color: "#959595",
           }}
         >
-          <Typography variant="h3" component="div">
+          <Typography variant="h3" component="div" sx={{ color: "#606060" }}>
             My name is {petBio.name}!
           </Typography>
           <Grid container spacing={4} sx={{ marginTop: "15px" }}>
@@ -117,6 +133,7 @@ function PetBio() {
                 width: {
                   xs: "300px",
                 },
+                color: "#606060",
               }}
             >
               Facts about me:
@@ -293,6 +310,7 @@ function PetBio() {
                   xs: "300px",
                 },
                 marginRight: "45rem",
+                color: "#606060",
               }}
             >
               My Story
@@ -311,6 +329,7 @@ function PetBio() {
                   xs: "300px",
                 },
                 marginRight: "35rem",
+                color: "#606060",
               }}
             >
               Contact Information:
