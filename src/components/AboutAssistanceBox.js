@@ -140,9 +140,9 @@ const AboutAssistanceBox = () => {
                 <Link
                   target="_blank"
                   href={api.linkURL}
-                  underline="hover"
                   color="inherit"
                   rel="noopener noreferrer"
+                  style={{ textDecoration: "underline" }}
                 >
                   {api.linkName}
                 </Link>
@@ -165,9 +165,9 @@ const AboutAssistanceBox = () => {
                 <Link
                   target="_blank"
                   href={item.linkURL}
-                  underline="hover"
                   color="inherit"
                   rel="noopener noreferrer"
+                  style={{ textDecoration: "underline" }}
                 >
                   {item.websiteName}
                 </Link>
