@@ -5,8 +5,8 @@ import { NavItems } from "./NavItems"
 
 export function Navbar() {
   return (
-    <AppBar position="static">
-      <Toolbar sx={{ width: "100%", justifyContent: "space-between" }}>
+    <AppBar position="static" sx={{ width: "100vw" }}>
+      <Toolbar sx={{ justifyContent: "space-between" }}>
         <Typography edge="start" variant="h6" component="div">
           <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
             FURRDOPTION
