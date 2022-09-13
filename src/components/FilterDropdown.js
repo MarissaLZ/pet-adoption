@@ -4,7 +4,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { FurrdoptionContext } from '../FurrdoptionProvider';
-let filteredPetList = []
+
 //I need to have the selection set the petList from the filter. Import the context, figure
 //out the labels
 //
@@ -14,14 +14,18 @@ let filteredPetList = []
 //Maybe store filter params as state, have map or forEach use of custom filter function?
 //
 const FilterDropdown = ({selectionValue, filterType, filterState, filterSetter, filterParams}) => {
-   const {petList, setPetList,
-    filterGenderOption, setFilterGenderOption, 
-    filterSizeOption, setFilterSizeOption,
-    filterKidsOption, setFilterKidsOption} = useContext(FurrdoptionContext)
+  const {petList, setPetList,
+  filterGenderOption, setFilterGenderOption, 
+  filterSizeOption, setFilterSizeOption,
+  filterKidsOption, setFilterKidsOption} = useContext(FurrdoptionContext)
+
+  const [filteredPetList, setFilteredPetList] = React.useState([])
+
   const handleFilter = (filterParams) => {
     for (let i = 0 ; i < petList.length ; i++ ) 
       if(petList[i].filterParams = filterParams) {
-        filteredPetList.push(petList[i])
+        setFilteredPetList(pets => [...pets, petList[i]])
+        //filteredPetList.push(petList[i])
       }
     }
 
@@ -34,6 +38,7 @@ const FilterDropdown = ({selectionValue, filterType, filterState, filterSetter, 
       handleFilter(filterParams)
     }
     else {
+      setFilteredPetList([])
       console.log("Not a filter term")
     }
     console.log(filteredPetList)
