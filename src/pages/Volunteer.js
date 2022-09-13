@@ -1,5 +1,5 @@
 import React from "react"
-import { Box, Grid, Divider } from "@mui/material"
+import { Box, Grid } from "@mui/material"
 import VolunteerInfo from "../components/VolunteerInfo.js"
 import VolunteerForm from "../components/VolunteerForm.js"
 import VolunteerImagesLayout from "../components/VolunteerImagesLayout.js"
@@ -9,24 +9,30 @@ const Volunteer = () => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        minHeight: "100vh",
         width: {
           xs: "400px",
           sm: "600px",
-          md: "800px",
+          md: "1000px",
           lg: "1100px",
           xl: "1300px",
         },
         margin: "0 auto",
         marginTop: "50px",
+        marginBottom: "5rem",
       }}
     >
       <VolunteerInfo />
-      <Grid container>
-        <Grid item xs={6}>
+      <Grid container sx={{ justifyContent: "center", gap: "3rem" }}>
+        <Grid
+          item
+          s={6}
+          sx={{
+            display: { xs: "none", md: "block" },
+          }}
+        >
           <VolunteerImagesLayout />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item s={6} sx={{ xs: "12" }}>
           <VolunteerForm />
         </Grid>
       </Grid>

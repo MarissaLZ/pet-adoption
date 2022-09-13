@@ -1,17 +1,15 @@
 import React from "react"
-import Button from "@mui/material/Button"
 import CssBaseline from "@mui/material/CssBaseline"
 import TextField from "@mui/material/TextField"
 import Grid from "@mui/material/Grid"
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
 import Container from "@mui/material/Container"
-import { createTheme, ThemeProvider } from "@mui/material/styles"
+import { ThemeProvider } from "@mui/material/styles"
 import InputLabel from "@mui/material/InputLabel"
 import MenuItem from "@mui/material/MenuItem"
 import FormControl from "@mui/material/FormControl"
 import Select from "@mui/material/Select"
-import { FurrdoptionContext } from "../FurrdoptionProvider"
 import { StyledButton } from "../Styles/StyledButton"
 import { themeOptions } from "../Styles/themeOptions"
 
@@ -46,7 +44,6 @@ function VolunteerForm() {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              minHeight: "100vh",
             }}
           >
             <Typography component="h1" variant="h5">
@@ -100,7 +97,7 @@ function VolunteerForm() {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <FormControl sx={{ m: 1, minWidth: 400 }}>
+                  <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-autowidth-label">
                       Volunter Options
                     </InputLabel>
@@ -109,31 +106,29 @@ function VolunteerForm() {
                       id="demo-simple-select-autowidth"
                       value={volunteerOptions}
                       onChange={handleChange}
-                      autoWidth
                       label="Volunteer Options"
-                      sx={{ m: 1, minWidth: 400 }}
                     >
-                      <MenuItem value={"Foster"}>Foster</MenuItem>
+                      <MenuItem value={"Foster"}>Foster a pet</MenuItem>
                       <MenuItem value={"Volunteer at Furrdoption"}>
-                        Volunteer at Furrdoption
+                        Work with Furrdoption
                       </MenuItem>
                       <MenuItem value={"Service Credit"}>
-                        Service Credit
+                        Volunteer for service credit
                       </MenuItem>
                     </Select>
                   </FormControl>
+                  <StyledButton
+                    variant="contained"
+                    pill="true"
+                    size="large"
+                    color="secondary"
+                    type="submit"
+                    fullWidth
+                    sx={{ mt: 3, mb: 2 }}
+                  >
+                    Submit
+                  </StyledButton>
                 </Grid>
-                <StyledButton
-                  variant="contained"
-                  pill="true"
-                  size="large"
-                  color="secondary"
-                  type="submit"
-                  fullWidth
-                  sx={{ mt: 3, mb: 2 }}
-                >
-                  Volunteer
-                </StyledButton>
               </Grid>
             </Box>
           </Box>

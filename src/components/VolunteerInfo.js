@@ -1,16 +1,8 @@
 import React from "react"
-import { Divider, Box, Grid, IconButton } from "@mui/material"
-import styled from "styled-components"
-import FacebookIcon from "@mui/icons-material/Facebook"
-import TwitterIcon from "@mui/icons-material/Twitter"
-import rundogimg from "../images/rundog.jpg"
-import cat from "../images/cat.jpg"
-import standdog from "../images/standdog.jpg"
-import { StyledButton } from "../Styles/StyledButton"
+import { Divider, Box, Grid } from "@mui/material"
 import volunteerPeople from "../images/volunteerPeople.png"
 import volunteerFoster from "../images/volunteerFoster.png"
 import volunteerSchool from "../images/volunteerSchool.png"
-import sadDog from "../images/sadDog.jpg"
 
 function VolunteerInfo() {
   return (
@@ -20,7 +12,7 @@ function VolunteerInfo() {
           xs: "400px",
           sm: "600px",
           md: "800px",
-          lg: "850px",
+          lg: "900px",
           xl: "1000px",
         },
         margin: "0 auto",
@@ -74,8 +66,8 @@ function VolunteerInfo() {
             Volunteer For Credit
           </h3>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            With Furrdoption you can volunteer for credit, school, military,
+            awards, and your resume.
           </p>
         </Grid>
       </Grid>
