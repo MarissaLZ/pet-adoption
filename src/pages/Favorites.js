@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
 import PetList from "../components/PetList"
 import { Box } from "@mui/material"
