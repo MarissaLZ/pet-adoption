@@ -51,13 +51,13 @@ const PetList = ({ animalList }) => {
     <>
       <Grid
         container
-        spacing={3}
+        spacing={0}
         direction="row"
-        justifyContent="flex-start"
+        justifyContent="center"
         alignItems="center"
       >
         {animalList.map((pet) => (
-          <Grid key={pet.id} item xs={4}>
+          <Grid item m={4} sx={{ xs: "12" }} key={pet.id}>
             <PetCard
               pet={pet}
               isFavorited={checkIfIsFavorite(pet.id)}
