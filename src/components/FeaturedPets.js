@@ -22,11 +22,11 @@ const FeaturedPets = () => {
           gap: "1rem",
         }}
       >
-        <h1>
+        <h1 style={{ fontSize: "4rem" }}>
           Featured <span style={{ color: "#26A69A" }}>Pets</span>
-          <br />
-          <h6>Adorable adoptables near you!</h6>
         </h1>
+        <br />
+        <h4 style={{ fontSize: "1.5rem" }}>Adorable adoptables near you!</h4>
       </Box>
       <PetList animalList={featuredPets} />
     </>

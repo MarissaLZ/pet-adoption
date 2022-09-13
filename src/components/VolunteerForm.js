@@ -31,7 +31,9 @@ function VolunteerForm() {
     setVolunteerOptions(e.target.value)
   }
 
-  const handleSubmit = () => {}
+  const handleSubmit = (e) => {
+    e.preventDefault()
+  }
 
   return (
     <div>
