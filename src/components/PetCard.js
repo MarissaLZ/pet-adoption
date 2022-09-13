@@ -68,7 +68,7 @@ const PetCard = ({ pet, isFavorited, toggleFavorite }) => {
               </Grid>
             </Grid>
             <Typography variant="body2" color="text.secondary" component="div">
-              <b>Distance:</b> {`${pet.distance} mi`}
+              {pet.distance ? <b>Distance: {pet.distance} mi</b> : ""}
             </Typography>
           </CardContent>
         </CardActionArea>
