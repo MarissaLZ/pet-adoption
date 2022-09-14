@@ -28,7 +28,6 @@ const Adopt = () => {
       setFeaturedPets([...response.animals])
       setIsLoading(false)
     })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }
 
   useEffect(() => {
@@ -48,6 +47,7 @@ const Adopt = () => {
         setIsLoading(false)
       })
     }, declinedLocation)
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
