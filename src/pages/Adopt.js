@@ -9,6 +9,7 @@ import FeaturedPets from "../components/FeaturedPets"
 import { fetchFeatured } from "../components/petFinderAPI"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
 import LoadingMessage from "../components/LoadingMessage"
+import EmptyListMessage from "../components/EmptyListMessage"
 
 const Adopt = () => {
   const { petList, search, setFeaturedPets, isLoading, setIsLoading } =
@@ -38,7 +39,10 @@ const Adopt = () => {
 
         {search.validSearch ? (
           isLoading ? (
-            <LoadingMessage />
+            <>
+              <LoadingMessage />
+              <EmptyListMessage />
+            </>
           ) : (
             <>
               <SortDropDown />
