@@ -12,18 +12,44 @@ import LoadingMessage from "../components/LoadingMessage"
 import EmptyListMessage from "../components/EmptyListMessage"
 
 const Adopt = () => {
-  const { petList, search, setFeaturedPets, isLoading, setIsLoading, err } =
-    useContext(FurrdoptionContext)
-
+  const {
+    petList,
+    search,
+    setFeaturedPets,
+    isLoading,
+    setIsLoading,
+    err,
+    setCoordinates,
+  } = useContext(FurrdoptionContext)
+  console.log("isLoading", isLoading)
   //fetch featured pets only on the first render of the adopt page
-  useEffect(() => {
-    //set state of featured pets
+
+  const declinedLocation = (error) => {
     setIsLoading(true)
     fetchFeatured("3").then((response) => {
       setFeaturedPets([...response.animals])
       setIsLoading(false)
     })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setCoordinates({
+        lat: position.coords.latitude,
+        long: position.coords.longitude,
+      })
+      //set state of featured pets
+      setIsLoading(true)
+      fetchFeatured(
+        "3",
+        position.coords.latitude.toString(),
+        position.coords.longitude.toString()
+      ).then((response) => {
+        setFeaturedPets([...response.animals])
+        setIsLoading(false)
+      })
+    }, declinedLocation)
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
@@ -36,7 +62,6 @@ const Adopt = () => {
     >
       <div>
         <Search />
-
         {search.validSearch ? (
           isLoading ? (!err ? (<LoadingMessage />) : (<EmptyListMessage />)
           ) : (

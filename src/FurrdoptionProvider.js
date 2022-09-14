@@ -14,6 +14,7 @@ function FurrdoptionProvider({ children }) {
   const [isLoading, setIsLoading] = useState(false)
   const [featuredPets, setFeaturedPets] = React.useState([])
   const [err, setErr] = React.useState(false)
+  const [coordinates, setCoordinates] = useState({ lat: "", long: "" })
 
   const [search, setSearch] = React.useState({
     zipcode: "",
@@ -54,6 +55,8 @@ function FurrdoptionProvider({ children }) {
         setFeaturedPets,
         err,
         setErr,
+        coordinates,
+        setCoordinates,
       }}
     >
       {children}

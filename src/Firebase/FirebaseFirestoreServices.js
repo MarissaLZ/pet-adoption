@@ -3,6 +3,7 @@ import firebase from "./FirebaseConfig"
 //Adds a favorite
 //handleAddLike functions receives petObject and userUid from userProfile state
 export const handleAddLike = async (pet, userUid) => {
+  console.log("handle add")
   //must use pet id as a string and NOT a number
   await firebase
     .firestore()
