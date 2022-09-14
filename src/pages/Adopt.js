@@ -35,7 +35,6 @@ const Adopt = () => {
     >
       <div>
         <Search />
-
         {search.validSearch ? (
           isLoading ? (
             <LoadingMessage />

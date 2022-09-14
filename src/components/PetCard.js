@@ -22,7 +22,7 @@ const PetCard = ({ pet, isFavorited, toggleFavorite }) => {
 
   return (
     <>
-      <Card elevation={8} sx={{ maxWidth: 345, borderRadius: "18px" }}>
+      <Card elevation={8} sx={{ width: 345, borderRadius: "18px" }}>
         <CardHeader
           title={pet.name}
           action={

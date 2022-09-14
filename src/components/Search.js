@@ -1,5 +1,5 @@
 import { React } from "react"
-import { Grid, Box } from "@mui/material"
+import { Grid } from "@mui/material"
 import ZipCodeInput from "../components/ZipCodeInput"
 import SearchButtons from "./SearchButtons"
 import { StyledBox } from "../Styles/StyledBox"

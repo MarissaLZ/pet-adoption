@@ -10,8 +10,8 @@ export function fetchPetList(zipcode, animalType, sortParam, pageNumber) {
     .then((response) => response.json())
     .then((result) =>
       fetch(
-        `https://api.petfinder.com/v2/animals?${
-          animalType ? `type=${animalType}` : ""
+        `https://api.petfinder.com/v2/animals?limit=21${
+          animalType ? `&type=${animalType}` : ""
         }${zipcode ? `&location=${zipcode}` : ""}${
           sortParam ? `&sort=${sortParam}` : ""
         }${pageNumber ? `&page=${pageNumber}` : ""}`,
