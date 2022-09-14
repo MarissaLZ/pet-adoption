@@ -1,9 +1,14 @@
 import React from 'react'
+import { Typography } from '@mui/material'
+import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 
 function EmptyListMessage() {
     return (
         <>
-            <h3>No pets found in your area</h3>
+            <SentimentDissatisfiedIcon fontSize='large' />
+            <Typography variant="h6"  >
+                No pets were found in your area. Please try another zip code.
+            </Typography>
         </>
     )
 }

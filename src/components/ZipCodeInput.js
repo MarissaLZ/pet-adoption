@@ -14,6 +14,7 @@ const ZipCodeInput = () => {
     setPageCount,
     pageNumber,
     setPageNumber,
+    setErr,
   } = useContext(FurrdoptionContext)
 
   //Validation. Gets value from the input and updates the zipCode state
@@ -25,11 +26,6 @@ const ZipCodeInput = () => {
   }
   //  makes a fetch request with current zip and selected animal type
   //should handleSubmit be included in the SearchContext and moved to <App/>?
-
-  const handleError = (error) => {
-    console.log(error)
-    alert(error)
-  }
 
   //if search is valid then we change to valid search. If search state is valid then we render petList?
   const handleSubmit = (e) => {
@@ -47,10 +43,9 @@ const ZipCodeInput = () => {
         setPetList(response.animals)
         setPageCount(response.pagination.total_pages)
         setIsLoading(false)
-
       } catch (error) {
         e.preventDefault()
-        handleError(response.detail)
+        setErr(true)
       }
     })
   }
@@ -66,7 +61,6 @@ const ZipCodeInput = () => {
           value={search.zipcode}
           onChange={handleZipcodeChange}
           required={true}
-          helperText="Incorrect entry."
           inputProps={{ inputMode: "numeric", pattern: "[0-9]{5}" }}
         />
         <Button

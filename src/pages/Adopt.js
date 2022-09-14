@@ -12,7 +12,7 @@ import LoadingMessage from "../components/LoadingMessage"
 import EmptyListMessage from "../components/EmptyListMessage"
 
 const Adopt = () => {
-  const { petList, search, setFeaturedPets, isLoading, setIsLoading } =
+  const { petList, search, setFeaturedPets, isLoading, setIsLoading, err } =
     useContext(FurrdoptionContext)
 
   //fetch featured pets only on the first render of the adopt page
@@ -38,11 +38,7 @@ const Adopt = () => {
         <Search />
 
         {search.validSearch ? (
-          isLoading ? (
-            <>
-              <LoadingMessage />
-              <EmptyListMessage />
-            </>
+          isLoading ? (!err ? (<LoadingMessage />) : (<EmptyListMessage />)
           ) : (
             <>
               <SortDropDown />
