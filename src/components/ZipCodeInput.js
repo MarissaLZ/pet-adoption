@@ -43,6 +43,7 @@ const ZipCodeInput = () => {
         setPetList(response.animals)
         setPageCount(response.pagination.total_pages)
         setIsLoading(false)
+        setErr(false)
       } catch (error) {
         e.preventDefault()
         setErr(true)
