@@ -14,6 +14,7 @@ const ZipCodeInput = () => {
     setPageCount,
     pageNumber,
     setPageNumber,
+    setErr,
   } = useContext(FurrdoptionContext)
 
   //Validation. Gets value from the input and updates the zipCode state
@@ -38,9 +39,15 @@ const ZipCodeInput = () => {
       search.sortOption,
       pageNumber
     ).then((response) => {
-      setPetList(response.animals)
-      setPageCount(response.pagination.total_pages)
-      setIsLoading(false)
+      try {
+        setPetList(response.animals)
+        setPageCount(response.pagination.total_pages)
+        setIsLoading(false)
+        setErr(false)
+      } catch (error) {
+        e.preventDefault()
+        setErr(true)
+      }
     })
   }
 

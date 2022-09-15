@@ -9,6 +9,7 @@ import FeaturedPets from "../components/FeaturedPets"
 import { fetchFeatured } from "../components/petFinderAPI"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
 import LoadingMessage from "../components/LoadingMessage"
+import EmptyListMessage from "../components/EmptyListMessage"
 
 const Adopt = () => {
   const {
@@ -17,6 +18,7 @@ const Adopt = () => {
     setFeaturedPets,
     isLoading,
     setIsLoading,
+    err,
     setCoordinates,
   } = useContext(FurrdoptionContext)
   console.log("isLoading", isLoading)
@@ -61,8 +63,7 @@ const Adopt = () => {
       <div>
         <Search />
         {search.validSearch ? (
-          isLoading ? (
-            <LoadingMessage />
+          isLoading ? (!err ? (<LoadingMessage />) : (<EmptyListMessage />)
           ) : (
             <>
               <SortDropDown />
