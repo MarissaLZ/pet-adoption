@@ -29,7 +29,7 @@ try {
   //   experimentalForceLongPolling: true, // this line
   //   useFetchStreams: false, // and this line
   // })
-  firebase.firestore()
+  firebase.firestore().settings({ experimentalForceLongPolling: true })
 } catch (err) {
   if (!/already exists/.test(err.message)) {
     console.error("Firebase initialization error", err.stack)
