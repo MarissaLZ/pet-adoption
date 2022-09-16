@@ -58,12 +58,18 @@ const Adopt = () => {
         display: "flex",
         flexDirection: "column",
         minHeight: "100vh",
+        marginTop: "8rem",
       }}
     >
       <div>
         <Search />
         {search.validSearch ? (
-          isLoading ? (!err ? (<LoadingMessage />) : (<EmptyListMessage />)
+          isLoading ? (
+            !err ? (
+              <LoadingMessage />
+            ) : (
+              <EmptyListMessage />
+            )
           ) : (
             <>
               <SortDropDown />
