@@ -23,8 +23,10 @@ export function DropDown({ navLink, menuLinks, icon }) {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
         startIcon={icon ? icon : ""}
+        sx={{ minWidth: 150, px: 0 }}
       >
         {navLink}
+        {/* the user name */}
       </Button>
       <Menu
         id="menu"
@@ -34,16 +36,23 @@ export function DropDown({ navLink, menuLinks, icon }) {
         MenuListProps={{
           "aria-labelledby": "navButton",
         }}
+        PaperProps={{
+          style: {
+            width: 150,
+          },
+        }}
       >
         {/* generates the dropdown menu links */}
         {menuLinks.map((link) => (
-          <Link
-            to={link}
-            key={link}
-            style={{ textDecoration: "none", color: "#26A69A" }}
-          >
-            <MenuItem onClick={handleClose}>{link}</MenuItem>
-          </Link>
+          <MenuItem onClick={handleClose}>
+            <Link
+              to={link}
+              key={link}
+              style={{ textDecoration: "none", color: "#26A69A" }}
+            >
+              {link}
+            </Link>
+          </MenuItem>
         ))}
       </Menu>
     </div>
