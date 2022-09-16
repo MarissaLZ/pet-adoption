@@ -29,6 +29,7 @@ try {
   //   experimentalForceLongPolling: true, // this line
   //   useFetchStreams: false, // and this line
   // })
+  //try deploy without github
   firebase.firestore()
 } catch (err) {
   if (!/already exists/.test(err.message)) {
