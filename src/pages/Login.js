@@ -61,11 +61,14 @@ export default function Login() {
         setUserProfile(res.user)
 
         //adds a user to the firebase users collection
-        firebase.firestore().collection("users").doc(res.user.uid).set({
-          username: res.user.email,
-          email: res.user.email,
-          firstName: res.user.displayName,
-        })
+        firebase.firestore().collection("users").doc(res.user.uid).set(
+          {
+            username: res.user.email,
+            email: res.user.email,
+            firstName: res.user.displayName,
+          },
+          { merge: true }
+        )
       })
 
       .catch((error) => {
