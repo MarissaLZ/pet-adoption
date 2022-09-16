@@ -12,9 +12,7 @@ import { teal } from "@mui/material/colors"
 
 export function NavItems() {
   //import context
-  const { isLoggedIn, userProfile, name, setName } =
-    useContext(FurrdoptionContext)
-  const userEmail = userProfile.email
+  const { isLoggedIn, name, setName } = useContext(FurrdoptionContext)
 
   //contains link names for the navbar items and the dropdown menus
   const navItems = [
@@ -39,24 +37,25 @@ export function NavItems() {
 
   //Retrieves user collection from firebase and maps through to find matching user's email
   const getName = () => {
-    firebase
-      .firestore()
-      .collection("users")
-      .onSnapshot((snap) => {
-        const userInfo = snap.docs.map((doc) => ({
-          email: doc.email,
-          ...doc.data(),
-        }))
-        userInfo.map((user) => {
-          if (user.email === userEmail) {
-            const userFirstName = user.firstName
-            return setName(userFirstName)
+    const user = firebase.auth().currentUser
+    if (user) {
+      firebase
+        .firestore()
+        .collection("users")
+        .doc(user.uid)
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            setName(doc.data().firstName)
           } else {
             return null
           }
         })
-      })
+    } else {
+      return null
+    }
   }
+
   getName()
 
   return (
