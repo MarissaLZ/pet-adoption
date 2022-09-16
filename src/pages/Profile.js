@@ -92,6 +92,7 @@ function Profile() {
         console.log("userDocument.phone", userDocument.phone)
         setProfileData({ ...doc.data() })
       })
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
