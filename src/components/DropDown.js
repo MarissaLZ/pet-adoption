@@ -44,10 +44,9 @@ export function DropDown({ navLink, menuLinks, icon }) {
       >
         {/* generates the dropdown menu links */}
         {menuLinks.map((link) => (
-          <MenuItem onClick={handleClose}>
+          <MenuItem key={link} onClick={handleClose}>
             <Link
               to={link}
-              key={link}
               style={{ textDecoration: "none", color: "#26A69A" }}
             >
               {link}
