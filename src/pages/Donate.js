@@ -23,7 +23,7 @@ const Donate = () => {
           xl: "1000px",
         },
         margin: "0 auto",
-        marginTop: "5rem",
+        marginTop: "8rem",
         marginBottom: "5rem",
         color: "#959595",
       }}

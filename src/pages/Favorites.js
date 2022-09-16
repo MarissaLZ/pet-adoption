@@ -21,12 +21,12 @@ const Favorites = () => {
             xl: "1200px",
           },
           margin: "0 auto",
-          marginTop: "3.5rem",
+          marginTop: "8rem",
           marginBottom: "5rem",
           color: "#606060",
         }}
       >
-        <h1 style={{ marginBottom: "3rem" }}>My favorites</h1>
+        <h1 style={{ marginBottom: "1rem" }}>My favorites</h1>
         <PetList animalList={isFavoritedList} />
       </Box>
     </>

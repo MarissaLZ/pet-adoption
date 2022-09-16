@@ -65,10 +65,11 @@ function PetBio() {
             display: "flex",
             flexDirection: "column",
             minHeight: "100vh",
+            marginTop: "4rem",
           }}
         >
           <LinearProgress color="secondary" />
-          <h3 style={{ marginTop: "3rem", color: "#606060" }}>
+          <h3 style={{ marginTop: "1rem", color: "#606060" }}>
             {" "}
             Loading pet information...{" "}
           </h3>
@@ -84,7 +85,7 @@ function PetBio() {
               xl: "1000px",
             },
             margin: "0 auto",
-            marginTop: "50px",
+            marginTop: "8rem",
             color: "#959595",
           }}
         >

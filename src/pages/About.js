@@ -8,6 +8,7 @@ const About = () => {
   return (
     <Box
       sx={{
+        marginTop: "3rem",
         display: "flex",
         flexDirection: "column",
         minHeight: "100vh",

@@ -81,7 +81,6 @@ function VolunteerForm() {
                     fullWidth
                     id="lastName"
                     label="Last Name"
-                    autoFocus
                     onChange={handleVolunteer}
                     value={volunteer.lastName}
                   />
