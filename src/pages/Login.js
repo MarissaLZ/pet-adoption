@@ -10,14 +10,11 @@ import Box from "@mui/material/Box"
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined"
 import Typography from "@mui/material/Typography"
 import Container from "@mui/material/Container"
-import { createTheme, ThemeProvider } from "@mui/material/styles"
 import Link from "@mui/material/Link"
 import { Link as RouterLink } from "react-router-dom"
 import { useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
-
-const theme = createTheme()
 
 //Login component allows users to login with google account or thier own email and password.
 //Sets isLoggedIn state to true on login
@@ -74,85 +71,85 @@ export default function Login() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <Box
+        sx={{
+          marginTop: 8,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          minHeight: "100vh",
+        }}
+      >
+        <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Welcome to FURRDOPTION
+        </Typography>
         <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            minHeight: "100vh",
-          }}
+          component="form"
+          onSubmit={handleSubmit}
+          noValidate
+          sx={{ mt: 1 }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Welcome to FURRDOPTION
-          </Typography>
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
+          <Button
+            onClick={signInWithGoogle}
+            fullWidth
+            color="secondary"
+            variant="contained"
+            sx={{ mt: 1, mb: 2 }}
           >
-            <Button
-              onClick={signInWithGoogle}
-              fullWidth
-              variant="contained"
-              sx={{ mt: 1, mb: 2 }}
-            >
-              <img
-                src="https://img.icons8.com/office/344/google-logo.png"
-                style={{ width: 30, margin: 7 }}
-                alt="google icon"
-              />
-              <span> Continue with Google</span>
-            </Button>
-            <span>Have a password? Continue with your email address</span>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
+            <img
+              src="https://img.icons8.com/office/344/google-logo.png"
+              style={{ width: 30, margin: 7 }}
+              alt="google icon"
             />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 2, mb: 2 }}
-            >
-              Sign In
-            </Button>
-          </Box>
-          <Grid container>
-            <Grid item xs>
-              <PasswordReset />
-            </Grid>
-            <Grid item>
-              <Link component={RouterLink} to="/Signup">
-                Don't have an account? Sign Up
-              </Link>
-            </Grid>
-          </Grid>
+            <span> Continue with Google</span>
+          </Button>
+          <span>Have a password? Continue with your email address</span>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            autoFocus
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            color="secondary"
+            variant="contained"
+            sx={{ mt: 2, mb: 2 }}
+          >
+            Sign In
+          </Button>
         </Box>
-      </Container>
-    </ThemeProvider>
+        <Grid container>
+          <Grid item xs>
+            <PasswordReset />
+          </Grid>
+          <Grid item>
+            <Link component={RouterLink} to="/Signup">
+              Don't have an account? Sign Up
+            </Link>
+          </Grid>
+        </Grid>
+      </Box>
+    </Container>
   )
 }
