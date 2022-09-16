@@ -25,6 +25,7 @@ function App() {
         <Route path="/petbio/:id" element={<PetBio />} />
         <Route path="Signup" element={<Signup />} />
         <Route path="favorites" element={<Favorites />} />
+        <Route path="/Home" element={<Home />} />
       </Routes>
       <Footer />
     </div>
