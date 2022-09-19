@@ -11,7 +11,6 @@ import { FurrdoptionContext } from "../FurrdoptionProvider"
 import FilterContainer from "../components/FilterContainer"
 import LoadingMessage from "../components/LoadingMessage"
 import EmptyListMessage from "../components/EmptyListMessage"
-import FilterDropdown from "../components/FilterDropdown"
 
 const Adopt = () => {
   const {
@@ -73,9 +72,8 @@ const Adopt = () => {
             )
           ) : (
             <>
-              <SortDropDown />
               <FilterContainer />
-              <FilterDropdown />
+              <SortDropDown />
               <PetList animalList={petList} />
               <AdoptPagination />
             </>

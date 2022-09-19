@@ -9,7 +9,7 @@ import { FurrdoptionContext } from "../FurrdoptionProvider"
 import { fetchPetList } from "./petFinderAPI"
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2"
 
-const FilterGender = () => {
+const FilterAge = () => {
   const {
     handleSearch,
     search,
@@ -22,14 +22,22 @@ const FilterGender = () => {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
 
-  const filterOptionsGender = [
+  const filterOptionsAge = [
     {
-      key: "male",
-      label: "Male",
+      key: "baby",
+      label: "Baby",
     },
     {
-      key: "female",
-      label: "Female",
+      key: "young",
+      label: "Young",
+    },
+    {
+      key: "adult",
+      label: "Adult",
+    },
+    {
+      key: "senior",
+      label: "Senior",
     },
   ]
 
@@ -38,26 +46,26 @@ const FilterGender = () => {
   }
 
   // handleSortChange makes the api call to fetch pet list with desired sort parameter
-  const handleFilterChange = (gender) => {
+  const handleFilterChange = (age) => {
     setIsLoading(true)
-    let changeGenderParams = {
+    let changeAgeParams = {
       target: {
-        name: "filterGenderOption",
-        value: gender,
+        name: "filterAgeOption",
+        value: age,
       },
     }
     //seting search.sortOption
-    handleSearch(changeGenderParams)
+    handleSearch(changeAgeParams)
     setAnchorEl(null)
 
     fetchPetList(
       search.animalType,
       search.zipcode,
-      search.sortOption, // sort option
-      gender,
+      search.sortOption,
+      search.filterGenderOption,
       search.filterSizeOption,
-      search.filterAgeOption,
-      pageNumber //pageNumber
+      age,
+      pageNumber
     ).then((response) => {
       setPetList(response.animals)
       setPageCount(response.pagination.total_pages)
@@ -69,6 +77,8 @@ const FilterGender = () => {
   const handleClose = () => {
     setAnchorEl(null)
   }
+
+  console.log("search state", search)
 
   return (
     <div>
@@ -83,7 +93,7 @@ const FilterGender = () => {
             onClick={handleClick}
             endIcon={<KeyboardArrowDownIcon />}
           >
-            Gender
+            Age
           </Button>
           <Menu
             id="fade-menu"
@@ -97,12 +107,12 @@ const FilterGender = () => {
             TransitionComponent={Fade}
           >
             {/* map through sortOptions as MenuItem */}
-            {filterOptionsGender.map((filterGenderOption) => (
+            {filterOptionsAge.map((filterAgeOption) => (
               <MenuItem
-                key={filterGenderOption.key}
-                onClick={() => handleFilterChange(filterGenderOption.key)}
+                key={filterAgeOption.key}
+                onClick={() => handleFilterChange(filterAgeOption.key)}
               >
-                {filterGenderOption.label}
+                {filterAgeOption.label}
               </MenuItem>
             ))}
           </Menu>
@@ -112,4 +122,4 @@ const FilterGender = () => {
   )
 }
 
-export default FilterGender
+export default FilterAge

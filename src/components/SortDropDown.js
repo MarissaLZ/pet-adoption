@@ -55,9 +55,12 @@ const SortDropDown = () => {
     setAnchorEl(null)
 
     fetchPetList(
-      search.zipcode,
       search.animalType,
+      search.zipcode,
       option, // sort option
+      search.filterGenderOption,
+      search.filterSizeOption,
+      search.filterAgeOption,
       pageNumber //pageNumber
     ).then((response) => {
       setPetList(response.animals)

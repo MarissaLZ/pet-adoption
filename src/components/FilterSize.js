@@ -9,7 +9,7 @@ import { FurrdoptionContext } from "../FurrdoptionProvider"
 import { fetchPetList } from "./petFinderAPI"
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2"
 
-const FilterDropdown = () => {
+const FilterSize = () => {
   const {
     handleSearch,
     search,
@@ -22,14 +22,22 @@ const FilterDropdown = () => {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
 
-  const filterOptionsGender = [
+  const filterOptionsSize = [
     {
-      key: "male",
-      label: "Male",
+      key: "small",
+      label: "Small",
     },
     {
-      key: "female",
-      label: "Female",
+      key: "medium",
+      label: "Medium",
+    },
+    {
+      key: "large",
+      label: "Large",
+    },
+    {
+      key: "xlarge",
+      label: "Xlarge",
     },
   ]
 
@@ -38,23 +46,26 @@ const FilterDropdown = () => {
   }
 
   // handleSortChange makes the api call to fetch pet list with desired sort parameter
-  const handleFilterChange = (gender) => {
+  const handleFilterChange = (size) => {
     setIsLoading(true)
-    let changeSortParams = {
+    let changeSizeParams = {
       target: {
-        name: "filterOption",
-        value: gender,
+        name: "filterSizeOption",
+        value: size,
       },
     }
     //seting search.sortOption
-    handleSearch(changeSortParams)
+    handleSearch(changeSizeParams)
     setAnchorEl(null)
 
     fetchPetList(
-      search.zipcode,
+      //gender, size, age
       search.animalType,
+      search.zipcode,
       search.sortOption, // sort option
-      gender,
+      search.filterGenderOption,
+      size,
+      search.filterAgeOption,
       pageNumber //pageNumber
     ).then((response) => {
       setPetList(response.animals)
@@ -81,7 +92,7 @@ const FilterDropdown = () => {
             onClick={handleClick}
             endIcon={<KeyboardArrowDownIcon />}
           >
-            Gender
+            Size
           </Button>
           <Menu
             id="fade-menu"
@@ -95,12 +106,12 @@ const FilterDropdown = () => {
             TransitionComponent={Fade}
           >
             {/* map through sortOptions as MenuItem */}
-            {filterOptionsGender.map((filterGenderOption) => (
+            {filterOptionsSize.map((filterSizeOption) => (
               <MenuItem
-                key={filterGenderOption.key}
-                onClick={() => handleFilterChange(filterGenderOption.key)}
+                key={filterSizeOption.key}
+                onClick={() => handleFilterChange(filterSizeOption.key)}
               >
-                {filterGenderOption.label}
+                {filterSizeOption.label}
               </MenuItem>
             ))}
           </Menu>
@@ -110,4 +121,4 @@ const FilterDropdown = () => {
   )
 }
 
-export default FilterDropdown
+export default FilterSize

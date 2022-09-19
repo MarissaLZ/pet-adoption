@@ -1,36 +1,36 @@
-import FilterDropdown from "./FilterDropdown";
-import { FurrdoptionContext } from "../FurrdoptionProvider";
-import { useContext } from "react";
-import FilterGender from "./FilterGender";
+// import { FurrdoptionContext } from "../FurrdoptionProvider"
+// import { useContext } from "react"
+import FilterGender from "./FilterGender"
+import FilterSize from "./FilterSize"
+import FilterAge from "./FilterAge"
+import Grid from "@mui/material/Grid"
+
 const FilterContainer = () => {
-    const {
-        filterOption, 
-        setFilterOption,
-        filterGenderOption,
-        setFilterGenderOption,
-        filterSizeOption,
-        setFilterSizeOption,
-        filterKidsOption,
-        setFilterKidsOption} = useContext(FurrdoptionContext)
-    const genderSelectionValues = ["Female", "Male", "Unknown"]
-    const sizeSelectionValues = ["Small", "Medium", "Large"]
-    const kidsSelectionValues = ["Good with Kids"]
-    //petList[i].environment.Good_with_kids is not a string the matches the menu text, 
-    //so it needs seperate terms for the filtering
-    const kidsFilterTerms = [true]
+  // const {
+  //     filterOption,
+  //     setFilterOption,
+  //     filterGenderOption,
+  //     setFilterGenderOption,
+  //     filterSizeOption,
+  //     setFilterSizeOption,
+  //     filterKidsOption,
+  //     setFilterKidsOption} = useContext(FurrdoptionContext)
 
-    return(
-       <>
-            <FilterGender 
-                filterType={"gender"} 
-                filterName={"Filter by gender"}
-                selectionValue={genderSelectionValues}
-                filterState={filterGenderOption}
-                params={genderSelectionValues}
-            />
-
-        </>
-    )
+  return (
+    <>
+      {/* <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}> */}
+      {/* <Grid xs={6}> */}
+      <FilterGender />
+      {/* </Grid> */}
+      <Grid xs={6}>
+        <FilterSize />
+      </Grid>
+      {/* <Grid xs={6}> */}
+      <FilterAge />
+      {/* </Grid> */}
+      {/* </Grid> */}
+    </>
+  )
 }
 
 export default FilterContainer

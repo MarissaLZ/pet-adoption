@@ -34,9 +34,12 @@ const ZipCodeInput = () => {
     setPageNumber(1)
     setSearch({ ...search, validSearch: true })
     fetchPetList(
-      search.zipcode,
       search.animalType,
+      search.zipcode,
       search.sortOption,
+      search.filterGenderOption,
+      search.filterSizeOption,
+      search.filterAgeOption,
       pageNumber
     ).then((response) => {
       try {
@@ -51,6 +54,9 @@ const ZipCodeInput = () => {
     })
   }
 
+  // filterGenderOption: "",
+  // filterSizeOption: "",
+  // filterAgeOption: "",
   return (
     <form onSubmit={handleSubmit}>
       <Stack spacing={2} direction="row">
