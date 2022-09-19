@@ -1,5 +1,6 @@
 import React from "react"
 import { useState, createContext } from "react"
+import firebase from "./Firebase/FirebaseConfig"
 
 const FurrdoptionContext = createContext({})
 
@@ -28,6 +29,22 @@ function FurrdoptionProvider({ children }) {
       [e.target.name]: e.target.value, // dynamically replace a key value pair name of the target will become the key
     })
   }
+
+  //React.useEffect retrives auth state from firebase local storage and sets isLoggedIn to true if there is a user profie avaiable in local storage
+  //isLoggedIn will be false and userProfile will be an empty array when users are not logged in, when users sign out, or when users change their password.
+  React.useEffect(()=>{
+    firebase
+      .auth()
+      .onAuthStateChanged(function(user){
+        if(user){
+          setIsLoggedIn(true);
+          setUserProfile(user);
+        } else {
+          setIsLoggedIn(false);
+          setUserProfile([]);
+        }
+      })
+  }, [setIsLoggedIn, setUserProfile]);
 
   return (
     <FurrdoptionContext.Provider
