@@ -1,7 +1,8 @@
 import { Button, Menu, MenuItem } from "@mui/material"
 import React from "react"
+import { Link } from "react-router-dom"
 
-export function DropDown({ navLink, menuLinks }) {
+export function DropDown({ navLink, menuLinks, icon }) {
   //state for the menu dropdown
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
@@ -11,6 +12,7 @@ export function DropDown({ navLink, menuLinks }) {
   const handleClose = () => {
     setAnchorEl(null)
   }
+
   return (
     <div>
       <Button
@@ -20,8 +22,11 @@ export function DropDown({ navLink, menuLinks }) {
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
+        startIcon={icon ? icon : ""}
+        sx={{ minWidth: 150, px: 0 }}
       >
         {navLink}
+        {/* the user name */}
       </Button>
       <Menu
         id="menu"
@@ -31,11 +36,21 @@ export function DropDown({ navLink, menuLinks }) {
         MenuListProps={{
           "aria-labelledby": "navButton",
         }}
+        PaperProps={{
+          style: {
+            width: 150,
+          },
+        }}
       >
         {/* generates the dropdown menu links */}
         {menuLinks.map((link) => (
           <MenuItem key={link} onClick={handleClose}>
-            {link}
+            <Link
+              to={link}
+              style={{ textDecoration: "none", color: "#26A69A" }}
+            >
+              {link}
+            </Link>
           </MenuItem>
         ))}
       </Menu>

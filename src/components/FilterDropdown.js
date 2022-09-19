@@ -42,7 +42,7 @@ const FilterDropdown = () => {
     setIsLoading(true)
     let changeSortParams = {
       target: {
-        name: "FilterOption",
+        name: "filterOption",
         value: gender,
       },
     }

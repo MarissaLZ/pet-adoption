@@ -1,6 +1,5 @@
 import "./App.css"
 import { Routes, Route } from "react-router-dom"
-import React from "react"
 import { Navbar } from "./components/Navbar"
 import Footer from "./components/Footer"
 import Home from "./pages/Home.js"
@@ -12,7 +11,7 @@ import Login from "./pages/Login"
 import Signup from "./pages/Signup"
 import PetBio from "./pages/PetBio"
 import Favorites from "./pages/Favorites"
-
+import Profile from "./pages/Profile"
 function App() {
   return (
     <div className="App">
@@ -27,6 +26,8 @@ function App() {
         <Route path="/petbio/:id" element={<PetBio />} />
         <Route path="Signup" element={<Signup />} />
         <Route path="favorites" element={<Favorites />} />
+        <Route path="Profile" element={<Profile />} />
+        <Route path="/Home" element={<Home />} />
       </Routes>
       <Footer />
     </div>

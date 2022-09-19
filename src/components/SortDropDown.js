@@ -6,10 +6,19 @@ import Fade from "@mui/material/Fade"
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
 import { useContext } from "react"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
+import { fetchPetList } from "./petFinderAPI"
+import Grid2 from "@mui/material/Unstable_Grid2/Grid2"
 
 const SortDropDown = () => {
-  //using SearchContext
-  const { handleSearch, setPageNumber } = useContext(FurrdoptionContext)
+  const {
+    handleSearch,
+    search,
+    pageNumber,
+    setPageCount,
+    setPetList,
+    setIsLoading,
+  } = useContext(FurrdoptionContext)
+
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
 
@@ -33,16 +42,28 @@ const SortDropDown = () => {
   }
 
   // handleSortChange makes the api call to fetch pet list with desired sort parameter
-  const handleSortChange = (value) => {
+  const handleSortChange = (option) => {
+    setIsLoading(true)
     let changeSortParams = {
       target: {
         name: "sortOption",
-        value: value,
+        value: option,
       },
     }
+    //seting search.sortOption
     handleSearch(changeSortParams)
-    setPageNumber(1)
     setAnchorEl(null)
+
+    fetchPetList(
+      search.zipcode,
+      search.animalType,
+      option, // sort option
+      pageNumber //pageNumber
+    ).then((response) => {
+      setPetList(response.animals)
+      setPageCount(response.pagination.total_pages)
+      setIsLoading(false)
+    })
   }
 
   // handleClose function closes the drop down menu if user clicks out of menu
@@ -52,34 +73,42 @@ const SortDropDown = () => {
 
   return (
     <div>
-      <Button
-        variant="outlined"
-        id="fade-button"
-        aria-controls={open ? "fade-menu" : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? "true" : undefined}
-        onClick={handleClick}
-        endIcon={<KeyboardArrowDownIcon />}
-      >
-        Sort
-      </Button>
-      <Menu
-        id="fade-menu"
-        MenuListProps={{
-          "aria-labelledby": "fade-button",
-        }}
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        TransitionComponent={Fade}
-      >
-        {/* map through sortOptions as MenuItem */}
-        {sortOptions.map((so) => (
-          <MenuItem key={so.key} onClick={() => handleSortChange(so.key)}>
-            {so.label}
-          </MenuItem>
-        ))}
-      </Menu>
+      <Grid2 container>
+        <Grid2 xs={4} xsOffset={4} md={4} mdOffset="auto">
+          <Button
+            variant="outlined"
+            id="fade-button"
+            aria-controls={open ? "fade-menu" : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? "true" : undefined}
+            onClick={handleClick}
+            endIcon={<KeyboardArrowDownIcon />}
+          >
+            Sort
+          </Button>
+          <Menu
+            id="fade-menu"
+            className="menu"
+            MenuListProps={{
+              "aria-labelledby": "fade-button",
+            }}
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            TransitionComponent={Fade}
+          >
+            {/* map through sortOptions as MenuItem */}
+            {sortOptions.map((option) => (
+              <MenuItem
+                key={option.key}
+                onClick={() => handleSortChange(option.key)}
+              >
+                {option.label}
+              </MenuItem>
+            ))}
+          </Menu>
+        </Grid2>
+      </Grid2>
     </div>
   )
 }

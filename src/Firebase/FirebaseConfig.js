@@ -1,6 +1,7 @@
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
+import firebase from "firebase/compat/app"
+import "firebase/compat/auth"
+import "firebase/compat/firestore"
+
 // -- Create the data base with test mode so everyone can modify the data,
 // to change this, we just need to change the rules --
 // attached link with info here https://stackoverflow.com/questions/62615171/how-do-i-turn-my-firebase-firestore-project-from-test-mode-into-production-mode
@@ -18,12 +19,18 @@ const firebaseConfig = {
   storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
-  measurementId: "${config.measurementId}",
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 }
 
 //initialize firebase with try catch method
 try {
   firebase.initializeApp(firebaseConfig)
+  // db.firestore().settings({
+  //   experimentalForceLongPolling: true, // this line
+  //   useFetchStreams: false, // and this line
+  // })
+  //try deploy without github
+  firebase.firestore()
 } catch (err) {
   if (!/already exists/.test(err.message)) {
     console.error("Firebase initialization error", err.stack)

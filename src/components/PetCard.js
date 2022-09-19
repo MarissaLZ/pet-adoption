@@ -5,11 +5,10 @@ import CardContent from "@mui/material/CardContent"
 import CardMedia from "@mui/material/CardMedia"
 import Typography from "@mui/material/Typography"
 import { CardActionArea } from "@mui/material"
-import IconButton from "@mui/material/IconButton"
-import FavoriteIcon from "@mui/icons-material/Favorite"
 import Grid from "@mui/material/Grid"
 import { Link, useNavigate } from "react-router-dom"
 import DefaultPetImage from "../images/defaultImage.png"
+import SignupPrompt from "./SignupPrompt"
 
 //PetCard component takes in pet prop.
 //The card contains the pet's image, name, age, and breed and a heart button/Icon to favorite pet
@@ -23,13 +22,15 @@ const PetCard = ({ pet, isFavorited, toggleFavorite }) => {
 
   return (
     <>
-      <Card elevation={8} sx={{ maxWidth: 345, borderRadius: "18px" }}>
+      <Card elevation={8} sx={{ width: 345, borderRadius: "18px" }}>
         <CardHeader
           title={pet.name}
           action={
-            <IconButton onClick={() => toggleFavorite(pet)}>
-              <FavoriteIcon sx={isFavorited ? { color: "red" } : null} />
-            </IconButton>
+            <SignupPrompt
+              isFavorited={isFavorited}
+              toggleFavorite={toggleFavorite}
+              pet={pet}
+            />
           }
         />
         <CardActionArea
@@ -67,7 +68,7 @@ const PetCard = ({ pet, isFavorited, toggleFavorite }) => {
               </Grid>
             </Grid>
             <Typography variant="body2" color="text.secondary" component="div">
-              <b>Distance:</b> {`${pet.distance} mi`}
+              {pet.distance ? <b>Distance: {pet.distance} mi</b> : ""}
             </Typography>
           </CardContent>
         </CardActionArea>

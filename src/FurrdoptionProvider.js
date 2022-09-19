@@ -1,19 +1,6 @@
 import React from "react"
 import { useState, createContext } from "react"
-
-//create a context
-//default value is null
-// const furrdoptionContext = [
-//     UserContext,
-//     PetsContext,
-//     LoadingContext,
-//     SearchContext
-// ]
-
-// const UserContext = createContext(null)
-// const PetsContext = createContext(null)
-// const LoadingContext = createContext(false)
-// const SearchContext = createContext(null)
+import firebase from "./Firebase/FirebaseConfig"
 
 const FurrdoptionContext = createContext({})
 
@@ -21,7 +8,7 @@ function FurrdoptionProvider({ children }) {
   //Login and user states
   const [isLoggedIn, setIsLoggedIn] = React.useState(false)
   const [userProfile, setUserProfile] = React.useState([])
-  //Adopt page states
+  const [name, setName] = React.useState("")
   const [petList, setPetList] = React.useState([])
   const [isFavoritedList, setIsFavoritedList] = React.useState([])
   const [pageNumber, setPageNumber] = React.useState(1)
@@ -35,11 +22,15 @@ function FurrdoptionProvider({ children }) {
   const [filterKidsOption, setFilterKidsOption] = React.useState("")
   const [filterParams, setFilterParams] = React.useState({})
   //Search state
+  const [featuredPets, setFeaturedPets] = React.useState([])
+  const [err, setErr] = React.useState(false)
+  const [coordinates, setCoordinates] = useState({ lat: "", long: "" })
+
   const [search, setSearch] = React.useState({
     zipcode: "",
     animalType: "",
     sortOption: "",
-    FilterOption: "",
+    filterOption: "",
   })
   console.log("search state", search)
 
@@ -50,6 +41,20 @@ function FurrdoptionProvider({ children }) {
     })
   }
 
+  //React.useEffect retrives auth state from firebase local storage and sets isLoggedIn to true if there is a user profie avaiable in local storage
+  //isLoggedIn will be false and userProfile will be an empty array when users are not logged in, when users sign out, or when users change their password.
+  React.useEffect(() => {
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        setIsLoggedIn(true)
+        setUserProfile(user)
+      } else {
+        setIsLoggedIn(false)
+        setUserProfile([])
+      }
+    })
+  }, [setIsLoggedIn, setUserProfile])
+
   return (
     <FurrdoptionContext.Provider
       value={{
@@ -57,6 +62,8 @@ function FurrdoptionProvider({ children }) {
         setIsLoggedIn,
         userProfile,
         setUserProfile,
+        name,
+        setName,
         petList,
         setPetList,
         isFavoritedList,
@@ -82,14 +89,15 @@ function FurrdoptionProvider({ children }) {
         setFilterSizeOption,
         filterKidsOption,
         setFilterKidsOption,
+        featuredPets,
+        setFeaturedPets,
+        err,
+        setErr,
+        coordinates,
+        setCoordinates,
       }}
     >
       {children}
-      {/* <UserContext.Provider value={{}}>
-        <PetsContext.Provider>
-          <LoadingContext> {children}</LoadingContext>
-        </PetsContext.Provider>
-      </UserContext.Provider> */}
     </FurrdoptionContext.Provider>
   )
 }

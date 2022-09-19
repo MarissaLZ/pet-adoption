@@ -10,12 +10,14 @@ import { useContext } from "react"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
 
 //Recieves list from parent page or component and maps through it as pet cards
-//I don't know what the pet object recieved back looks like, so I put in a placeholder for the key prop
 const PetList = ({ animalList }) => {
-  const { petList, isFavoritedList, setIsFavoritedList, filteredPetList } =
-    useContext(FurrdoptionContext)
-
-  //List of favorited pets stored in firestore database. Used to check if a pet is already a favorited.
+  const {
+    isFavoritedList,
+    setIsFavoritedList,
+    userProfile,
+    isLoggedIn,
+    filteredPetList,
+  } = useContext(FurrdoptionContext)
 
   //Triggers the state color on the PetCard component
   //returns true or false
@@ -26,10 +28,10 @@ const PetList = ({ animalList }) => {
   }
 
   const toggleFavorite = (pet) => {
-    if (checkIfIsFavorite(pet.id)) {
-      handleDelete(pet)
-    } else {
-      handleAddLike(pet)
+    if (checkIfIsFavorite(pet.id) && isLoggedIn) {
+      handleDelete(pet, userProfile.uid)
+    } else if (isLoggedIn) {
+      handleAddLike(pet, userProfile.uid)
     }
   }
 
@@ -37,7 +39,9 @@ const PetList = ({ animalList }) => {
   React.useEffect(() => {
     firebase
       .firestore()
-      .collection("likes")
+      .collection("users")
+      .doc(userProfile.uid)
+      .collection("favorites")
       .onSnapshot((snap) => {
         const likes = snap.docs.map((doc) => ({
           id: doc.id,
@@ -45,35 +49,39 @@ const PetList = ({ animalList }) => {
         }))
         setIsFavoritedList(likes)
       })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-//Displays filtered pet list if it isn't empty, displays normal petList if it returns false
+  //Displays filtered pet list if it isn't empty, displays normal petList if it returns false
   return (
-    <Grid
-      container
-      spacing={3}
-      direction="row"
-      justifyContent="flex-start"
-      alignItems="center"
-    >
-      {filteredPetList?.length ? filteredPetList.map((pet) => (
-        <Grid key={pet.id + pet.name} item xs={4}>
-          <PetCard
-            pet={pet}
-            isFavorited={checkIfIsFavorite(pet.id)}
-            toggleFavorite={toggleFavorite}
-          />
-        </Grid>
-      )) :
-      animalList.map((pet) => (
-        <Grid key={pet.id} item xs={4}>
-          <PetCard
-            pet={pet}
-            isFavorited={checkIfIsFavorite(pet.id)}
-            toggleFavorite={toggleFavorite}
-          />
-        </Grid>
-      ))}
-    </Grid>
+    <>
+      <Grid
+        container
+        spacing={0}
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+      >
+        {filteredPetList?.length
+          ? filteredPetList.map((pet) => (
+              <Grid item m={4} sx={{ xs: "12" }} key={pet.id + pet.name}>
+                <PetCard
+                  pet={pet}
+                  isFavorited={checkIfIsFavorite(pet.id)}
+                  toggleFavorite={toggleFavorite}
+                />
+              </Grid>
+            ))
+          : animalList.map((pet) => (
+              <Grid key={pet.id} item m={4} sx={{ xs: "12" }}>
+                <PetCard
+                  pet={pet}
+                  isFavorited={checkIfIsFavorite(pet.id)}
+                  toggleFavorite={toggleFavorite}
+                />
+              </Grid>
+            ))}
+      </Grid>
+    </>
   )
 }
 
