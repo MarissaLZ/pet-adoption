@@ -12,7 +12,7 @@ import { FurrdoptionContext } from "../FurrdoptionProvider"
 //Recieves list from parent page or component and maps through it as pet cards
 //I don't know what the pet object recieved back looks like, so I put in a placeholder for the key prop
 const PetList = ({ animalList }) => {
-  const { petList, isFavoritedList, setIsFavoritedList } =
+  const { petList, isFavoritedList, setIsFavoritedList, filteredPetList } =
     useContext(FurrdoptionContext)
 
   //List of favorited pets stored in firestore database. Used to check if a pet is already a favorited.
@@ -46,7 +46,7 @@ const PetList = ({ animalList }) => {
         setIsFavoritedList(likes)
       })
   }, [])
-
+//Displays filtered pet list if it isn't empty, displays normal petList if it returns false
   return (
     <Grid
       container
@@ -55,7 +55,16 @@ const PetList = ({ animalList }) => {
       justifyContent="flex-start"
       alignItems="center"
     >
-      {animalList.map((pet) => (
+      {filteredPetList?.length ? filteredPetList.map((pet) => (
+        <Grid key={pet.id + pet.name} item xs={4}>
+          <PetCard
+            pet={pet}
+            isFavorited={checkIfIsFavorite(pet.id)}
+            toggleFavorite={toggleFavorite}
+          />
+        </Grid>
+      )) :
+      animalList.map((pet) => (
         <Grid key={pet.id} item xs={4}>
           <PetCard
             pet={pet}

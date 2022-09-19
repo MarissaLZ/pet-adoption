@@ -33,7 +33,8 @@ const ZipCodeInput = () => {
       search.animalType,
       search.sortOption,
       pageNumber
-    ).then((response) => {
+    ).then((response) => { 
+      console.log(response)
       setPetList(response.animals)
       setPageCount(response.pagination.total_pages)
       setIsLoading(false)

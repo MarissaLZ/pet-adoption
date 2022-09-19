@@ -18,18 +18,23 @@ import { useState, createContext } from "react"
 const FurrdoptionContext = createContext({})
 
 function FurrdoptionProvider({ children }) {
+  //Login and user states
   const [isLoggedIn, setIsLoggedIn] = React.useState(false)
   const [userProfile, setUserProfile] = React.useState([])
+  //Adopt page states
   const [petList, setPetList] = React.useState([])
   const [isFavoritedList, setIsFavoritedList] = React.useState([])
   const [pageNumber, setPageNumber] = React.useState(1)
   const [pageCount, setPageCount] = React.useState(10)
   const [isLoading, setIsLoading] = useState(false)
   //Filter box states
+  const [filterOption, setFilterOption] = React.useState([])
+  const [filteredPetList, setFilteredPetList] = React.useState([])
   const [filterGenderOption, setFilterGenderOption] = React.useState('')
   const [filterSizeOption, setFilterSizeOption] = React.useState('')
   const [filterKidsOption, setFilterKidsOption] = React.useState('')
-
+  const [filterParams, setFilterParams] = React.useState({})
+  //Search state
   const [search, setSearch] = React.useState({
     zipcode: "",
     animalType: "",
@@ -63,6 +68,12 @@ function FurrdoptionProvider({ children }) {
         handleSearch,
         isLoading,
         setIsLoading,
+        filterOption, 
+        setFilterOption,
+        filterParams, 
+        setFilterParams,
+        filteredPetList, 
+        setFilteredPetList,
         filterGenderOption,
         setFilterGenderOption,
         filterSizeOption,
