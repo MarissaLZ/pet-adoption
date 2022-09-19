@@ -1,5 +1,11 @@
 //fetchPetList is a function that accepts userZipCode to get a list of 20 animals based on the users location
-export function fetchPetList(zipcode, animalType, sortParam, pageNumber) {
+export function fetchPetList(
+  zipcode,
+  animalType,
+  sortParam,
+  pageNumber,
+  genderParam
+) {
   return fetch("https://api.petfinder.com/v2/oauth2/token", {
     body: `grant_type=client_credentials&client_id=${process.env.REACT_APP_PETFINDER_API_KEY}&client_secret=${process.env.REACT_APP_PETFINDER_CLIENT_SECRET}`,
     headers: {
@@ -14,7 +20,9 @@ export function fetchPetList(zipcode, animalType, sortParam, pageNumber) {
           animalType ? `type=${animalType}` : ""
         }${zipcode ? `&location=${zipcode}` : ""}${
           sortParam ? `&sort=${sortParam}` : ""
-        }${pageNumber ? `&page=${pageNumber}` : ""}`,
+        }${genderParam ? `&gender=${genderParam}` : ""}${
+          pageNumber ? `&page=${pageNumber}` : ""
+        }`,
         {
           headers: {
             Authorization: `Bearer ${result.access_token}`,

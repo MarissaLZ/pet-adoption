@@ -30,16 +30,18 @@ function FurrdoptionProvider({ children }) {
   //Filter box states
   const [filterOption, setFilterOption] = React.useState([])
   const [filteredPetList, setFilteredPetList] = React.useState([])
-  const [filterGenderOption, setFilterGenderOption] = React.useState('')
-  const [filterSizeOption, setFilterSizeOption] = React.useState('')
-  const [filterKidsOption, setFilterKidsOption] = React.useState('')
+  const [filterGenderOption, setFilterGenderOption] = React.useState("")
+  const [filterSizeOption, setFilterSizeOption] = React.useState("")
+  const [filterKidsOption, setFilterKidsOption] = React.useState("")
   const [filterParams, setFilterParams] = React.useState({})
   //Search state
   const [search, setSearch] = React.useState({
     zipcode: "",
     animalType: "",
     sortOption: "",
+    FilterOption: "",
   })
+  console.log("search state", search)
 
   const handleSearch = (e) => {
     setSearch({
@@ -68,18 +70,18 @@ function FurrdoptionProvider({ children }) {
         handleSearch,
         isLoading,
         setIsLoading,
-        filterOption, 
+        filterOption,
         setFilterOption,
-        filterParams, 
+        filterParams,
         setFilterParams,
-        filteredPetList, 
+        filteredPetList,
         setFilteredPetList,
         filterGenderOption,
         setFilterGenderOption,
         filterSizeOption,
         setFilterSizeOption,
         filterKidsOption,
-        setFilterKidsOption
+        setFilterKidsOption,
       }}
     >
       {children}
