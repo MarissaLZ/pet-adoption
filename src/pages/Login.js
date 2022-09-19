@@ -11,7 +11,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined"
 import Typography from "@mui/material/Typography"
 import Container from "@mui/material/Container"
 import Link from "@mui/material/Link"
-import { Link as RouterLink } from "react-router-dom"
+import { Link as RouterLink, Navigate } from "react-router-dom"
 import { useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
@@ -23,7 +23,6 @@ export default function Login() {
   //using UserContext
   const { setIsLoggedIn, setUserProfile, isLoggedIn } =
     useContext(FurrdoptionContext)
-  console.log(isLoggedIn)
   //navigate hook redirects the login page to home page
   const navigate = useNavigate()
 
@@ -70,30 +69,30 @@ export default function Login() {
       })
   }
 
+  //redirects user to home page is signup is successful
+  if (isLoggedIn) {
+    return <Navigate to="/" />
+  }
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <Box
         sx={{
-          marginTop: 8,
+          marginTop: "8rem",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           minHeight: "100vh",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
+        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Welcome to FURRDOPTION
         </Typography>
-        <Box
-          component="form"
-          onSubmit={handleSubmit}
-          noValidate
-          sx={{ mt: 1 }}
-        >
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <Button
             onClick={signInWithGoogle}
             fullWidth

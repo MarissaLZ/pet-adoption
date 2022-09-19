@@ -21,7 +21,6 @@ const Adopt = () => {
     err,
     setCoordinates,
   } = useContext(FurrdoptionContext)
-  console.log("isLoading", isLoading)
   //fetch featured pets only on the first render of the adopt page
 
   const declinedLocation = (error) => {
@@ -58,12 +57,18 @@ const Adopt = () => {
         display: "flex",
         flexDirection: "column",
         minHeight: "100vh",
+        marginTop: "8rem",
       }}
     >
       <div>
         <Search />
         {search.validSearch ? (
-          isLoading ? (!err ? (<LoadingMessage />) : (<EmptyListMessage />)
+          isLoading ? (
+            !err ? (
+              <LoadingMessage />
+            ) : (
+              <EmptyListMessage />
+            )
           ) : (
             <>
               <SortDropDown />

@@ -31,7 +31,7 @@ const ImageTextLayout = () => {
           />
         </Grid>
         <Grid item xs={6} sx={{ marginTop: "2rem" }}>
-          <Typography variant="h4">About us</Typography>
+          <h1> About us</h1>
           <Divider />
           <Typography
             component="p"

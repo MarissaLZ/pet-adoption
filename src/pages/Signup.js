@@ -23,13 +23,11 @@ export default function SignUp() {
     message: "",
   })
 
-  console.log("inputErrors", inputErrors)
   const [signup, setSignup] = React.useState({
     firstName: "",
     email: "",
     password: "",
   })
-  console.log("signup", signup)
 
   const handleChange = (e) => {
     setSignup({
@@ -68,8 +66,6 @@ export default function SignUp() {
       })
   }
   const handleError = (error) => {
-    console.log("handle error runs")
-    console.log(error.message)
     //Error is an object that firebase returns, contains message, code and name
     const message = error.message
       .replace("Firebase: ", "")
@@ -92,7 +88,7 @@ export default function SignUp() {
       <CssBaseline />
       <Box
         sx={{
-          marginTop: 8,
+          marginTop: "8rem",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -102,19 +98,14 @@ export default function SignUp() {
         {inputErrors.isError && (
           <div style={{ color: "red" }}>{inputErrors.message}</div>
         )}
-        <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
+        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
         <span>Have a password? Continue with your email address</span>
-        <Box
-          component="form"
-          noValidate
-          onSubmit={handleSubmit}
-          sx={{ mt: 3 }}
-        >
+        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField

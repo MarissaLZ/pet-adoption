@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+
+@font-face {
+  font-family: "Dark"; /*Can be any text*/
+  src: local("Hairy"), url("./fonts/Hairy.ttf") format("truetype");
+}

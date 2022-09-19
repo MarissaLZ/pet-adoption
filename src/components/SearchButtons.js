@@ -11,7 +11,7 @@ export default function SearchButtons() {
   const { search, handleSearch } = useContext(FurrdoptionContext)
 
   return (
-    <FormControl>
+    <FormControl sx={{ mb: "0.5rem" }}>
       <FormLabel id="row-radio-buttons-group-label"></FormLabel>
       <RadioGroup
         row
