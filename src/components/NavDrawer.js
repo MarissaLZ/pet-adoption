@@ -49,7 +49,11 @@ const NavDrawer = () => {
         <Divider />
         <List sx={{ marginTop: "1rem" }}>
           {navItems.map((item) => (
-            <ListItemButton key={item.navLinks} color="inherit">
+            <ListItemButton
+              key={item.navLinks}
+              color="inherit"
+              onClick={() => setOpen(false)}
+            >
               <ListItemIcon>
                 <ListItemText>
                   <RouterLink

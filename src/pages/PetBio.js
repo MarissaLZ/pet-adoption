@@ -33,26 +33,21 @@ function PetBio() {
   //Finds the pet object
   // eslint-disable-next-line eqeqeq
   const petObject = petList.find((pet) => pet.id == params.id)
-  console.log("PET OBJECT", petObject)
 
   //Uses petObject as initial state
   const [petBio, setPetBio] = useState(petObject)
-  console.log("PETBIO STATE", petBio)
 
   //make a fetch request when user refreshes
   useEffect(() => {
     //if there is a petObject set the petBio state
     if (petObject) {
       setPetBio({ ...petObject })
-      console.log("first render")
     }
     //make a fetch request if petObject is undefined
     else {
       try {
         fetchPet(params.id).then((response) => setPetBio(response.animal))
-      } catch {
-        console.log("ERROR ON FAVORITE", Error)
-      }
+      } catch {}
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

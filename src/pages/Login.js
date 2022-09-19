@@ -23,7 +23,6 @@ export default function Login() {
   //using UserContext
   const { setIsLoggedIn, setUserProfile, isLoggedIn } =
     useContext(FurrdoptionContext)
-  console.log(isLoggedIn)
   //navigate hook redirects the login page to home page
   const navigate = useNavigate()
 

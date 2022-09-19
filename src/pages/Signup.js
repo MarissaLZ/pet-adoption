@@ -23,13 +23,11 @@ export default function SignUp() {
     message: "",
   })
 
-  console.log("inputErrors", inputErrors)
   const [signup, setSignup] = React.useState({
     firstName: "",
     email: "",
     password: "",
   })
-  console.log("signup", signup)
 
   const handleChange = (e) => {
     setSignup({
@@ -68,8 +66,6 @@ export default function SignUp() {
       })
   }
   const handleError = (error) => {
-    console.log("handle error runs")
-    console.log(error.message)
     //Error is an object that firebase returns, contains message, code and name
     const message = error.message
       .replace("Firebase: ", "")

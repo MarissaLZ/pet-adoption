@@ -9,9 +9,7 @@ import standdog from "../images/standdog.jpg"
 import { StyledButton } from "../Styles/StyledButton"
 
 const Donate = () => {
-  const handleClick = (e) => {
-    console.log("Clicked on donate button")
-  }
+  const handleClick = (e) => {}
   return (
     <Box
       sx={{

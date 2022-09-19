@@ -43,7 +43,6 @@ export function fetchPet(id) {
 }
 
 export function fetchFeatured(limitNum, lat, long) {
-  console.log("lat", lat, "long", long)
   return fetch("https://api.petfinder.com/v2/oauth2/token", {
     body: `grant_type=client_credentials&client_id=${process.env.REACT_APP_PETFINDER_API_KEY}&client_secret=${process.env.REACT_APP_PETFINDER_CLIENT_SECRET}`,
     headers: {

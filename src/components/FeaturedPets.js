@@ -5,7 +5,6 @@ import { Box } from "@mui/material"
 
 const FeaturedPets = () => {
   const { featuredPets } = useContext(FurrdoptionContext)
-  console.log("featurePets", featuredPets)
   return (
     <>
       <Box

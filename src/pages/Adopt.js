@@ -21,7 +21,6 @@ const Adopt = () => {
     err,
     setCoordinates,
   } = useContext(FurrdoptionContext)
-  console.log("isLoading", isLoading)
   //fetch featured pets only on the first render of the adopt page
 
   const declinedLocation = (error) => {
