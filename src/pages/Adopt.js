@@ -82,7 +82,6 @@ const Adopt = () => {
                 <FilterContainer />
                 <PetList animalList={petList} />
               </Box>
-
               <AdoptPagination />
             </>
           )
