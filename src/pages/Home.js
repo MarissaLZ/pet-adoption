@@ -11,9 +11,22 @@ const Home = () => {
     <div>
       <Box
         sx={{
+          margin: {
+            xs: "0 0 0 0",
+            sm: "2rem 0 0 0",
+            md: "3rem 0 0 0",
+            lg: "5rem 0 0 0",
+            xl: "5rem 0 0 0",
+          },
           display: "flex",
           flexDirection: "column",
-          minHeight: "100vh",
+          minHeight: {
+            xs: "80vh", //0
+            sm: "90vh", //600
+            md: "70vh", //900
+            lg: "80vh", //1200
+            xl: "88vh", //1536
+          },
           flexGrow: 1,
           backgroundImage: `url(${home})`,
           backgroundSize: {
@@ -37,9 +50,9 @@ const Home = () => {
             width: "35rem",
             height: "20rem",
             margin: {
-              xs: "11rem 0 0 0.2rem", //0
+              xs: "14rem 0 0 0.2rem", //0
               sm: "6rem 0 0 1.5rem", //600
-              md: "4.5rem 0 0 7.25rem", //900
+              md: "5rem 0 0 7.25rem", //900
               lg: "4.8rem 0 0 10rem", //1200
               xl: "4rem 0 0 18rem", //1536
             },

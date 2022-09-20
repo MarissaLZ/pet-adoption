@@ -5,7 +5,6 @@ import { Box } from "@mui/material"
 
 const FeaturedPets = () => {
   const { featuredPets } = useContext(FurrdoptionContext)
-  console.log("featurePets", featuredPets)
   return (
     <>
       <Box
@@ -20,13 +19,27 @@ const FeaturedPets = () => {
           margin: "0 auto",
           color: "#606060",
           gap: "1rem",
+          marginTop: "5rem",
         }}
       >
         <h1 style={{ fontSize: "4rem" }}>
-          Featured <span style={{ color: "#26A69A" }}>Pets</span>
+          Featured{" "}
+          <span
+            style={{ borderBottom: "6px solid #26a69a", paddingBottom: "5px" }}
+          >
+            Pets
+          </span>
         </h1>
         <br />
-        <h4 style={{ fontSize: "1.5rem" }}>Adorable adoptables near you!</h4>
+        <h4
+          style={{
+            fontSize: "1.5rem",
+            marginBottom: "1.5rem",
+            marginTop: "1rem",
+          }}
+        >
+          Adorable adoptables near you!
+        </h4>
       </Box>
       <PetList animalList={featuredPets} />
     </>

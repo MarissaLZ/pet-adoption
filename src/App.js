@@ -26,7 +26,11 @@ function App() {
         <Route path="/petbio/:id" element={<PetBio />} />
         <Route path="Signup" element={<Signup />} />
         <Route path="favorites" element={<Favorites />} />
+<<<<<<< HEAD
         <Route path="Profile" element={<Profile />} />
+=======
+        <Route path="/Home" element={<Home />} />
+>>>>>>> main
       </Routes>
       <Footer />
     </div>

@@ -3,7 +3,7 @@ import styled from "styled-components"
 import CircularProgress from "@mui/material/CircularProgress"
 
 const LoadMessageContainer = styled.div`
-  margin: 15px;
+  margin: 5rem;
   padding: 20px;
 `
 

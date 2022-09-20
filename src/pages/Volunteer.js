@@ -17,7 +17,7 @@ const Volunteer = () => {
           xl: "1300px",
         },
         margin: "0 auto",
-        marginTop: "50px",
+        marginTop: "7rem",
         marginBottom: "5rem",
       }}
     >
