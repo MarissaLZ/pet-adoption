@@ -1,13 +1,12 @@
 import React from "react"
-import Button from "@mui/material/Button"
-import Menu from "@mui/material/Menu"
 import MenuItem from "@mui/material/MenuItem"
-import Fade from "@mui/material/Fade"
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
 import { useContext } from "react"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
 import { fetchPetList } from "./petFinderAPI"
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2"
+import InputLabel from "@mui/material/InputLabel"
+import FormControl from "@mui/material/FormControl"
+import Select from "@mui/material/Select"
 
 const SortDropDown = () => {
   const {
@@ -18,9 +17,6 @@ const SortDropDown = () => {
     setPetList,
     setIsLoading,
   } = useContext(FurrdoptionContext)
-
-  const [anchorEl, setAnchorEl] = React.useState(null)
-  const open = Boolean(anchorEl)
 
   const sortOptions = [
     {
@@ -37,27 +33,22 @@ const SortDropDown = () => {
     },
   ]
 
-  const handleClick = (e) => {
-    setAnchorEl(e.currentTarget)
-  }
-
   // handleSortChange makes the api call to fetch pet list with desired sort parameter
-  const handleSortChange = (option) => {
+  const handleSortChange = (e) => {
+    //e.target.value is the current sort option selected
     setIsLoading(true)
     let changeSortParams = {
       target: {
         name: "sortOption",
-        value: option,
+        value: e.target.value,
       },
     }
     //seting search.sortOption
     handleSearch(changeSortParams)
-    setAnchorEl(null)
-
     fetchPetList(
       search.animalType,
       search.zipcode,
-      option, // sort option
+      e.target.value, // sort option
       search.filterGenderOption,
       search.filterSizeOption,
       search.filterAgeOption,
@@ -69,47 +60,27 @@ const SortDropDown = () => {
     })
   }
 
-  // handleClose function closes the drop down menu if user clicks out of menu
-  const handleClose = () => {
-    setAnchorEl(null)
-  }
-
   return (
     <div style={{ margin: "4rem 2rem 2rem 0" }}>
       <Grid2 container>
         <Grid2 xsOffset={10} mdOffset="auto">
-          <Button
-            variant="outlined"
-            id="fade-button"
-            aria-controls={open ? "fade-menu" : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
-            onClick={handleClick}
-            endIcon={<KeyboardArrowDownIcon />}
-          >
-            Sort
-          </Button>
-          <Menu
-            id="fade-menu"
-            className="menu"
-            MenuListProps={{
-              "aria-labelledby": "fade-button",
-            }}
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-            TransitionComponent={Fade}
-          >
-            {/* map through sortOptions as MenuItem */}
-            {sortOptions.map((option) => (
-              <MenuItem
-                key={option.key}
-                onClick={() => handleSortChange(option.key)}
-              >
-                {option.label}
-              </MenuItem>
-            ))}
-          </Menu>
+          <FormControl variant="standard" sx={{ minWidth: 200 }}>
+            <InputLabel id="demo-simple-select-standard-label">Sort</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={search.sortOption}
+              label="Sort"
+              onChange={handleSortChange}
+            >
+              {/* map through sortOptions as MenuItem */}
+              {sortOptions.map((option) => (
+                <MenuItem key={option.key} value={option.key} name={option.key}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
         </Grid2>
       </Grid2>
     </div>

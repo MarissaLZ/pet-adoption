@@ -12,7 +12,10 @@ export default function FooterItems() {
   ]
   const projectLinks = [
     { linkName: "Code The Dream", linkURL: "https://codethedream.org/" },
-    { linkName: "About Us", linkURL: "#" },
+    {
+      linkName:
+        "A special shout out to our mentors Tariku and Steven for making this project possible!",
+    },
   ]
   const resourceLinks = [
     { linkName: "Material UI", linkURL: "https://mui.com/" },

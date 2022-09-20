@@ -1,12 +1,11 @@
 import React from "react"
-import Button from "@mui/material/Button"
-import Menu from "@mui/material/Menu"
 import MenuItem from "@mui/material/MenuItem"
-import Fade from "@mui/material/Fade"
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
 import { useContext } from "react"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
 import { fetchPetList } from "./petFinderAPI"
+import InputLabel from "@mui/material/InputLabel"
+import FormControl from "@mui/material/FormControl"
+import Select from "@mui/material/Select"
 
 const FilterGender = () => {
   const {
@@ -17,9 +16,6 @@ const FilterGender = () => {
     setPetList,
     setIsLoading,
   } = useContext(FurrdoptionContext)
-
-  const [anchorEl, setAnchorEl] = React.useState(null)
-  const open = Boolean(anchorEl)
 
   const filterOptionsGender = [
     {
@@ -32,28 +28,23 @@ const FilterGender = () => {
     },
   ]
 
-  const handleClick = (e) => {
-    setAnchorEl(e.currentTarget)
-  }
-
   // handleSortChange makes the api call to fetch pet list with desired sort parameter
-  const handleFilterChange = (gender) => {
+  const handleFilterChange = (e) => {
     setIsLoading(true)
     let changeGenderParams = {
       target: {
         name: "filterGenderOption",
-        value: gender,
+        value: e.target.value,
       },
     }
     //seting search.sortOption
     handleSearch(changeGenderParams)
-    setAnchorEl(null)
 
     fetchPetList(
       search.animalType,
       search.zipcode,
       search.sortOption, // sort option
-      gender,
+      e.target.value,
       search.filterSizeOption,
       search.filterAgeOption,
       pageNumber //pageNumber
@@ -64,47 +55,29 @@ const FilterGender = () => {
     })
   }
 
-  // handleClose function closes the drop down menu if user clicks out of menu
-  const handleClose = () => {
-    setAnchorEl(null)
-  }
-
   return (
     <div>
-      <Button
-        variant="outlined"
-        id="fade-button"
-        aria-controls={open ? "fade-menu" : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? "true" : undefined}
-        onClick={handleClick}
-        endIcon={<KeyboardArrowDownIcon />}
-        sx={{ width: "120px" }}
-      >
-        Gender
-      </Button>
-      <Menu
-        id="fade-menu"
-        className="menu"
-        MenuListProps={{
-          "aria-labelledby": "fade-button",
-        }}
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        TransitionComponent={Fade}
-      >
-        {/* map through sortOptions as MenuItem */}
-        {filterOptionsGender.map((filterGenderOption) => (
-          <MenuItem
-            key={filterGenderOption.key}
-            onClick={() => handleFilterChange(filterGenderOption.key)}
-            sx={{ width: "120px" }}
-          >
-            {filterGenderOption.label}
-          </MenuItem>
-        ))}
-      </Menu>
+      <FormControl variant="standard" sx={{ minWidth: 150 }}>
+        <InputLabel id="demo-simple-select-standard-label">Gender</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={search.filterGenderOption}
+          label="Gender"
+          onChange={handleFilterChange}
+        >
+          {/* map through sortOptions as MenuItem */}
+          {filterOptionsGender.map((filterGenderOption) => (
+            <MenuItem
+              key={filterGenderOption.key}
+              value={filterGenderOption.key}
+              name={filterGenderOption.key}
+            >
+              {filterGenderOption.label}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
     </div>
   )
 }
