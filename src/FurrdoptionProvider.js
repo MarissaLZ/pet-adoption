@@ -21,7 +21,7 @@ function FurrdoptionProvider({ children }) {
   const [search, setSearch] = React.useState({
     zipcode: "",
     animalType: "",
-    sortOption: "",
+    sortOption: "distance",
     filterGenderOption: "",
     filterSizeOption: "",
     filterAgeOption: "",

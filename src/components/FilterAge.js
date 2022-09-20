@@ -1,12 +1,11 @@
 import React from "react"
-import Button from "@mui/material/Button"
-import Menu from "@mui/material/Menu"
-import MenuItem from "@mui/material/MenuItem"
-import Fade from "@mui/material/Fade"
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
 import { useContext } from "react"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
 import { fetchPetList } from "./petFinderAPI"
+import InputLabel from "@mui/material/InputLabel"
+import FormControl from "@mui/material/FormControl"
+import Select from "@mui/material/Select"
+import MenuItem from "@mui/material/MenuItem"
 
 const FilterAge = () => {
   const {
@@ -17,9 +16,6 @@ const FilterAge = () => {
     setPetList,
     setIsLoading,
   } = useContext(FurrdoptionContext)
-
-  const [anchorEl, setAnchorEl] = React.useState(null)
-  const open = Boolean(anchorEl)
 
   const filterOptionsAge = [
     {
@@ -40,22 +36,17 @@ const FilterAge = () => {
     },
   ]
 
-  const handleClick = (e) => {
-    setAnchorEl(e.currentTarget)
-  }
-
   // handleSortChange makes the api call to fetch pet list with desired sort parameter
-  const handleFilterChange = (age) => {
+  const handleFilterChange = (e) => {
     setIsLoading(true)
     let changeAgeParams = {
       target: {
         name: "filterAgeOption",
-        value: age,
+        value: e.target.value,
       },
     }
     //seting search.sortOption
     handleSearch(changeAgeParams)
-    setAnchorEl(null)
 
     fetchPetList(
       search.animalType,
@@ -63,7 +54,7 @@ const FilterAge = () => {
       search.sortOption,
       search.filterGenderOption,
       search.filterSizeOption,
-      age,
+      e.target.value,
       pageNumber
     ).then((response) => {
       setPetList(response.animals)
@@ -72,47 +63,29 @@ const FilterAge = () => {
     })
   }
 
-  // handleClose function closes the drop down menu if user clicks out of menu
-  const handleClose = () => {
-    setAnchorEl(null)
-  }
-
   return (
     <div>
-      <Button
-        variant="outlined"
-        id="fade-button"
-        aria-controls={open ? "fade-menu" : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? "true" : undefined}
-        onClick={handleClick}
-        endIcon={<KeyboardArrowDownIcon />}
-        sx={{ width: "120px" }}
-      >
-        Age
-      </Button>
-      <Menu
-        id="fade-menu"
-        className="menu"
-        MenuListProps={{
-          "aria-labelledby": "fade-button",
-        }}
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        TransitionComponent={Fade}
-      >
-        {/* map through sortOptions as MenuItem */}
-        {filterOptionsAge.map((filterAgeOption) => (
-          <MenuItem
-            key={filterAgeOption.key}
-            onClick={() => handleFilterChange(filterAgeOption.key)}
-            sx={{ width: "120px" }}
-          >
-            {filterAgeOption.label}
-          </MenuItem>
-        ))}
-      </Menu>
+      <FormControl variant="standard" sx={{ minWidth: 150 }}>
+        <InputLabel id="demo-simple-select-standard-label">Age</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={search.filterAgeOption}
+          label="Age"
+          onChange={handleFilterChange}
+        >
+          {/* map through sortOptions as MenuItem */}
+          {filterOptionsAge.map((filterAgeOption) => (
+            <MenuItem
+              key={filterAgeOption.key}
+              value={filterAgeOption.key}
+              name={filterAgeOption.key}
+            >
+              {filterAgeOption.label}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
     </div>
   )
 }

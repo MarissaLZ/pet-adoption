@@ -1,12 +1,11 @@
 import React from "react"
-import Button from "@mui/material/Button"
-import Menu from "@mui/material/Menu"
 import MenuItem from "@mui/material/MenuItem"
-import Fade from "@mui/material/Fade"
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
 import { useContext } from "react"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
 import { fetchPetList } from "./petFinderAPI"
+import { FormControl } from "@mui/material"
+import InputLabel from "@mui/material/InputLabel"
+import Select from "@mui/material/Select"
 
 const FilterSize = () => {
   const {
@@ -17,9 +16,6 @@ const FilterSize = () => {
     setPetList,
     setIsLoading,
   } = useContext(FurrdoptionContext)
-
-  const [anchorEl, setAnchorEl] = React.useState(null)
-  const open = Boolean(anchorEl)
 
   const filterOptionsSize = [
     {
@@ -40,29 +36,24 @@ const FilterSize = () => {
     },
   ]
 
-  const handleClick = (e) => {
-    setAnchorEl(e.currentTarget)
-  }
-
   // handleSortChange makes the api call to fetch pet list with desired sort parameter
-  const handleFilterChange = (size) => {
+  const handleFilterChange = (e) => {
     setIsLoading(true)
     let changeSizeParams = {
       target: {
         name: "filterSizeOption",
-        value: size,
+        value: e.target.value,
       },
     }
     //seting search.sortOption
     handleSearch(changeSizeParams)
-    setAnchorEl(null)
 
     fetchPetList(
       search.animalType,
       search.zipcode,
       search.sortOption, // sort option
       search.filterGenderOption,
-      size,
+      e.target.value,
       search.filterAgeOption,
       pageNumber //pageNumber
     ).then((response) => {
@@ -72,47 +63,28 @@ const FilterSize = () => {
     })
   }
 
-  // handleClose function closes the drop down menu if user clicks out of menu
-  const handleClose = () => {
-    setAnchorEl(null)
-  }
-
   return (
     <div>
-      <Button
-        variant="outlined"
-        id="fade-button"
-        aria-controls={open ? "fade-menu" : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? "true" : undefined}
-        onClick={handleClick}
-        endIcon={<KeyboardArrowDownIcon />}
-        sx={{ width: "120px" }}
-      >
-        Size
-      </Button>
-      <Menu
-        id="fade-menu"
-        className="menu"
-        MenuListProps={{
-          "aria-labelledby": "fade-button",
-        }}
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        TransitionComponent={Fade}
-      >
-        {/* map through sortOptions as MenuItem */}
-        {filterOptionsSize.map((filterSizeOption) => (
-          <MenuItem
-            key={filterSizeOption.key}
-            onClick={() => handleFilterChange(filterSizeOption.key)}
-            sx={{ width: "120px" }}
-          >
-            {filterSizeOption.label}
-          </MenuItem>
-        ))}
-      </Menu>
+      <FormControl variant="standard" sx={{ minWidth: 150 }}>
+        <InputLabel id="demo-simple-select-standard-label">Size</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={search.filterSizeOption}
+          label="Size"
+          onChange={handleFilterChange}
+        >
+          {filterOptionsSize.map((filterSizeOption) => (
+            <MenuItem
+              key={filterSizeOption.key}
+              value={filterSizeOption.key}
+              name={filterSizeOption.key}
+            >
+              {filterSizeOption.label}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
     </div>
   )
 }
