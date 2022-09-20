@@ -8,6 +8,7 @@ import { useContext } from "react"
 import FeaturedPets from "../components/FeaturedPets"
 import { fetchFeatured } from "../components/petFinderAPI"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
+import FilterContainer from "../components/FilterContainer"
 import LoadingMessage from "../components/LoadingMessage"
 import EmptyListMessage from "../components/EmptyListMessage"
 
@@ -72,14 +73,24 @@ const Adopt = () => {
           ) : (
             <>
               <SortDropDown />
-              <PetList animalList={petList} />
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                }}
+              >
+                <FilterContainer />
+                <PetList animalList={petList} />
+              </Box>
               <AdoptPagination />
             </>
           )
         ) : isLoading ? (
           <LoadingMessage />
         ) : (
-          <FeaturedPets />
+          <>
+            <FeaturedPets />
+          </>
         )}
       </div>
     </Box>

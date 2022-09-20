@@ -18,16 +18,19 @@ function AdoptPagination() {
   } = useContext(FurrdoptionContext)
 
   //changes pageNumber to the user clicked value
-  //vale is the current page nubmer
+  //value is the current page nubmer
   const handlePageChange = (e, value) => {
     setIsLoading(true)
     setPageNumber(value)
     window.scrollTo(0, 0)
     //make a fetch request any time a page number is clicked
     fetchPetList(
-      search.zipcode,
       search.animalType,
+      search.zipcode,
       search.sortOption,
+      search.filterGenderOption,
+      search.filterSizeOption,
+      search.filterAgeOption,
       value
     ).then((response) => {
       setPetList(response.animals)
@@ -43,7 +46,7 @@ function AdoptPagination() {
       default={1}
       page={pageNumber}
       count={pageCount}
-      color='primary'
+      color="primary"
       onChange={handlePageChange}
     />
   )

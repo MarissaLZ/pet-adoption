@@ -5,6 +5,7 @@ import firebase from "./Firebase/FirebaseConfig"
 const FurrdoptionContext = createContext({})
 
 function FurrdoptionProvider({ children }) {
+  //Login and user states
   const [isLoggedIn, setIsLoggedIn] = React.useState(false)
   const [userProfile, setUserProfile] = React.useState([])
   const [name, setName] = React.useState("")
@@ -21,6 +22,9 @@ function FurrdoptionProvider({ children }) {
     zipcode: "",
     animalType: "",
     sortOption: "",
+    filterGenderOption: "",
+    filterSizeOption: "",
+    filterAgeOption: "",
   })
 
   const handleSearch = (e) => {
@@ -32,19 +36,17 @@ function FurrdoptionProvider({ children }) {
 
   //React.useEffect retrives auth state from firebase local storage and sets isLoggedIn to true if there is a user profie avaiable in local storage
   //isLoggedIn will be false and userProfile will be an empty array when users are not logged in, when users sign out, or when users change their password.
-  React.useEffect(()=>{
-    firebase
-      .auth()
-      .onAuthStateChanged(function(user){
-        if(user){
-          setIsLoggedIn(true);
-          setUserProfile(user);
-        } else {
-          setIsLoggedIn(false);
-          setUserProfile([]);
-        }
-      })
-  }, [setIsLoggedIn, setUserProfile]);
+  React.useEffect(() => {
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        setIsLoggedIn(true)
+        setUserProfile(user)
+      } else {
+        setIsLoggedIn(false)
+        setUserProfile([])
+      }
+    })
+  }, [setIsLoggedIn, setUserProfile])
 
   return (
     <FurrdoptionContext.Provider

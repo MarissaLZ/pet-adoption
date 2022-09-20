@@ -11,8 +11,13 @@ import { FurrdoptionContext } from "../FurrdoptionProvider"
 
 //Recieves list from parent page or component and maps through it as pet cards
 const PetList = ({ animalList }) => {
-  const { isFavoritedList, setIsFavoritedList, userProfile, isLoggedIn } =
-    useContext(FurrdoptionContext)
+  const {
+    isFavoritedList,
+    setIsFavoritedList,
+    userProfile,
+    isLoggedIn,
+    filteredPetList,
+  } = useContext(FurrdoptionContext)
 
   //Triggers the state color on the PetCard component
   //returns true or false
@@ -46,7 +51,7 @@ const PetList = ({ animalList }) => {
       })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
+  //Displays filtered pet list if it isn't empty, displays normal petList if it returns false
   return (
     <>
       <Grid
@@ -56,15 +61,25 @@ const PetList = ({ animalList }) => {
         justifyContent="center"
         alignItems="center"
       >
-        {animalList.map((pet) => (
-          <Grid item m={4} sx={{ xs: "12" }} key={pet.id}>
-            <PetCard
-              pet={pet}
-              isFavorited={checkIfIsFavorite(pet.id)}
-              toggleFavorite={toggleFavorite}
-            />
-          </Grid>
-        ))}
+        {filteredPetList?.length
+          ? filteredPetList.map((pet) => (
+              <Grid item m={4} sx={{ xs: "12" }} key={pet.id + pet.name}>
+                <PetCard
+                  pet={pet}
+                  isFavorited={checkIfIsFavorite(pet.id)}
+                  toggleFavorite={toggleFavorite}
+                />
+              </Grid>
+            ))
+          : animalList.map((pet) => (
+              <Grid key={pet.id} item m={4} sx={{ xs: "12" }}>
+                <PetCard
+                  pet={pet}
+                  isFavorited={checkIfIsFavorite(pet.id)}
+                  toggleFavorite={toggleFavorite}
+                />
+              </Grid>
+            ))}
       </Grid>
     </>
   )
