@@ -54,9 +54,6 @@ const ZipCodeInput = () => {
     })
   }
 
-  // filterGenderOption: "",
-  // filterSizeOption: "",
-  // filterAgeOption: "",
   return (
     <form onSubmit={handleSubmit}>
       <Stack spacing={2} direction="row">

@@ -7,7 +7,6 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
 import { useContext } from "react"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
 import { fetchPetList } from "./petFinderAPI"
-import Grid2 from "@mui/material/Unstable_Grid2/Grid2"
 
 const FilterAge = () => {
   const {
@@ -78,46 +77,42 @@ const FilterAge = () => {
     setAnchorEl(null)
   }
 
-  console.log("search state", search)
-
   return (
     <div>
-      <Grid2 container>
-        <Grid2 xs={4} xsOffset={4} md={4} mdOffset="auto">
-          <Button
-            variant="outlined"
-            id="fade-button"
-            aria-controls={open ? "fade-menu" : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
-            onClick={handleClick}
-            endIcon={<KeyboardArrowDownIcon />}
+      <Button
+        variant="outlined"
+        id="fade-button"
+        aria-controls={open ? "fade-menu" : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? "true" : undefined}
+        onClick={handleClick}
+        endIcon={<KeyboardArrowDownIcon />}
+        sx={{ width: "120px" }}
+      >
+        Age
+      </Button>
+      <Menu
+        id="fade-menu"
+        className="menu"
+        MenuListProps={{
+          "aria-labelledby": "fade-button",
+        }}
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        TransitionComponent={Fade}
+      >
+        {/* map through sortOptions as MenuItem */}
+        {filterOptionsAge.map((filterAgeOption) => (
+          <MenuItem
+            key={filterAgeOption.key}
+            onClick={() => handleFilterChange(filterAgeOption.key)}
+            sx={{ width: "120px" }}
           >
-            Age
-          </Button>
-          <Menu
-            id="fade-menu"
-            className="menu"
-            MenuListProps={{
-              "aria-labelledby": "fade-button",
-            }}
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-            TransitionComponent={Fade}
-          >
-            {/* map through sortOptions as MenuItem */}
-            {filterOptionsAge.map((filterAgeOption) => (
-              <MenuItem
-                key={filterAgeOption.key}
-                onClick={() => handleFilterChange(filterAgeOption.key)}
-              >
-                {filterAgeOption.label}
-              </MenuItem>
-            ))}
-          </Menu>
-        </Grid2>
-      </Grid2>
+            {filterAgeOption.label}
+          </MenuItem>
+        ))}
+      </Menu>
     </div>
   )
 }

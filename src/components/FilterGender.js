@@ -7,7 +7,6 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
 import { useContext } from "react"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
 import { fetchPetList } from "./petFinderAPI"
-import Grid2 from "@mui/material/Unstable_Grid2/Grid2"
 
 const FilterGender = () => {
   const {
@@ -72,42 +71,40 @@ const FilterGender = () => {
 
   return (
     <div>
-      <Grid2 container>
-        <Grid2 xs={4} xsOffset={4} md={4} mdOffset="auto">
-          <Button
-            variant="outlined"
-            id="fade-button"
-            aria-controls={open ? "fade-menu" : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
-            onClick={handleClick}
-            endIcon={<KeyboardArrowDownIcon />}
+      <Button
+        variant="outlined"
+        id="fade-button"
+        aria-controls={open ? "fade-menu" : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? "true" : undefined}
+        onClick={handleClick}
+        endIcon={<KeyboardArrowDownIcon />}
+        sx={{ width: "120px" }}
+      >
+        Gender
+      </Button>
+      <Menu
+        id="fade-menu"
+        className="menu"
+        MenuListProps={{
+          "aria-labelledby": "fade-button",
+        }}
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        TransitionComponent={Fade}
+      >
+        {/* map through sortOptions as MenuItem */}
+        {filterOptionsGender.map((filterGenderOption) => (
+          <MenuItem
+            key={filterGenderOption.key}
+            onClick={() => handleFilterChange(filterGenderOption.key)}
+            sx={{ width: "120px" }}
           >
-            Gender
-          </Button>
-          <Menu
-            id="fade-menu"
-            className="menu"
-            MenuListProps={{
-              "aria-labelledby": "fade-button",
-            }}
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-            TransitionComponent={Fade}
-          >
-            {/* map through sortOptions as MenuItem */}
-            {filterOptionsGender.map((filterGenderOption) => (
-              <MenuItem
-                key={filterGenderOption.key}
-                onClick={() => handleFilterChange(filterGenderOption.key)}
-              >
-                {filterGenderOption.label}
-              </MenuItem>
-            ))}
-          </Menu>
-        </Grid2>
-      </Grid2>
+            {filterGenderOption.label}
+          </MenuItem>
+        ))}
+      </Menu>
     </div>
   )
 }

@@ -14,14 +14,6 @@ function FurrdoptionProvider({ children }) {
   const [pageNumber, setPageNumber] = React.useState(1)
   const [pageCount, setPageCount] = React.useState(10)
   const [isLoading, setIsLoading] = useState(false)
-  //Filter box states
-  const [filterOption, setFilterOption] = React.useState([])
-  const [filteredPetList, setFilteredPetList] = React.useState([])
-  const [filterGenderOption, setFilterGenderOption] = React.useState("")
-  const [filterSizeOption, setFilterSizeOption] = React.useState("")
-  const [filterKidsOption, setFilterKidsOption] = React.useState("")
-  const [filterParams, setFilterParams] = React.useState({})
-  //Search state
   const [featuredPets, setFeaturedPets] = React.useState([])
   const [err, setErr] = React.useState(false)
   const [coordinates, setCoordinates] = useState({ lat: "", long: "" })
@@ -34,14 +26,8 @@ function FurrdoptionProvider({ children }) {
     filterSizeOption: "",
     filterAgeOption: "",
   })
-  console.log("search state", search)
 
   const handleSearch = (e) => {
-    console.log(
-      "[e.target.name]: e.target.value",
-      e.target.name,
-      e.target.value
-    )
     setSearch({
       ...search, //copy the old search properties in a new object
       [e.target.name]: e.target.value, // dynamically replace a key value pair name of the target will become the key
@@ -84,18 +70,6 @@ function FurrdoptionProvider({ children }) {
         handleSearch,
         isLoading,
         setIsLoading,
-        filterOption,
-        setFilterOption,
-        filterParams,
-        setFilterParams,
-        filteredPetList,
-        setFilteredPetList,
-        filterGenderOption,
-        setFilterGenderOption,
-        filterSizeOption,
-        setFilterSizeOption,
-        filterKidsOption,
-        setFilterKidsOption,
         featuredPets,
         setFeaturedPets,
         err,

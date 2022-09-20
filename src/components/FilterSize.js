@@ -7,7 +7,6 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
 import { useContext } from "react"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
 import { fetchPetList } from "./petFinderAPI"
-import Grid2 from "@mui/material/Unstable_Grid2/Grid2"
 
 const FilterSize = () => {
   const {
@@ -59,7 +58,6 @@ const FilterSize = () => {
     setAnchorEl(null)
 
     fetchPetList(
-      //gender, size, age
       search.animalType,
       search.zipcode,
       search.sortOption, // sort option
@@ -81,42 +79,40 @@ const FilterSize = () => {
 
   return (
     <div>
-      <Grid2 container>
-        <Grid2 xs={4} xsOffset={4} md={4} mdOffset="auto">
-          <Button
-            variant="outlined"
-            id="fade-button"
-            aria-controls={open ? "fade-menu" : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
-            onClick={handleClick}
-            endIcon={<KeyboardArrowDownIcon />}
+      <Button
+        variant="outlined"
+        id="fade-button"
+        aria-controls={open ? "fade-menu" : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? "true" : undefined}
+        onClick={handleClick}
+        endIcon={<KeyboardArrowDownIcon />}
+        sx={{ width: "120px" }}
+      >
+        Size
+      </Button>
+      <Menu
+        id="fade-menu"
+        className="menu"
+        MenuListProps={{
+          "aria-labelledby": "fade-button",
+        }}
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        TransitionComponent={Fade}
+      >
+        {/* map through sortOptions as MenuItem */}
+        {filterOptionsSize.map((filterSizeOption) => (
+          <MenuItem
+            key={filterSizeOption.key}
+            onClick={() => handleFilterChange(filterSizeOption.key)}
+            sx={{ width: "120px" }}
           >
-            Size
-          </Button>
-          <Menu
-            id="fade-menu"
-            className="menu"
-            MenuListProps={{
-              "aria-labelledby": "fade-button",
-            }}
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-            TransitionComponent={Fade}
-          >
-            {/* map through sortOptions as MenuItem */}
-            {filterOptionsSize.map((filterSizeOption) => (
-              <MenuItem
-                key={filterSizeOption.key}
-                onClick={() => handleFilterChange(filterSizeOption.key)}
-              >
-                {filterSizeOption.label}
-              </MenuItem>
-            ))}
-          </Menu>
-        </Grid2>
-      </Grid2>
+            {filterSizeOption.label}
+          </MenuItem>
+        ))}
+      </Menu>
     </div>
   )
 }

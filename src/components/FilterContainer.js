@@ -1,34 +1,35 @@
-// import { FurrdoptionContext } from "../FurrdoptionProvider"
-// import { useContext } from "react"
 import FilterGender from "./FilterGender"
 import FilterSize from "./FilterSize"
 import FilterAge from "./FilterAge"
-import Grid from "@mui/material/Grid"
+import { Box, Stack, Typography } from "@mui/material"
 
 const FilterContainer = () => {
-  // const {
-  //     filterOption,
-  //     setFilterOption,
-  //     filterGenderOption,
-  //     setFilterGenderOption,
-  //     filterSizeOption,
-  //     setFilterSizeOption,
-  //     filterKidsOption,
-  //     setFilterKidsOption} = useContext(FurrdoptionContext)
-
   return (
     <>
-      {/* <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}> */}
-      {/* <Grid xs={6}> */}
-      <FilterGender />
-      {/* </Grid> */}
-      <Grid xs={6}>
-        <FilterSize />
-      </Grid>
-      {/* <Grid xs={6}> */}
-      <FilterAge />
-      {/* </Grid> */}
-      {/* </Grid> */}
+      <Stack
+        direction="column"
+        justifyContent="space-evenly"
+        alignItems="flex-start"
+        sx={{
+          width: 180,
+          height: 300,
+          textAlign: "start",
+          padding: "1rem 0 0 5rem",
+        }}
+      >
+        <Typography variant="subtitle1" sx={{ color: "#606060" }}>
+          Filter by:
+        </Typography>
+        <Box>
+          <FilterGender />
+        </Box>
+        <Box>
+          <FilterSize />
+        </Box>
+        <Box>
+          <FilterAge />
+        </Box>
+      </Stack>
     </>
   )
 }

@@ -75,9 +75,9 @@ const SortDropDown = () => {
   }
 
   return (
-    <div>
+    <div style={{ margin: "4rem 2rem 2rem 0" }}>
       <Grid2 container>
-        <Grid2 xs={4} xsOffset={4} md={4} mdOffset="auto">
+        <Grid2 xsOffset={10} mdOffset="auto">
           <Button
             variant="outlined"
             id="fade-button"

@@ -72,9 +72,17 @@ const Adopt = () => {
             )
           ) : (
             <>
-              <FilterContainer />
               <SortDropDown />
-              <PetList animalList={petList} />
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                }}
+              >
+                <FilterContainer />
+                <PetList animalList={petList} />
+              </Box>
+
               <AdoptPagination />
             </>
           )
