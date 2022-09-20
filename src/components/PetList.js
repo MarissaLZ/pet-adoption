@@ -11,13 +11,8 @@ import { FurrdoptionContext } from "../FurrdoptionProvider"
 
 //Recieves list from parent page or component and maps through it as pet cards
 const PetList = ({ animalList }) => {
-  const {
-    isFavoritedList,
-    setIsFavoritedList,
-    userProfile,
-    isLoggedIn,
-    filteredPetList,
-  } = useContext(FurrdoptionContext)
+  const { isFavoritedList, setIsFavoritedList, userProfile, isLoggedIn } =
+    useContext(FurrdoptionContext)
 
   //Triggers the state color on the PetCard component
   //returns true or false
@@ -61,25 +56,15 @@ const PetList = ({ animalList }) => {
         justifyContent="center"
         alignItems="center"
       >
-        {filteredPetList?.length
-          ? filteredPetList.map((pet) => (
-              <Grid item m={4} sx={{ xs: "12" }} key={pet.id + pet.name}>
-                <PetCard
-                  pet={pet}
-                  isFavorited={checkIfIsFavorite(pet.id)}
-                  toggleFavorite={toggleFavorite}
-                />
-              </Grid>
-            ))
-          : animalList.map((pet) => (
-              <Grid key={pet.id} item m={4} sx={{ xs: "12" }}>
-                <PetCard
-                  pet={pet}
-                  isFavorited={checkIfIsFavorite(pet.id)}
-                  toggleFavorite={toggleFavorite}
-                />
-              </Grid>
-            ))}
+        {animalList.map((pet) => (
+          <Grid key={pet.id} item m={4} sx={{ xs: "12" }}>
+            <PetCard
+              pet={pet}
+              isFavorited={checkIfIsFavorite(pet.id)}
+              toggleFavorite={toggleFavorite}
+            />
+          </Grid>
+        ))}
       </Grid>
     </>
   )
