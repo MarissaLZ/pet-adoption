@@ -1,10 +1,31 @@
-import { useContext } from "react"
+import { useEffect, useContext } from "react"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
 import PetList from "../components/PetList"
-import { Box } from "@mui/material"
+import { Box, LinearProgress } from "@mui/material"
+import firebase from "../Firebase/FirebaseConfig"
 
 const Favorites = () => {
-  const { isFavoritedList } = useContext(FurrdoptionContext)
+  const { isFavoritedList, userProfile, setIsFavoritedList } =
+    useContext(FurrdoptionContext)
+
+  const favoriteObject = Object.keys(isFavoritedList).length
+
+  useEffect(() => {
+    firebase
+      .firestore()
+      .collection("users")
+      .doc(userProfile.uid)
+      .collection("favorites")
+      .onSnapshot((snap) => {
+        const likes = snap.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }))
+
+        setIsFavoritedList([...likes])
+      })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userProfile])
 
   return (
     <>
@@ -26,8 +47,20 @@ const Favorites = () => {
           color: "#606060",
         }}
       >
-        <h1 style={{ marginBottom: "1rem" }}>My favorites</h1>
-        <PetList animalList={isFavoritedList} />
+        {favoriteObject === 0 ? (
+          <>
+            <LinearProgress color="secondary" />
+            <h3 style={{ marginTop: "1rem", color: "#606060" }}>
+              {" "}
+              Loading pet information...{" "}
+            </h3>
+          </>
+        ) : (
+          <>
+            <h1 style={{ marginBottom: "1rem" }}>My favorites</h1>
+            <PetList animalList={isFavoritedList} />
+          </>
+        )}
       </Box>
     </>
   )
