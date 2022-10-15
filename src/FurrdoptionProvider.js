@@ -38,8 +38,10 @@ function FurrdoptionProvider({ children }) {
   //isLoggedIn will be false and userProfile will be an empty array when users are not logged in, when users sign out, or when users change their password.
   React.useEffect(() => {
     firebase.auth().onAuthStateChanged(function (user) {
+      console.log("user inside of furrdoption Provider", user, typeof user)
       if (user) {
         setIsLoggedIn(true)
+        //setUserProfile({ ...user })
         setUserProfile(user)
       } else {
         setIsLoggedIn(false)
@@ -47,6 +49,7 @@ function FurrdoptionProvider({ children }) {
       }
     })
   }, [setIsLoggedIn, setUserProfile])
+  console.log("userProfile", userProfile)
 
   return (
     <FurrdoptionContext.Provider

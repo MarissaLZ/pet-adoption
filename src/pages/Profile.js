@@ -13,6 +13,8 @@ import {
   Stack,
   Divider,
   LinearProgress,
+  FormControl,
+  FormLabel,
 } from "@mui/material"
 import { FurrdoptionContext } from "../FurrdoptionProvider"
 import firebase from "../Firebase/FirebaseConfig"
@@ -34,6 +36,7 @@ function Profile() {
   })
 
   const { userProfile } = useContext(FurrdoptionContext)
+  console.log("userProfile", userProfile)
 
   const userName = userProfile.displayName
 
@@ -46,6 +49,11 @@ function Profile() {
   }
 
   const handleCheck = (e) => {
+    console.log(
+      "[e.target.name]: e.target.value",
+      e.target.checked,
+      typeof e.target.checked
+    )
     setProfileData({
       ...profileData,
       [e.target.name]: e.target.checked,
@@ -89,7 +97,7 @@ function Profile() {
         setProfileData({ ...doc.data() })
       })
     //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [userProfile])
 
   return (
     <>
@@ -140,43 +148,55 @@ function Profile() {
                   <h3 style={{ color: "#606060" }}>{userName}</h3>
                 </Grid>
                 <Grid item xs={10}>
-                  <FormGroup
-                    sx={{ display: "flex", flexDirection: "row", gap: "5rem" }}
-                  >
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={profileData.volunteer}
-                          onChange={handleCheck}
+                  <FormControl component="fieldset" variant="standard">
+                    <FormLabel component="legend">
+                      Select roles
+                      <FormGroup
+                        sx={{
+                          display: "flex",
+                          flexDirection: "row",
+                          gap: "5rem",
+                        }}
+                      >
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              checked={profileData.volunteer}
+                              onChange={handleCheck}
+                              name="volunteer"
+                            />
+                          }
+                          label="Volunteer"
+                          name="volunteer"
+                          disabled={!isEditable}
                         />
-                      }
-                      label="Volunteer"
-                      name="volunteer"
-                      disabled={!isEditable}
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={profileData.adopter}
-                          onChange={handleCheck}
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              checked={profileData.adopter}
+                              onChange={handleCheck}
+                              name="adopter"
+                            />
+                          }
+                          label="Adopter"
+                          name="adopter"
+                          disabled={!isEditable}
                         />
-                      }
-                      label="Adopter"
-                      name="adopter"
-                      disabled={!isEditable}
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={profileData.foster}
-                          onChange={handleCheck}
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              checked={profileData.foster}
+                              onChange={handleCheck}
+                              name="foster"
+                            />
+                          }
+                          label="Foster"
+                          name="foster"
+                          disabled={!isEditable}
                         />
-                      }
-                      label="Foster"
-                      name="foster"
-                      disabled={!isEditable}
-                    />
-                  </FormGroup>
+                      </FormGroup>
+                    </FormLabel>
+                  </FormControl>
                 </Grid>
               </Grid>
               <Stack spacing={8} sx={{ margin: "3rem 0 0 5rem" }}>
@@ -190,7 +210,7 @@ function Profile() {
                   </Typography>
                   <TextField
                     id="standard-basic"
-                    label="Phone Number"
+                    //label="Phone Number"
                     disabled={!isEditable}
                     name="phone"
                     value={profileData.phone}
@@ -201,7 +221,7 @@ function Profile() {
                   <Typography
                     color="textSecondary"
                     gutterBottom
-                    sx={{ paddingTop: "1rem" }}
+                    sx={{ paddingTop: "2.5rem" }}
                     style={{ color: "#606060" }}
                   >
                     Address:
@@ -209,9 +229,18 @@ function Profile() {
                   <Box>
                     <Stack direction="row" spacing={5}>
                       <Box>
+                        <Box
+                          sx={{
+                            paddingBottom: "0.25rem",
+                            textAlign: "start",
+                            color: "#606060",
+                          }}
+                        >
+                          Street
+                        </Box>
                         <TextField
                           id="standard-basic"
-                          label="Street Address:"
+                          //label="Street Address:"
                           disabled={!isEditable}
                           name="street"
                           value={profileData.street}
@@ -219,9 +248,18 @@ function Profile() {
                         />
                       </Box>
                       <Box>
+                        <Box
+                          sx={{
+                            paddingBottom: "0.25rem",
+                            textAlign: "start",
+                            color: "#606060",
+                          }}
+                        >
+                          City
+                        </Box>
                         <TextField
                           id="standard-basic"
-                          label="City:"
+                          //label="City:"
                           disabled={!isEditable}
                           name="city"
                           value={profileData.city}
@@ -229,9 +267,18 @@ function Profile() {
                         />
                       </Box>
                       <Box>
+                        <Box
+                          sx={{
+                            paddingBottom: "0.25rem",
+                            textAlign: "start",
+                            color: "#606060",
+                          }}
+                        >
+                          State
+                        </Box>
                         <TextField
                           id="standard-basic"
-                          label="State:"
+                          //label="State:"
                           disabled={!isEditable}
                           name="state"
                           value={profileData.state}
